@@ -25,7 +25,7 @@ export default async (req: any, res: any) => {
                     .find({
                         $and: [
                             { category: req.body.category},
-                            { title: req.body.title}
+                            { title: { $regex: req.body.title, $options: "i" } }
                         ] 
                     }
                     ).toArray();
@@ -36,6 +36,6 @@ export default async (req: any, res: any) => {
                 console.error(e);
             }
         default:
-            return res.status(500).json({ success: false, data: 'Method not allowed.' })
+            return res.status(500).json({ success: false, data: "Method not allowed." })
     }
 };
