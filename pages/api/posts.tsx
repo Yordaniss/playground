@@ -22,13 +22,31 @@ export default async (req: any, res: any) => {
             try {
                 const posts = await db
                     .collection("posts")
-                    .find({
-                        $and: [
-                            { category: req.body.category},
-                            { title: { $regex: req.body.title, $options: "i" } }
-                        ] 
-                    }
-                    ).toArray();
+                    .aggregate([
+                        {
+                            $search: {
+                                compound: {
+                                    "must": {
+                                        "text": {
+                                            "path": "title",
+                                            "query": req.body.title
+                                        }
+                                    },
+                                    "should": {
+                                        "text": {
+                                            "path": "category",
+                                            "query": req.body.category.toString()
+                                        },
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            $match: {
+                                "components": { $in: [req.body.components] }
+                            }
+                        }
+                    ]).toArray();
 
                 return res.status(200).json({ success: true, data: posts })
 
