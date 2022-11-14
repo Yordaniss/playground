@@ -17,6 +17,7 @@ export default async (req: any, res: any) => {
 
             } catch (e) {
                 console.error(e);
+                return res.status(500).json({ success: true, data: "Internal server error" })
             }
         case 'POST':
             try {
@@ -52,6 +53,7 @@ export default async (req: any, res: any) => {
 
             } catch (e) {
                 console.error(e);
+                return res.status(500).json({ success: true, data: "Internal server error" })
             }
         default:
             return res.status(500).json({ success: false, data: "Method not allowed." })
