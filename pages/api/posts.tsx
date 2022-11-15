@@ -1,19 +1,14 @@
-import clientPromise from "../../lib/mongodb";
 import Post from "../../models/Post"
 import dbConnect from "../../lib/mongoDBConnect";
 
 export default async (req: any, res: any) => {
     const method = req.method;
-    const client = await clientPromise;
-    const db = client.db("hackathon");
+    await dbConnect();
 
     switch (method) {
         case "GET":
             try {
-                const posts = await db
-                    .collection("posts")
-                    .find({})
-                    .toArray();
+                const posts = await Post.find({});
 
                 return res.status(200).json({ success: true, data: posts })
 
@@ -22,9 +17,8 @@ export default async (req: any, res: any) => {
                 return res.status(500).json({ success: true, data: "Internal server error" })
             }
         case "POST":
-            console.log("Trying to save object");
+            console.log("Trying to save an object");
             try {
-                await dbConnect();
                 const post = await Post.create(req.body);
                 return res.status(201).json({ success: true, data: post })
             } catch (error) {
