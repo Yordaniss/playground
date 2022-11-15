@@ -1,4 +1,6 @@
 import clientPromise from "../../lib/mongodb";
+import Post from "../../models/Post"
+import dbConnect from "../../lib/mongoDBConnect";
 
 export default async (req: any, res: any) => {
     const method = req.method;
@@ -6,7 +8,7 @@ export default async (req: any, res: any) => {
     const db = client.db("hackathon");
 
     switch (method) {
-        case 'GET':
+        case "GET":
             try {
                 const posts = await db
                     .collection("posts")
@@ -19,41 +21,14 @@ export default async (req: any, res: any) => {
                 console.error(e);
                 return res.status(500).json({ success: true, data: "Internal server error" })
             }
-        case 'POST':
+        case "POST":
+            console.log("Trying to save object");
             try {
-                const posts = await db
-                    .collection("posts")
-                    .aggregate([
-                        {
-                            $search: {
-                                compound: {
-                                    "must": {
-                                        "text": {
-                                            "path": "title",
-                                            "query": req.body.title
-                                        }
-                                    },
-                                    "should": {
-                                        "text": {
-                                            "path": "category",
-                                            "query": req.body.category.toString()
-                                        },
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            $match: {
-                                "components": { $in: [req.body.components] }
-                            }
-                        }
-                    ]).toArray();
-
-                return res.status(200).json({ success: true, data: posts })
-
-            } catch (e) {
-                console.error(e);
-                return res.status(500).json({ success: true, data: "Internal server error" })
+                await dbConnect();
+                const post = await Post.create(req.body);
+                return res.status(201).json({ success: true, data: post })
+            } catch (error) {
+                return res.status(400).json({ success: false, data: error })
             }
         default:
             return res.status(500).json({ success: false, data: "Method not allowed." })
