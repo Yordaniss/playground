@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 
 const PostSchema = new mongoose.Schema({
   title: {
+        /* The main title from post */
 
     type: String,
     required: [true, 'Please provide a title for the post.'],
@@ -21,7 +22,12 @@ const PostSchema = new mongoose.Schema({
     /* The age category */
 
     type: Number,
+  },
+  components: {
+    /* The components for game */
+
+    type: Array
   }
 })
 
-export default mongoose.models.Post || mongoose.model('Post', PostSchema)
+export default mongoose.models.Post || mongoose.model("Post", PostSchema, "posts")
