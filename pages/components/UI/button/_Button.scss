@@ -1,0 +1,28 @@
+@use "../../../abstracts/Index" as *;
+
+.button{
+  display: block;
+  border: none;
+  border-radius: 50px;
+  font-family: $ff-tiny-utilities;
+  font-weight: 800;
+  font-size: $fs-tiny-utilities;
+  text-decoration: none;
+  text-transform: lowercase;
+  height: min-content;
+  width: min-content;
+  white-space: nowrap;
+  padding: 30px;
+
+  &:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 1),
+          0px 0px 10px rgba(255, 196, 199, .7),
+          0px 0px 15px rgba(255, 196, 199, .7),
+          0px 0px 20px rgba(255, 196, 199, .7),
+          0px 0px 30px rgba(255, 196, 199, .7),
+          0px 0px 40px rgba(255, 196, 199, .7),
+          0px 0px 55px rgba(255, 196, 199, .7),
+          0px 0px 75px rgba(255, 196, 199, .7);
+  }
+}

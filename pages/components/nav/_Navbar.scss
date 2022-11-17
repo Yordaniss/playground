@@ -1,0 +1,58 @@
+@use "../../abstracts/Index" as *;
+
+.nav{
+  position: absolute;
+  right: 8%;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 1;
+
+  &__list{
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    color: $clr-primary-white;
+    width: 100%;
+
+    &-item{
+      font-family: $ff-headings;
+      font-size: 2.5rem;
+      padding: 2rem;
+      user-select: none;
+
+      &:hover{
+        text-shadow: 0px 0px 5px rgba($clr-primary-white, 1),
+            0px 0px 10px rgba($clr-primary-light-pink, .7),
+            0px 0px 15px rgba($clr-primary-light-pink, .7),
+            0px 0px 20px rgba($clr-primary-light-pink, .7),
+            0px 0px 30px rgba($clr-primary-light-pink, .7),
+            0px 0px 40px rgba($clr-primary-light-pink, .7),
+            0px 0px 55px rgba($clr-primary-light-pink, .7),
+            0px 0px 75px rgba($clr-primary-light-pink, .7);
+        cursor: pointer;
+      }
+
+      @media screen and (max-width: 576px){
+        font-size: calc(25px + 0.390625vw);
+        padding: 0 1rem;
+      }
+    }
+
+    @media screen and (max-width: 576px){
+      justify-content: left;
+      padding: .8rem 1rem;
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    position: fixed;
+    width: 90%;
+    height: 10%;
+    top: 1.4rem;
+    right: 5%;
+    background-color: $bg-primary-light-pink;
+    border-radius: 50px;
+  }
+}

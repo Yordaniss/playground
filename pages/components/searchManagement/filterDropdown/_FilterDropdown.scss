@@ -1,0 +1,95 @@
+@use "../../../abstracts/Index" as *;
+
+.filterDropdown{
+  position: relative;
+  width: 30%;
+  height: 100%;
+  filter: url(#goo);
+  
+  &__top{
+    display: block;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    
+    border: none;
+    border-radius: 40px;
+    background-color: $bg-primary-white;
+
+    color: $clr-primary-dull-wine;
+    font-family: $ff-tiny-utilities;
+    font-size: $fs-tiny-utilities;
+    text-align: center;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  &__categories{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: flex-end;
+    background-color: $bg-primary-white;
+    border-radius: 50px;
+    right: 0;
+    top: 50%;
+    width: 100%;
+    padding: 2rem;
+    visibility: hidden;
+    z-index: -1;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.93, 0.88, 0.1, 0.8);
+
+    li{
+      font-family: $ff-text;
+      font-size: $fs-text;
+    }
+
+    &::before{
+      content: "";
+      background-color: #fff;
+      position: absolute;
+      bottom: 100%;
+      right: 20%;
+      height: 40px;
+      width: 20px;
+    }
+
+    .category{
+      &__checkbox{
+        display: none;
+      }
+    }
+  }
+
+  &__arrow{
+    border-bottom: 2px solid #000;
+    border-right: 2px solid #000;
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg) translateY(-50%);
+    transform-origin: right;
+  }
+
+  .doDropdown{
+    top: calc(100% + 25px);
+    visibility: visible;
+    opacity: 1;
+  }
+
+  input{
+    display: none;
+
+    &:checked ~ .filterDropdown__categories {
+      top: calc(100% + 25px);
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
