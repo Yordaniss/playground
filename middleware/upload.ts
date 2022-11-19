@@ -3,10 +3,8 @@ import crypto from 'crypto';
 import dbConnect from "../lib/mongoDBConnect";
 const { GridFsStorage } = require("multer-gridfs-storage");
 
-let connection = dbConnect();
-
-export default new GridFsStorage({
-  db: connection,
+let storage = new GridFsStorage({
+  db: dbConnect(),
   file: (req: any, file: any) => {
     return new Promise((resolve, reject) => {
       crypto.randomBytes(16, (err, buf) => {
@@ -23,3 +21,5 @@ export default new GridFsStorage({
     });
   }
 });
+
+export default multer({ storage: storage }).fields([{ name: 'file', maxCount: 1 }])
