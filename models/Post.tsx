@@ -31,7 +31,7 @@ const PostSchema = new mongoose.Schema({
   fileId: {
     /* The id from related file */
 
-    type: Number
+    type: String
   }
 })
 
