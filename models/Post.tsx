@@ -27,6 +27,11 @@ const PostSchema = new mongoose.Schema({
     /* The components for game */
 
     type: Array
+  },
+  fileId: {
+    /* The id from related file */
+
+    type: Number
   }
 })
 
