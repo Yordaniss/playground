@@ -1,9 +1,17 @@
 @use '../../abstracts/Variables' as *;
 
 .searchManagement{
-  width: 60%;
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr 3fr;
+  grid-template-rows: 1fr;
+  justify-content: space-between;
+  justify-items: center;
+  align-items: center;
+  column-gap: 1rem;
+  width: 70%;
+  min-width: 70rem;
   height: 12rem;
-  background-color: $bg-accent-wheat;
+  background-color: $bg-accent-dull-sakura;
   position: relative;
   padding: 3rem;
   margin: 0 auto;

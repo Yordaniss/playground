@@ -1,10 +1,15 @@
 export default function Nav() {
+  let navItems = ["Home", "About", "Contact"];
   return (
     <nav className="nav">
       <ul className="nav__list">
-        <li className="nav__list-item">Home</li>
-        <li className="nav__list-item">About</li>
-        <li className="nav__list-item">Contact</li>
+        {navItems.map((item) => {
+          return (
+            <li key={Math.random()} className="nav__list-item">
+              {item}
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
