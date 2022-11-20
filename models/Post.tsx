@@ -28,10 +28,11 @@ const PostSchema = new mongoose.Schema({
 
     type: Array
   },
-  fileId: {
-    /* The id from related file */
-
-    type: String
+  file: {
+    /* The related file object id */
+    
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'uploads.files'
   }
 })
 
