@@ -21,8 +21,11 @@ handler.use(storage);
 handler.post(async (req: any, res: any) => {
     let fileId = res.req.files.file[0].id.toString();
     try {
-        req.body.fileId = fileId;
-        const post = await Post.create(req.body);
+        const postObject = new Post({
+            ...req.body,
+            file: fileId
+        });
+        const post = await postObject.save();
         return res.status(201).json({ success: true, data: post });
     } catch (error) {
         return res.status(400).json({ success: false, data: error });
