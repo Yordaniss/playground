@@ -1,11 +1,9 @@
 import nextConnect from "next-connect";
 import Post from "../../models/Post"
-import storage from "../../middleware/upload";
+import uploadFile from "../../middleware/upload";
 import authenticateToken from "../../middleware/authentication";
 
 const handler = nextConnect();
-
-//handler.use(authenticateToken);
 
 handler.get(async (req: any, res: any) => {
     try {
@@ -19,7 +17,8 @@ handler.get(async (req: any, res: any) => {
     }
 });
 
-handler.use(storage);
+handler.use(uploadFile);
+handler.use(authenticateToken);
 
 handler.post(async (req: any, res: any) => {
     let fileId = res.req.files.file[0].id.toString();
