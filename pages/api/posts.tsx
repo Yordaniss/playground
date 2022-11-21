@@ -1,8 +1,11 @@
 import nextConnect from "next-connect";
 import Post from "../../models/Post"
 import storage from "../../middleware/upload";
+import authenticateToken from "../../middleware/authentication";
 
 const handler = nextConnect();
+
+//handler.use(authenticateToken);
 
 handler.get(async (req: any, res: any) => {
     try {
