@@ -27,6 +27,12 @@ const PostSchema = new mongoose.Schema({
     /* The components for game */
 
     type: Array
+  },
+  file: {
+    /* The related file object id */
+    
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'uploads.files'
   }
 })
 
