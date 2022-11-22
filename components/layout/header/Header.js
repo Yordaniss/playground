@@ -44,7 +44,7 @@ export default function Header() {
         <input
           type="checkbox"
           id="menu-checkbox"
-          onChange={(e) => {
+          onChange={() => {
             setIsChecked(!isChecked);
           }}
           checked={isChecked}
@@ -52,8 +52,8 @@ export default function Header() {
         <label htmlFor="menu-checkbox">
           <Button className="header__content__menu-btn">&#9776;</Button>
         </label>
-        {/* <Navbar></Navbar> */}
         <div className="article">
+          <Navbar></Navbar>
           <div className="article__heading-container">
             <h1 className="article__heading-container__heading">
               Activities for kids
