@@ -1,18 +1,10 @@
 import { useState } from "react";
 
 export default function Dropdown(props) {
-  const [isCheckAllowed, setIfCheckAllowed] = useState(true);
-
   let dropdownInputId =
     props.className + "InputId" + Math.ceil(Math.random() * 10000);
 
   let className = props.className;
-
-  const confirmCheck = () => {
-    if (props.selectionModifier === "SORT") {
-      setAllowChecking(false);
-    }
-  };
 
   return (
     <div className={className}>
@@ -41,6 +33,7 @@ export default function Dropdown(props) {
         <ul className={className + "__options"}>
           {props.dropdownList.list.map((el) => {
             if (typeof el === "object") {
+              console.log(el.selectionModifier);
               return (
                 <li key={Math.random()}>
                   <Dropdown
@@ -50,27 +43,28 @@ export default function Dropdown(props) {
                       title: el.title,
                       list: el.list,
                     }}
+                    selectionModifier={el.selectionModifier}
                   ></Dropdown>
                 </li>
               );
             } else {
-              let checkboxId = Math.ceil(Math.random() * 10000);
+              let innerInputID = Math.ceil(Math.random() * 10000);
 
+              let inputType;
+              props.selectionModifier === "SORT"
+                ? (inputType = "radio")
+                : (inputType = "checkbox");
+              console.log(props.dropdownList.title);
               return (
                 <li key={Math.random()}>
                   <input
-                    id={`checkboxId${checkboxId}`}
-                    className="itemCheckbox"
-                    type="checkbox"
-                    onChange={(e) => {
-                      isCheckAllowed
-                        ? (e.target.checked = true)
-                        : (e.target.checked = false);
-                      props.selectionModifier === "SORT" && confirmCheck;
-                    }}
+                    id={`innerInputID${innerInputID}`}
+                    className="itemInput"
+                    type={inputType}
+                    name={props.dropdownList.title}
                   />
                   <label
-                    htmlFor={`checkboxId${checkboxId}`}
+                    htmlFor={`innerInputID${innerInputID}`}
                     className="itemLabel"
                   >
                     {el}

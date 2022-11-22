@@ -7,14 +7,15 @@ export default function FilterDropdown() {
       dropdownList={{
         title: "Choose category:",
         list: [
-          // "Indoor",
           {
             title: "Indoor",
             list: ["Cooking", "Crafting", "Games"],
+            selectionModifier: "FILTER",
           },
           "Outdoor",
         ],
       }}
+      selectionModifier="FILTER"
     ></Dropdown>
   );
 }

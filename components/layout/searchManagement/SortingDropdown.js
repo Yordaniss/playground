@@ -15,6 +15,7 @@ export default function SortingDropdown() {
           "Alphabet descending",
         ],
       }}
+      selectionModifier="SORT"
     ></Dropdown>
   );
 }
