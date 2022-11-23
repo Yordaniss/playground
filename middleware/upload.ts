@@ -22,4 +22,4 @@ let storage = new GridFsStorage({
   }
 });
 
-export default multer({ storage: storage }).fields([{ name: 'file', maxCount: 1 }])
+export default multer({ storage: storage }).fields([{ name: 'file', maxCount: 1 }]);
