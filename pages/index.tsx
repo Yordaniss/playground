@@ -14,6 +14,10 @@ export async function getServerSideProps(context) {
     // Then you can execute queries against your database like so:
     // db.find({}) or any of the MongoDB Node Driver commands
 
+    // const res = await fetch('http://localhost:3000/api/posts');
+    // const data = await res.json();
+    // console.log(data);
+
     return {
       props: { isConnected: true },
     }
