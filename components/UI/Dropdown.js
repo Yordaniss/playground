@@ -33,7 +33,6 @@ export default function Dropdown(props) {
         <ul className={className + "__options"}>
           {props.dropdownList.list.map((el) => {
             if (typeof el === "object") {
-              console.log(el.selectionModifier);
               return (
                 <li key={Math.random()}>
                   <Dropdown
@@ -54,7 +53,6 @@ export default function Dropdown(props) {
               props.selectionModifier === "SORT"
                 ? (inputType = "radio")
                 : (inputType = "checkbox");
-              console.log(props.dropdownList.title);
               return (
                 <li key={Math.random()}>
                   <input

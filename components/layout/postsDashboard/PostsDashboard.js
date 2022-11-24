@@ -1,29 +1,18 @@
 import { useState, useEffect } from "react";
+import useHttpRequest from "../../hooks/useHttpRequest";
 import SearchManagement from "../searchManagement/SearchManagement";
 import Post from "./Post";
 
 export default function PostsDashboard(props) {
   const [posts, setPosts] = useState([]);
-  const postsFetchCallback = (fetchResult) => {
-    setPosts(fetchResult.data);
-  };
+  const { isLoading, error, sendRequest: fetchPosts } = useHttpRequest();
+
   useEffect(() => {
-    async function fetchData(url, fetchCallback) {
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error("HTTP error: " + response.status);
-        }
-        const data = await response.json();
-        fetchCallback(data);
-      } catch (error) {
-        console.error("Couldn't get data :( Error: " + error);
-      }
-    }
-
-    fetchData("http://localhost:3000/api/posts", postsFetchCallback);
+    const postsFetchCallback = (fetchResult) => {
+      setPosts(fetchResult.data);
+    };
+    fetchPosts({ url: "http://localhost:3000/api/posts" }, postsFetchCallback);
   }, []);
-
   return (
     <section className="postsDashboard" id="postsDashboard">
       <svg
@@ -44,11 +33,14 @@ export default function PostsDashboard(props) {
       </svg>
 
       <SearchManagement></SearchManagement>
-      <div className="dashboard">
-        {posts.map((post) => {
-          return <Post key={Math.random()} post={post}></Post>;
-          // console.log(post);
-        })}
+      <div className="dashboard" isLoading={isLoading} error={error}>
+        {isLoading && "Loading..."}
+        {error && error}
+        {posts &&
+          posts.map((post) => {
+            return <Post key={Math.random()} post={post}></Post>;
+            // console.log(post);
+          })}
       </div>
     </section>
   );
