@@ -1,5 +1,5 @@
 import React from "react";
-import GamesDashboard from "../components/layout/GamesDashboard";
+import PostsDashboard from "../components/layout/postsDashboard/PostsDashboard";
 import Header from "../components/layout/header/Header";
 import "../shared/styles/global-css/index.css";
 import Head from "next/head";
@@ -11,7 +11,7 @@ function App() {
         <link rel="shortcut icon" href="/icons/sun.ico" />
       </Head>
       <Header></Header>
-      <GamesDashboard></GamesDashboard>
+      <PostsDashboard></PostsDashboard>
     </React.Fragment>
   );
 }
