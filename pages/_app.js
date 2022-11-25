@@ -1,4 +1,5 @@
 import React from "react";
+import { Route } from "react-router-dom";
 import PostsDashboard from "../components/layout/postsDashboard/PostsDashboard";
 import Header from "../components/layout/header/Header";
 import "../shared/styles/global-css/index.css";
