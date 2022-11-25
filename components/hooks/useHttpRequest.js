@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
 export default function useHttpRequest() {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,6 +18,7 @@ export default function useHttpRequest() {
         throw new Error("HTTP error: " + response.status);
       }
       const data = await response.json();
+      console.log(data);
       fetchCallback(data);
     } catch (error) {
       console.error("Couldn't get data :( Error: " + error);

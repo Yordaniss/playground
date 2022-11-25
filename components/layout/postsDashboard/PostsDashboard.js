@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import useHttpRequest from "../../hooks/useHttpRequest";
 import SearchManagement from "../searchManagement/SearchManagement";
 import Post from "./Post";
+import AddPost from "./AddPost";
 
 export default function PostsDashboard(props) {
   const [posts, setPosts] = useState([]);
@@ -33,7 +34,8 @@ export default function PostsDashboard(props) {
       </svg>
 
       <SearchManagement></SearchManagement>
-      <div className="dashboard" isLoading={isLoading} error={error}>
+      <AddPost></AddPost>
+      <div className="dashboard">
         {isLoading && "Loading..."}
         {error && error}
         {posts &&
