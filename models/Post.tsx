@@ -32,7 +32,8 @@ const PostSchema = new mongoose.Schema({
     /* The related file object id */
     
     type: mongoose.Schema.Types.ObjectId, 
-    ref: 'uploads.files'
+    ref: 'uploads.files',
+    required: [false]
   }
 })
 
