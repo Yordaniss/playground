@@ -7,10 +7,7 @@ if (!process.env.MONGODB_URI) {
 const uri = process.env.MONGODB_URI
 
 async function dbConnect() {
-  const opts = {
-    bufferCommands: false,
-    dbName: 'hackathon'
-  }
+  const opts = { dbName: 'hackathon' }
 
   let mongooseConnection = mongoose.connect(uri, opts).then((mongoose) => {
     return mongoose;
