@@ -21,7 +21,10 @@ handler.use(uploadFile);
 handler.use(authenticateToken);
 
 handler.post(async (req: any, res: any) => {
-    let fileId = res.req.files.file[0].id.toString();
+    let fileId = null;
+    if (req.files.file) {
+        fileId = req.files.file[0].id.toString();
+    } 
     try {
         const postObject = new Post({
             ...req.body,
