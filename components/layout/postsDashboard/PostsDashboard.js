@@ -41,7 +41,6 @@ export default function PostsDashboard(props) {
         {posts &&
           posts.map((post) => {
             return <Post key={Math.random()} post={post}></Post>;
-            // console.log(post);
           })}
       </div>
     </section>
