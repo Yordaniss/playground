@@ -1,0 +1,210 @@
+@use '../../../shared/styles/abstracts/Variables' as *;
+
+.dropdown{
+  display: flex;
+  filter: url(#goo);
+  
+  &__top{
+    width: fit-content;
+    min-width: 10rem;
+    padding: 1.5rem;
+    z-index: 2;
+    
+    border: none;
+    border-radius: 70px;
+    background-color: $bg-primary-white;
+
+    color: $clr-primary-dull-wine;
+    font-family: $ff-tiny-utilities;
+    font-size: $fs-tiny-utilities;
+    text-align: center;
+    white-space: nowrap;
+    user-select: none;
+
+    &:hover{
+      color: $clr-primary-dull-rose;
+      cursor: pointer;
+    }
+  }
+
+  &__options-container{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: flex-end;
+    background-color: $bg-primary-white;
+    border-radius: 50px;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    min-width: fit-content;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.93, 0.88, 0.1, 0.8);
+
+    &::before{
+      content: "";
+      background-color: #fff;
+      position: absolute;
+      bottom: 100%;
+      left: 40%;
+      height: 40px;
+      width: 20px;
+    }
+  }
+
+  svg{
+    width: 0;
+    height: 0;
+  }
+
+  &__options{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: flex-end;
+    background-color: $bg-primary-white;
+    border-radius: 50px;
+    top: 50%;
+    width: 100%;
+    padding: 2rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.7s ease-in-out;
+
+    li{
+      font-family: $ff-text;
+      font-size: $fs-text;
+      font-weight: 300;
+      white-space: nowrap;
+      user-select: none;
+
+      &:hover > .itemLabel{
+        color: $clr-primary-dull-rose;
+        cursor: pointer;
+      }
+      &:not(li:first-child){
+        margin-top: 15px;
+      }
+
+      .itemInput{
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        appearance: none;
+        outline: none;
+        border: 1px solid $bg-primary-dull-wine;
+        border-radius: 40%;
+        
+        &:hover{
+          border-color: $bg-primary-light-pink;
+          cursor: pointer;
+        }
+
+        &:checked{
+          border-color: $bg-primary-dull-rose;
+          background-color: $bg-primary-light-pink;
+          content: "\2661";
+        }
+
+        &:checked ~ .itemLabel{
+          color: $clr-primary-dull-wine;
+        }
+      }
+    }
+
+  }
+
+  &__arrow{
+    border-bottom: 2px solid #000;
+    border-right: 2px solid #000;
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg) translateY(-50%);
+    transform-origin: right;
+  }
+
+  .dropdown__input{
+    display: none;
+
+    &:checked ~ .dropdown__options-container {
+      top: calc(100% + 25px);
+      visibility: visible;
+      opacity: 1;
+
+    }
+    &:checked ~ .dropdown__options-container  .dropdown__options {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+.innerDropdown{
+  position: relative;
+  display: inline;
+
+  &__top{
+    &:hover{
+      color: $clr-primary-dull-rose;
+      cursor: pointer;
+    }
+  }
+
+  &__options-container{
+    position: relative;
+    height: 0;
+    background-color: white;
+    transition: all .5s ease-in-out;
+
+    .innerDropdown__options{
+      position: relative;
+      height: 0;
+      opacity: 0;
+      visibility: hidden;
+      padding: 0;
+      margin: 0;
+      font-weight: 300;
+      transition: all .7s ease-in-out;
+      transition: min-height 1s ease-in-out;
+
+      & li{
+        color: rgb(66, 66, 66);
+
+        &:hover{
+          color: #000;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+
+  &__input{
+    display: none;
+
+    &:checked ~ .innerDropdown__options-container {
+      min-height: min-content;
+      height: min-content;
+      margin-bottom: -15px;
+      padding: 2rem 0;
+    }
+    &:checked ~ .innerDropdown__options-container  .innerDropdown__options {
+      min-height: min-content;
+      height: min-content;
+      visibility: visible;
+      opacity: 1;
+    }
+    &:checked ~ .svgFilter{
+      display: inline;
+    }
+  }
+
+  .svgFilter{
+    display: none;
+  }
+}
