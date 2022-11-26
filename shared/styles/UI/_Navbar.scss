@@ -1,0 +1,84 @@
+@use '../../../shared/styles/abstracts/Variables' as *;
+
+.nav{
+  position: absolute;
+  top: 5%;
+  right: 2%;
+  overflow: hidden;
+  z-index: 1;
+  width: min-content;
+
+  &__list{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    color: $clr-primary-white;
+
+    &-item{
+      font-family: $ff-headings;
+      font-size: $fs-headings;
+      padding: 2rem;
+      user-select: none;
+
+      &:hover{
+        text-shadow: 0px 0px 5px rgba($clr-primary-white, 1),
+            0px 0px 5px rgba($clr-primary-light-pink, .7),
+            0px 0px 7px rgba($clr-primary-light-pink, .7),
+            0px 0px 10px rgba($clr-primary-light-pink, .7),
+            0px 0px 15px rgba($clr-primary-light-pink, .7),
+            0px 0px 20px rgba($clr-primary-light-pink, .7),
+            0px 0px 17px rgba($clr-primary-light-pink, .7),
+            0px 0px 37px rgba($clr-primary-light-pink, .7);
+        cursor: pointer;
+      }
+
+      @media screen and (max-width: $bp-small-screen){
+        // font-size: calc(25px + 0.390625vw);
+        padding: 0 1rem;
+      }
+    }
+
+    @media screen and (max-width: $bp-small-screen){
+      justify-content: left;
+      padding: .8rem 1rem;
+    }
+  }
+
+  @media screen and (max-width: $bp-small-screen) {
+    display: none;
+    position: fixed;
+    justify-content: center;
+    width: 90%;
+    height: 10%;
+    top: 1.2rem;
+    right: 5%;
+    background-color: $bg-primary-light-pink;
+    border-radius: 50px;
+  }
+}
+
+#menu-checkbox{
+  display: none;
+}
+
+#menu-checkbox:checked ~ .nav{
+  display: flex;
+}
+
+label[for="menu-checkbox"]{
+  display: none;
+  color: $clr-primary-white;
+  padding: 0;
+  position: fixed;
+
+  @media screen and (max-width: $bp-medium-screen) {
+    display: block;
+    width: min-content;
+    height: min-content;
+    border-radius: 50%;
+    z-index: 2;
+    top: 2rem;
+    right: 2rem;
+  }
+}
