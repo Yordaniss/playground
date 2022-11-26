@@ -5,6 +5,7 @@ export default function FilterDropdown() {
     <Dropdown
       className="dropdown"
       dropdownList={{
+        key: Math.random(),
         title: "Choose category:",
         list: [
           {

@@ -33,13 +33,12 @@ export default function PostsDashboard(props) {
       </svg>
 
       <SearchManagement></SearchManagement>
-      <div className="dashboard" isLoading={isLoading} error={error}>
+      <div className="dashboard">
         {isLoading && "Loading..."}
         {error && error}
         {posts &&
           posts.map((post) => {
             return <Post key={Math.random()} post={post}></Post>;
-            // console.log(post);
           })}
       </div>
     </section>

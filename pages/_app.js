@@ -7,11 +7,12 @@ import Head from "next/head";
 function App() {
   return (
     <React.Fragment>
-      <Head>
+      {/* <h1>hi</h1> */}
+      {/* <Head>
         <link rel="shortcut icon" href="/icons/sun.ico" />
       </Head>
       <Header></Header>
-      <PostsDashboard></PostsDashboard>
+      <PostsDashboard></PostsDashboard> */}
     </React.Fragment>
   );
 }
