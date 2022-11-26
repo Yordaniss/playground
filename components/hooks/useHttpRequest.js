@@ -18,10 +18,8 @@ export default function useHttpRequest() {
         throw new Error("HTTP error: " + response.status);
       }
       const data = await response.json();
-      console.log(data);
       fetchCallback(data);
     } catch (error) {
-      console.error("Couldn't get data :( Error: " + error);
       setError("Couldn't get data :( Error: " + error);
     }
     setIsLoading(false);
