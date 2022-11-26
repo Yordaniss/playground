@@ -1,19 +1,16 @@
 import React from "react";
-import { Route } from "react-router-dom";
-import PostsDashboard from "../components/layout/postsDashboard/PostsDashboard";
-import Header from "../components/layout/header/Header";
 import "../shared/styles/global-css/index.css";
-import Head from "next/head";
+import Layout from "../components/layout/Layout";
 
-function App() {
+function App({ Component, pageProps }) {
   return (
-    <React.Fragment>
-      <Head>
-        <link rel="shortcut icon" href="/icons/sun.ico" />
-      </Head>
-      <Header></Header>
-      <PostsDashboard></PostsDashboard>
-    </React.Fragment>
+    <Layout>
+      {Component !== undefined && Component.name !== "Home" ? (
+        <Component {...pageProps}></Component>
+      ) : (
+        <></>
+      )}
+    </Layout>
   );
 }
 
