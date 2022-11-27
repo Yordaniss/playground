@@ -1,0 +1,22 @@
+@use '../../../shared/styles/abstracts/Variables' as *;
+
+.input{
+  padding: 1.2rem;
+  border-radius: 50px;
+  border: none;
+  background-color: $bg-primary-white;
+  font-family: $ff-tiny-utilities;
+  height: min-content;
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.input[type="text"]{
+  font-family: $ff-text;
+}
