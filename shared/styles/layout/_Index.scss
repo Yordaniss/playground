@@ -1,3 +1,4 @@
-@use "body";
-@use "gamesDashBoard";
-@use "header";
+@forward "addPost";
+@forward "body";
+@forward "postsDashBoard";
+@forward "header";

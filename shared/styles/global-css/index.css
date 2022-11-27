@@ -167,6 +167,75 @@ table {
   font-display: swap;
   src: url("../../fonts/comfortaa/Comfortaa.ttf") format("woff2");
 }
+.addPost {
+  position: relative;
+  width: 60%;
+  margin: auto;
+  padding: 3rem;
+  background-color: #e7babc;
+  margin-top: 3rem;
+}
+.addPost__inner-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr min-content 1fr;
+  grid-template-areas: "labels inputs";
+  justify-content: space-between;
+  row-gap: 1rem;
+}
+.addPost__inner-container label {
+  font-family: "Josefin Sans";
+  font-weight: 600;
+  color: #6b2c3c;
+  grid-area: labels;
+}
+.addPost__inner-container textarea {
+  grid-area: inputs;
+  grid-row: 2;
+  color: rgba(0, 0, 0, 0.8);
+  border: none;
+  font-size: 1rem;
+  resize: vertical;
+  width: 100%;
+  min-width: 100%;
+}
+.addPost__inner-container .dropdown {
+  grid-area: inputs;
+  grid-row: 3;
+  justify-self: end;
+}
+.addPost__inner-container .dropdown * {
+  font-size: 1rem;
+}
+.addPost__inner-container .dropdown__top {
+  color: #964555;
+}
+.addPost__inner-container label:first-of-type {
+  grid-row: 1;
+}
+.addPost__inner-container label:nth-of-type(2) {
+  grid-row: 2;
+}
+.addPost__inner-container .input {
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.8);
+  border: none;
+}
+.addPost__inner-container .input[type=submit] {
+  background-color: #c4787c;
+  color: white;
+}
+.addPost__inner-container .input-error {
+  color: rgb(223, 0, 104);
+  border: 1px solid rgb(223, 0, 104);
+}
+.addPost__inner-container .input:disabled, .addPost__inner-container .input:disabled:hover, .addPost__inner-container .input:disabled:active {
+  background-color: #c39ea0;
+  color: #846c6d;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -493,6 +562,7 @@ body {
   width: min-content;
   white-space: nowrap;
   padding: 30px;
+  user-select: none;
 }
 .button:hover {
   cursor: pointer;
@@ -679,6 +749,29 @@ body {
   display: none;
 }
 
+.form {
+  border-radius: 70px;
+}
+
+.input {
+  padding: 1.2rem;
+  border-radius: 50px;
+  border: none;
+  background-color: white;
+  font-family: "Babycakes";
+  height: min-content;
+}
+.input:focus {
+  outline: none;
+}
+.input:hover {
+  cursor: pointer;
+}
+
+.input[type=text] {
+  font-family: "Josefin Sans";
+}
+
 .nav {
   position: absolute;
   top: 5%;
@@ -753,6 +846,19 @@ label[for=menu-checkbox] {
     top: 2rem;
     right: 2rem;
   }
+}
+
+.textarea {
+  padding: 2rem;
+  border-radius: 50px;
+  border: none;
+  background-color: white;
+  color: #964555;
+  font-family: "Josefin Sans";
+  height: min-content;
+}
+.textarea:focus {
+  outline: none;
 }
 
 /*# sourceMappingURL=index.css.map */

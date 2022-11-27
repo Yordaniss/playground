@@ -1,0 +1,85 @@
+@use '../../abstracts/Variables' as *;
+
+.addPost{
+  position: relative;
+  width: 60%;
+  margin: auto;
+  padding: 3rem;
+  background-color: $bg-accent-dull-sakura;
+  margin-top: 3rem;
+
+  &__inner-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr min-content 1fr;
+    grid-template-areas: 
+    'labels inputs';
+    justify-content: space-between;
+    row-gap: 1rem;
+
+    label{
+      font-family: $ff-text;
+      font-weight: 600;
+      color: $clr-primary-dull-wine;
+      grid-area: labels;
+    }
+
+    textarea{
+      grid-area: inputs;
+      grid-row: 2;
+      color: rgb(black, 0.8);
+      border: none;
+      font-size: 1rem;
+      resize: vertical;
+      width: 100%;
+      min-width: 100%;
+    }
+
+    .dropdown{
+      grid-area: inputs;
+      grid-row: 3;
+      justify-self: end;
+
+      & * {
+        font-size: 1rem;
+      }
+
+      &__top{
+        color: $clr-primary-dull-rose;
+      }
+      
+    }
+
+    label:first-of-type{
+      grid-row: 1;
+    }
+
+    label:nth-of-type(2){
+      grid-row: 2;
+    }
+
+    .input{
+      font-size: 1rem;
+      color: rgb(black, 0.8);
+      border: none;
+
+      &[type="submit"]{
+        background-color: $bg-primary-dull-rose;
+        color: $clr-primary-white;
+      }
+
+      &-error{
+        color: rgb(223, 0, 104);
+        border: 1px solid rgb(223, 0, 104);
+      }
+
+      &:disabled, &:disabled:hover, &:disabled:active{
+        background-color: #c39ea0;
+        color: #846c6d;
+        box-shadow: none;
+        cursor: not-allowed;
+      }
+    }
+  }
+  
+}

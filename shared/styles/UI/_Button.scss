@@ -13,6 +13,7 @@
   width: min-content;
   white-space: nowrap;
   padding: 30px;
+  user-select: none;
 
   &:hover{
     cursor: pointer;
