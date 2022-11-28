@@ -26,12 +26,12 @@ $clr-primary-dull-rose: #964555;
 $clr-primary-light-pink: #FDC9C9;
 $clr-primary-white: white;
 $clr-accent-wheat: #fcc4b7;
-$clr-accent-wheat2: rgb(252, 252, 228);;
+$clr-accent-light-wheat: rgb(252, 252, 228);;
 
 //background colors:
 
 $bg-primary-dull-wine: #6b2c3c;
-// $bg-primary-dull-rose: #964555;
+$bg-primary-dull-rose-nav: #964555;
 $bg-primary-dull-rose: #c4787c;
 $bg-primary-light-pink: #f7cac9;
 $bg-primary-white: white;
@@ -39,10 +39,32 @@ $bg-accent-dull-sakura: #e7babc;
 
 // @media breakpoints:
 
-$bp-extra-small-screen: 360px;
+$bp-extra-small-screen: 470px;
+$bp-very-small-screen: 500px;
 $bp-small-screen: 768px;
 $bp-medium-screen: 890px;
-$bp-big-screen: 1100px;
+$bp-big-screen: 1000px;
 $bp-extra-big-screen: 1200px;
 
+// box shadows
 
+$box-sh-button: 0px 0px 5px rgba(255, 255, 255, 1),
+          0px 0px 10px rgba(255, 196, 199, .7),
+          0px 0px 15px rgba(255, 196, 199, .7),
+          0px 0px 20px rgba(255, 196, 199, .7),
+          0px 0px 30px rgba(255, 196, 199, .7),
+          0px 0px 40px rgba(255, 196, 199, .7),
+          0px 0px 55px rgba(255, 196, 199, .7),
+          0px 0px 75px rgba(255, 196, 199, .7);
+
+
+// text highlights
+
+$text-hightlight-primary: 0px 0px 5px white, 
+          0px 0px 5px rgba(253, 201, 201, 0.7), 
+          0px 0px 7px rgba(253, 201, 201, 0.7), 
+          0px 0px 10px rgba(253, 201, 201, 0.7), 
+          0px 0px 15px rgba(253, 201, 201, 0.7), 
+          0px 0px 20px rgba(253, 201, 201, 0.7), 
+          0px 0px 17px rgba(253, 201, 201, 0.7), 
+          0px 0px 37px rgba(253, 201, 201, 0.7);

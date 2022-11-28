@@ -109,47 +109,51 @@ export default function AddPost(props) {
   };
 
   return (
-    <form className="form addPost" onSubmit={formSubmitHandler}>
-      {isLoading && <p>{isLoading}</p>}
-      {error && <p>{error}</p>}
-      <div className="addPost__inner-container">
-        <label className="labelForTitleInput" htmlFor="inputPostTitle">
-          Post title:
-        </label>
-        <input
-          className={`input ${putErrorClass.title ? "input-error" : ""}`}
-          onChange={titleInputChangeHandler}
-          onBlur={titleInputBlurHandler}
-          id="inputPostTitle"
-          type="text"
-          value={enteredFormData.title}
-          placeholder="Title is..."
-        />
-        {console.log(putErrorClass.title)}
-        <label className="labelForTextarea">Text of the post: </label>
-        <textarea
-          placeholder="Your funny activiy..."
-          className={`textarea ${putErrorClass.text ? "input-error" : ""}`}
-          onChange={textTextareaChangeHandler}
-          onBlur={textTextareaBlurHandler}
-          value={enteredFormData.text}
-        />
-        <Dropdown
-          className="dropdown"
-          dropdownList={{
-            key: Math.random(),
-            title: "Choose category:",
-            list: ["Cooking", "Games", "Sport", "Arts & Crafts", "Foraging"],
-          }}
-          selectionModifier="SORT"
-        ></Dropdown>
-      </div>
-      <input
-        disabled={!isFormValid}
-        className="button"
-        type="submit"
-        value="submit post"
-      ></input>
-    </form>
+    <div className="outer-container">
+      <form className="form addPost" onSubmit={formSubmitHandler}>
+        {isLoading && <p>{isLoading}</p>}
+        {error && <p>{error}</p>}
+        <div className="addPost__inner-container">
+          <label className="labelForTitleInput" htmlFor="inputPostTitle">
+            Post title:
+          </label>
+          <input
+            className={`input ${putErrorClass.title ? "input-error" : ""}`}
+            onChange={titleInputChangeHandler}
+            onBlur={titleInputBlurHandler}
+            id="inputPostTitle"
+            type="text"
+            value={enteredFormData.title}
+            placeholder="Title is..."
+          />
+          <label className="labelForTextarea">Text of the post: </label>
+          <textarea
+            placeholder="Your funny activiy..."
+            className={`textarea ${putErrorClass.text ? "input-error" : ""}`}
+            onChange={textTextareaChangeHandler}
+            onBlur={textTextareaBlurHandler}
+            value={enteredFormData.text}
+          />
+          <Dropdown
+            className="dropdown"
+            dropdownList={{
+              key: Math.random(),
+              title: "Choose category:",
+              list: ["Cooking", "Games", "Sport", "Arts & Crafts", "Foraging"],
+            }}
+            selectionModifier="SORT"
+          ></Dropdown>
+        </div>
+        <div className="formButtons">
+          <input
+            disabled={!isFormValid}
+            className="button"
+            type="submit"
+            value="submit post"
+          ></input>
+          <a className="button cancel">cancel</a>
+        </div>
+      </form>
+    </div>
   );
 }

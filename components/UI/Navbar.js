@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import Button from "./Button";
 
 export default function Navbar() {
-  let navItems = ["Home", "About", "Contact"];
+  let navItems = [
+    { title: "home", href: "/" },
+    { title: "about", href: "/about" },
+    { title: "add post", href: "/addPost" },
+  ];
 
   const [isChecked, setIsChecked] = useState(false);
 
@@ -34,7 +39,7 @@ export default function Navbar() {
           {navItems.map((item) => {
             return (
               <li key={Math.random()} className="nav__list-item">
-                {item}
+                <Link href={item.href}>{item.title}</Link>
               </li>
             );
           })}
