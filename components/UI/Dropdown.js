@@ -28,41 +28,40 @@ export default function Dropdown(props) {
       <div className={className + "__options-container"}>
         <ul className={className + "__options"}>
           {props.dropdownList.list.map((el) => {
-            if (typeof el === "object") {
-              return (
-                <li key={Math.random()}>
-                  <Dropdown
-                    key={Math.random()}
-                    className="innerDropdown"
-                    dropdownList={{
-                      title: el.title,
-                      list: el.list,
-                    }}
-                    selectionModifier={el.selectionModifier}
-                  ></Dropdown>
-                </li>
-              );
-            } else {
-              const innerInputID = Math.ceil(Math.random() * 10000);
+            // if (typeof el === "object") {
+            //   return (
+            //     <li key={Math.random()}>
+            //       <Dropdown
+            //         key={Math.random()}
+            //         className="innerDropdown"
+            //         dropdownList={{
+            //           title: el.title,
+            //           list: el.list,
+            //         }}
+            //         selectionModifier={el.selectionModifier}
+            //       ></Dropdown>
+            //     </li>
+            //   );
+            // } else {
+            const innerInputID = Math.ceil(Math.random() * 10000);
 
-              let inputType;
-              props.selectionModifier === "SORT"
-                ? (inputType = "radio")
-                : (inputType = "checkbox");
-              return (
-                <li key={Math.random()}>
-                  <input
-                    id={innerInputID}
-                    className="itemInput"
-                    type={inputType}
-                    name={props.dropdownList.title}
-                  />
-                  <label htmlFor={innerInputID} className="itemLabel">
-                    {el}
-                  </label>
-                </li>
-              );
-            }
+            let inputType;
+            props.selectionModifier === "SORT"
+              ? (inputType = "radio")
+              : (inputType = "checkbox");
+            return (
+              <li key={Math.random()}>
+                <input
+                  id={innerInputID}
+                  className="itemInput"
+                  type={inputType}
+                  name={props.dropdownList.title}
+                />
+                <label htmlFor={innerInputID} className="itemLabel">
+                  {el}
+                </label>
+              </li>
+            );
           })}
         </ul>
       </div>

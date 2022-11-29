@@ -1,6 +1,6 @@
 import Dropdown from "../../UI/Dropdown";
 
-export default function SortingDropdown() {
+export default function SortingDropdown(props) {
   return (
     <Dropdown
       className="dropdown"
