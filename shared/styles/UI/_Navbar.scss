@@ -1,6 +1,6 @@
-@use '../../../shared/styles/abstracts/Variables' as *;
+@use "../../../shared/styles/abstracts/Variables" as *;
 
-.nav{
+.nav {
   position: absolute;
   top: 8%;
   right: 2%;
@@ -8,49 +8,49 @@
   z-index: 1;
   width: min-content;
 
-  &__list{
+  &__list {
     display: flex;
     justify-content: center;
     align-content: center;
     align-items: center;
 
-    &-item{
+    &-item {
       font-family: $ff-headings;
       font-size: $fs-headings;
       padding: 2rem;
       user-select: none;
 
-      & a{
+      & a {
         white-space: nowrap;
         text-decoration: none;
         text-transform: capitalize;
         color: $clr-accent-light-wheat;
       }
 
-      &:hover{
+      &:hover {
         text-shadow: 0px 0px 5px rgba($clr-primary-white, 1),
-            0px 0px 5px rgba($clr-primary-light-pink, .7),
-            0px 0px 7px rgba($clr-primary-light-pink, .7),
-            0px 0px 10px rgba($clr-primary-light-pink, .7),
-            0px 0px 15px rgba($clr-primary-light-pink, .7),
-            0px 0px 20px rgba($clr-primary-light-pink, .7),
-            0px 0px 17px rgba($clr-primary-light-pink, .7),
-            0px 0px 37px rgba($clr-primary-light-pink, .7);
+          0px 0px 5px rgba($clr-primary-light-pink, 0.7),
+          0px 0px 7px rgba($clr-primary-light-pink, 0.7),
+          0px 0px 10px rgba($clr-primary-light-pink, 0.7),
+          0px 0px 15px rgba($clr-primary-light-pink, 0.7),
+          0px 0px 20px rgba($clr-primary-light-pink, 0.7),
+          0px 0px 17px rgba($clr-primary-light-pink, 0.7),
+          0px 0px 37px rgba($clr-primary-light-pink, 0.7);
         cursor: pointer;
       }
     }
   }
 }
 
-#menu-checkbox{
+#menu-checkbox {
   display: none;
 }
 
-#menu-checkbox:checked ~ .nav{
+#menu-checkbox:checked ~ .nav {
   display: flex;
 }
 
-label[for="menu-checkbox"]{
+label[for="menu-checkbox"] {
   display: none;
   position: fixed;
   top: 4.5rem;
@@ -59,7 +59,7 @@ label[for="menu-checkbox"]{
   border-radius: 50%;
   z-index: 2;
 
-  & a{
+  & a {
     font-family: $ff-tiny-utilities;
     font-weight: 900;
     color: $clr-primary-white;
@@ -67,16 +67,37 @@ label[for="menu-checkbox"]{
   }
 }
 
-#menu-checkbox:checked ~ label[for="menu-checkbox"]{
+#menu-checkbox:checked ~ label[for="menu-checkbox"] {
   box-shadow: none;
-  &:hover, .button:hover{
+  &:hover,
+  .button:hover {
     text-shadow: $text-hightlight-primary;
     box-shadow: none;
   }
 }
 
+@media screen and (min-width: $bp-extra-big-screen) {
+  .nav {
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    height: min-content;
+    top: 10%;
+    right: 7%;
+    background-color: transparent;
+
+    &__list-item {
+      font-size: 2.7rem;
+      padding: 2rem;
+      color: $clr-accent-light-wheat;
+    }
+  }
+  label[for="menu-checkbox"] {
+    display: none;
+  }
+}
 @media screen and (max-width: $bp-extra-big-screen) {
-  .nav{
+  .nav {
     display: none;
     position: fixed;
     justify-content: center;
@@ -85,98 +106,98 @@ label[for="menu-checkbox"]{
     right: 8%;
     background-color: $bg-primary-dull-rose-nav;
     border-radius: 50px;
-    
-    &__list-item{
+
+    &__list-item {
       padding: 1.5rem;
       font-size: 1.9rem;
       color: $clr-accent-light-wheat;
     }
   }
-  label[for="menu-checkbox"]{
+  label[for="menu-checkbox"] {
     display: block;
     right: 8%;
   }
 }
 
-@media screen and (max-width: $bp-small-screen){
-  .nav{
+@media screen and (max-width: $bp-small-screen) {
+  .nav {
     width: 80%;
     top: 8%;
     right: 10%;
-    &__list{
-      &-item{
+    &__list {
+      &-item {
         font-size: 1.3rem;
       }
     }
   }
-  label[for="menu-checkbox"]{
+  label[for="menu-checkbox"] {
     display: block;
     top: 8.2%;
     right: 10%;
 
-    & a{
+    & a {
       font-size: 1.5rem;
       padding: 1.3rem;
     }
   }
-  .button{
+  .button {
     padding: 1.3rem;
   }
 }
 
-@media screen and (max-width: $bp-very-small-screen){
-  .nav{
+@media screen and (max-width: $bp-very-small-screen) {
+  .nav {
     width: 90%;
     top: 2%;
     right: 5%;
 
-    &__list{
+    &__list {
       // justify-content: left;
       // &-item{
       //   padding: 1rem .7rem;
       // }
     }
   }
-  label[for="menu-checkbox"]{
+  label[for="menu-checkbox"] {
     display: block;
     top: 3%;
     right: 5%;
 
-    & a{
+    & a {
       font-size: 1.3rem;
       padding: 1rem;
     }
   }
-  .button{
+  .button {
     padding: 2rem;
   }
 }
 
-@media screen and (max-width: $bp-extra-small-screen){
-  .nav{
+@media screen and (max-width: $bp-extra-small-screen) {
+  .nav {
     width: 90%;
     top: 2%;
     right: 5%;
     justify-content: left;
 
-    &__list{
+    &__list {
       justify-content: left;
-      &-item{
-        padding: 1rem .7rem;
+      &-item {
+        padding: 1rem 0.7rem;
       }
     }
   }
-  label[for="menu-checkbox"]{
+  label[for="menu-checkbox"] {
     display: block;
     top: 1.8%;
     right: 5%;
 
-    & a{
+    & a {
       font-size: 1.3rem;
       padding: 1rem;
     }
   }
-  .button{
+  .button {
     padding: 1.3rem;
   }
 }

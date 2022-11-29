@@ -1,6 +1,6 @@
-@use '../../abstracts/Variables' as *;
+@use "../../abstracts/Variables" as *;
 
-.header{
+.header {
   background-color: $bg-primary-light-pink;
   padding: 2rem;
   width: 100vw;
@@ -8,8 +8,7 @@
   min-height: 100vh;
   overflow: hidden;
 
-
-  .inner-container{
+  .inner-container {
     display: grid;
     justify-items: center;
     align-items: center;
@@ -20,34 +19,34 @@
     width: 100%;
     height: 100%;
   }
-  
-  &__illustration{
-    max-width: 60%;  
+
+  &__illustration {
+    max-width: 60%;
     animation: floating 3s ease-in-out infinite both;
 
     @keyframes floating {
-      0%{ 
+      0% {
         transform: translate(0, 0);
       }
-      50%{ 
+      50% {
         transform: translate(0, 20px);
       }
-      100%{
+      100% {
         transform: translate(0, -0px);
-      }   
+      }
     }
   }
 
-  &__content{
+  &__content {
     width: 100%;
 
-    .article{
+    .article {
       display: grid;
       grid-auto-rows: unset;
       align-items: center;
       justify-items: center;
 
-      &__heading-container{
+      &__heading-container {
         position: relative;
         align-self: end;
 
@@ -56,13 +55,12 @@
           font-family: $ff-headings;
           color: rgba(255, 255, 224);
           text-align: center;
-          text-shadow: 0px 0px 2px rgba(white, .3),
-          0px 0px 2px rgba(250, 218, 94, .5),
-          0px 0px 5px rgba(255, 250, 205, .5),
-          0px 0px 7px rgba(250, 250, 210, .7),
-          0px 0px 7px rgba(white, .3),
-          0px 0px 9px rgba(white, .5);
-        } 
+          text-shadow: 0px 0px 2px rgba(white, 0.3),
+            0px 0px 2px rgba(250, 218, 94, 0.5),
+            0px 0px 5px rgba(255, 250, 205, 0.5),
+            0px 0px 7px rgba(250, 250, 210, 0.7), 0px 0px 7px rgba(white, 0.3),
+            0px 0px 9px rgba(white, 0.5);
+        }
       }
 
       &__text {
@@ -80,41 +78,31 @@
       }
     }
   }
-
 }
 
-@media screen and (min-width: $bp-extra-big-screen){
-  .header{
-    height: min-content;
-    .inner-container{
+@media screen and (min-width: $bp-extra-big-screen) {
+  .header {
+    min-height: 100vh;
+    height: 100vh;
+    .inner-container {
       grid-template-columns: 4fr 3fr;
     }
-  }
 
-}
-
-@media screen and (max-width: $bp-extra-big-screen){
-  .header{
-    height: min-content;
-    padding: 2.5rem;
-
-    .inner-container{
-      padding-top: 10rem;
-    }
-
-    &__illustration{
-      grid-row: 2;
-      max-width: 50%;
-      max-height: 80%;
-    }
-    &__content{
-
-      .article{
-        &__text{
-          font-size: 1.5rem;
+    &__content {
+      padding-top: 7rem;
+      .article {
+        &__heading-container {
+          &__heading {
+            font-size: 4rem;
+          }
+        }
+        &__text {
+          font-size: 1.8rem;
+          padding-top: 5rem;
+          max-width: 50rem;
         }
 
-        &__button{
+        &__button {
           margin: 0 0 1rem 0;
           padding: 1.7rem;
           font-size: 1.8rem;
@@ -124,48 +112,79 @@
   }
 }
 
-@media screen and (max-width: $bp-big-screen){
-  .header{
-    .inner-container{
-      padding-top: 6rem;
+@media screen and (max-width: $bp-extra-big-screen) {
+  .header {
+    min-height: 100vh;
+    height: 100vh;
+    padding: 2.5rem;
+
+    .inner-container {
+      padding-top: 10rem;
     }
 
-    &__content{
-        &__button{
+    &__illustration {
+      grid-row: 2;
+      max-width: 50%;
+      max-height: 80%;
+    }
+    &__content {
+      .article {
+        &__text {
+          font-size: 1.5rem;
+        }
+
+        &__button {
           margin: 0 0 1rem 0;
-          padding: 1.4rem;
+          padding: 1.7rem;
           font-size: 1.8rem;
         }
+      }
     }
   }
 }
 
-@media screen and (max-width: $bp-medium-screen){
-  .header{
-    .inner-container{
+@media screen and (max-width: $bp-big-screen) {
+  .header {
+    .inner-container {
+      padding-top: 6rem;
+    }
+
+    &__content {
+      &__button {
+        margin: 0 0 1rem 0;
+        padding: 1.4rem;
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $bp-medium-screen) {
+  .header {
+    .inner-container {
       padding-top: max(2rem, 8vw);
     }
 
-    &__illustration{
+    &__illustration {
       max-width: 60%;
     }
-    
-    &__content{      
-      .article{
-        &__heading-container{
-          &__heading{
+
+    &__content {
+      .article {
+        &__heading-container {
+          &__heading {
             font-size: 2.7rem;
           }
         }
 
-        &__text{
+        &__text {
           font-size: 1.3rem;
           padding: 2rem;
           width: min(600px, 80%);
           text-align: justify;
         }
 
-        &__button{
+        &__button {
           margin: 2rem 0;
           padding: 1.3rem;
           font-size: 1.6rem;
@@ -175,53 +194,53 @@
   }
 }
 
-@media screen and (max-width: $bp-small-screen){
-  .header{
-    .inner-container{
+@media screen and (max-width: $bp-small-screen) {
+  .header {
+    .inner-container {
       padding-top: 2.4rem;
     }
-    &__illustration{
+    &__illustration {
       max-width: 70%;
     }
-    &__content{
-      .article{
-        &__text{
+    &__content {
+      .article {
+        &__text {
           font-size: 1.3rem;
-          text-align:justify;
+          text-align: justify;
           padding: 2rem 0 1rem 0;
           width: min(450px, 100%);
         }
 
-        &__button{
+        &__button {
           font-size: 1.5rem;
         }
       }
-    }  
+    }
   }
 }
 
-@media screen and (max-width: $bp-extra-small-screen){
-  .header{
+@media screen and (max-width: $bp-extra-small-screen) {
+  .header {
     padding: 1.3rem;
-    &__content{
-      .article{
-        &__heading-container{
-          &__heading{
+    &__content {
+      .article {
+        &__heading-container {
+          &__heading {
             font-size: 2rem;
           }
         }
       }
     }
-    &__illustration{
+    &__illustration {
       padding-top: 2rem;
       max-width: 90%;
-    }  
-    &__content{
-      .article{
-        &__text{
-          padding: 1.3rem .4rem 0 .4rem;
+    }
+    &__content {
+      .article {
+        &__text {
+          padding: 1.3rem 0.4rem 0 0.4rem;
         }
       }
-    }  
+    }
   }
 }

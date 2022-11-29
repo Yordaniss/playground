@@ -472,15 +472,33 @@ body {
 
 @media screen and (min-width: 1200px) {
   .header {
-    height: min-content;
+    min-height: 100vh;
+    height: 100vh;
   }
   .header .inner-container {
     grid-template-columns: 4fr 3fr;
   }
+  .header__content {
+    padding-top: 7rem;
+  }
+  .header__content .article__heading-container__heading {
+    font-size: 4rem;
+  }
+  .header__content .article__text {
+    font-size: 1.8rem;
+    padding-top: 5rem;
+    max-width: 50rem;
+  }
+  .header__content .article__button {
+    margin: 0 0 1rem 0;
+    padding: 1.7rem;
+    font-size: 1.8rem;
+  }
 }
 @media screen and (max-width: 1200px) {
   .header {
-    height: min-content;
+    min-height: 100vh;
+    height: 100vh;
     padding: 2.5rem;
   }
   .header .inner-container {
@@ -845,11 +863,31 @@ label[for=menu-checkbox] a {
 #menu-checkbox:checked ~ label[for=menu-checkbox] {
   box-shadow: none;
 }
-#menu-checkbox:checked ~ label[for=menu-checkbox]:hover, #menu-checkbox:checked ~ label[for=menu-checkbox] .button:hover {
+#menu-checkbox:checked ~ label[for=menu-checkbox]:hover,
+#menu-checkbox:checked ~ label[for=menu-checkbox] .button:hover {
   text-shadow: 0px 0px 5px white, 0px 0px 5px rgba(253, 201, 201, 0.7), 0px 0px 7px rgba(253, 201, 201, 0.7), 0px 0px 10px rgba(253, 201, 201, 0.7), 0px 0px 15px rgba(253, 201, 201, 0.7), 0px 0px 20px rgba(253, 201, 201, 0.7), 0px 0px 17px rgba(253, 201, 201, 0.7), 0px 0px 37px rgba(253, 201, 201, 0.7);
   box-shadow: none;
 }
 
+@media screen and (min-width: 1200px) {
+  .nav {
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    height: min-content;
+    top: 10%;
+    right: 7%;
+    background-color: transparent;
+  }
+  .nav__list-item {
+    font-size: 2.7rem;
+    padding: 2rem;
+    color: rgb(252, 252, 228);
+  }
+  label[for=menu-checkbox] {
+    display: none;
+  }
+}
 @media screen and (max-width: 1200px) {
   .nav {
     display: none;
