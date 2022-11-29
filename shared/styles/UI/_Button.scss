@@ -1,0 +1,22 @@
+@use '../../../shared/styles/abstracts/Variables' as *;
+
+.button{
+  display: block;
+  border: none;
+  border-radius: 50px;
+  font-family: $ff-tiny-utilities;
+  font-weight: 800;
+  font-size: $fs-tiny-utilities;
+  text-decoration: none;
+  text-transform: lowercase;
+  height: min-content;
+  width: min-content;
+  white-space: nowrap;
+  padding: 30px;
+  user-select: none;
+
+  &:hover{
+    cursor: pointer;
+    box-shadow: $box-sh-button;
+  }
+}

@@ -1,0 +1,41 @@
+@use '../../../abstracts/Variables' as *;
+
+.searchBar{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  position: relative;
+  padding: 1.2rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  background-color: $bg-primary-white;
+  font-family: $ff-tiny-utilities;
+  height: min-content;
+
+  &__searchInput{
+    border: none;
+    font-family: $ff-tiny-utilities;
+    font-size: $fs-tiny-utilities;
+    color: $clr-primary-dull-wine;
+    width: 10rem;
+
+    &:focus{
+      outline: none;
+    }
+  }
+
+  &__searchButton{
+    padding: .2rem 0;
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent;
+    border: none;
+    font-size: $fs-tiny-utilities;
+
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}

@@ -5,6 +5,7 @@ export default function SortingDropdown() {
     <Dropdown
       className="dropdown"
       dropdownList={{
+        key: Math.random(),
         title: "Sort by:",
         list: [
           "Age ascending",

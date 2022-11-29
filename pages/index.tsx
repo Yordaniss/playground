@@ -1,6 +1,7 @@
 import clientPromise from '../lib/mongodb'
 import { InferGetServerSidePropsType } from 'next'
 import App from './_app';
+import { Component } from 'react';
 
 export async function getServerSideProps(context:any) {
   try {
@@ -13,6 +14,10 @@ export async function getServerSideProps(context:any) {
     //
     // Then you can execute queries against your database like so:
     // db.find({}) or any of the MongoDB Node Driver commands
+
+    // const res = await fetch('http://localhost:3000/api/posts');
+    // const data = await res.json();
+    // console.log(data);
 
     return {
       props: { isConnected: true },
@@ -27,8 +32,6 @@ export async function getServerSideProps(context:any) {
 
 export default function Home({
   isConnected,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  return (
-    <App/>
-  )
+}: InferGetServerSidePropsType<typeof getServerSideProps>, props: any) {
+  return <App {...props}/>
 }

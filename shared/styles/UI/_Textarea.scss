@@ -1,0 +1,15 @@
+@use '../../../shared/styles/abstracts/Variables' as *;
+
+.textarea{
+  padding: 2rem;
+  border-radius: 50px;
+  border: none;
+  background-color: $bg-primary-white;
+  color: $clr-primary-dull-rose;
+  font-family: $ff-text;
+  height: min-content;
+
+  &:focus{
+    outline: none;
+  }
+}

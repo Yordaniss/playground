@@ -1,10 +1,6 @@
-import { useState } from "react";
-
 export default function Dropdown(props) {
-  let dropdownInputId =
-    props.className + "InputId" + Math.ceil(Math.random() * 10000);
-
-  let className = props.className;
+  const className = props.className;
+  const dropdownInputId = Math.ceil(Math.random() * 10000);
 
   return (
     <div className={className}>
@@ -33,7 +29,6 @@ export default function Dropdown(props) {
         <ul className={className + "__options"}>
           {props.dropdownList.list.map((el) => {
             if (typeof el === "object") {
-              console.log(el.selectionModifier);
               return (
                 <li key={Math.random()}>
                   <Dropdown
@@ -48,25 +43,21 @@ export default function Dropdown(props) {
                 </li>
               );
             } else {
-              let innerInputID = Math.ceil(Math.random() * 10000);
+              const innerInputID = Math.ceil(Math.random() * 10000);
 
               let inputType;
               props.selectionModifier === "SORT"
                 ? (inputType = "radio")
                 : (inputType = "checkbox");
-              console.log(props.dropdownList.title);
               return (
                 <li key={Math.random()}>
                   <input
-                    id={`innerInputID${innerInputID}`}
+                    id={innerInputID}
                     className="itemInput"
                     type={inputType}
                     name={props.dropdownList.title}
                   />
-                  <label
-                    htmlFor={`innerInputID${innerInputID}`}
-                    className="itemLabel"
-                  >
+                  <label htmlFor={innerInputID} className="itemLabel">
                     {el}
                   </label>
                 </li>

@@ -1,18 +1,19 @@
 import React from "react";
-import GamesDashboard from "../components/layout/GamesDashboard";
-import Header from "../components/layout/header/Header";
 import "../shared/styles/global-css/index.css";
-import Head from "next/head";
+import Layout from "../components/layout/Layout";
+import PostsDashboard from "../components/layout/postsDashboard/PostsDashboard";
 
-function App() {
+function App({ Component, pageProps }) {
+  console.log(Component);
   return (
-    <React.Fragment>
-      <Head>
-        <link rel="shortcut icon" href="/icons/sun.ico" />
-      </Head>
-      <Header></Header>
-      <GamesDashboard></GamesDashboard>
-    </React.Fragment>
+    <Layout>
+      {Component !== undefined && Component.name !== "Home" && (
+        <Component {...pageProps}>{console.log(Component)}</Component>
+      )}
+      {Component === undefined && Component.name === "Home" && (
+        <PostsDashboard></PostsDashboard>
+      )}
+    </Layout>
   );
 }
 

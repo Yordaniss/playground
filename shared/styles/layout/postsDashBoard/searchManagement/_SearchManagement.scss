@@ -1,0 +1,18 @@
+@use '../../../abstracts/Variables' as *;
+
+.searchManagement{
+  display: flex;
+  column-gap: 2rem;
+  width: 70%;
+  min-width: 50rem;
+  background-color: $bg-accent-dull-sakura;
+  padding: 2rem;
+  margin: 0 auto;
+  border-radius: 50px;
+  overflow: hidden;
+
+  @media screen and (max-width: $bp-big-screen){
+    min-width: 0;
+    width: 90%;
+  }
+}
