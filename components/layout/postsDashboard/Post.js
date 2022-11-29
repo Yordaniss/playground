@@ -18,14 +18,16 @@ export default function Post(props) {
             href={`/${categories[props.post.main_category - 1]}`}
             className="category"
           >
-            {categories[props.post.main_category - 1]}
+            #{categories[props.post.main_category - 1]}
           </Link>
         </p>
       </div>
 
       <p className="post__text">{props.post.text}</p>
 
-      <Button className="post__button">View more</Button>
+      <Link href={`/posts/${props.post._id}`} className="button post__button">
+        View more
+      </Link>
     </Card>
   );
 }
