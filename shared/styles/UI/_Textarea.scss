@@ -1,6 +1,6 @@
-@use '../../../shared/styles/abstracts/Variables' as *;
+@use "../../../shared/styles/abstracts/Variables" as *;
 
-.textarea{
+.textarea {
   padding: 2rem;
   border-radius: 50px;
   border: none;
@@ -8,8 +8,9 @@
   color: $clr-primary-dull-rose;
   font-family: $ff-text;
   height: min-content;
+  font-size: $fs-m;
 
-  &:focus{
+  &:focus {
     outline: none;
   }
 }

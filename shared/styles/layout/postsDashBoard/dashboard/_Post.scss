@@ -1,0 +1,66 @@
+@use "../../../abstracts/Variables" as *;
+
+.post {
+  display: flex;
+  flex-direction: column;
+  background-color: $bg-primary-white;
+  border-radius: 50px;
+  height: min-content;
+  padding: 3rem;
+
+  &__header {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 2fr 1fr 1fr;
+    justify-content: center;
+    .authors-image {
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+      background-color: $bg-primary-dull-rose;
+      grid-row: 1;
+      grid-column: 1;
+    }
+    .authors-username {
+      font-family: $ff-text;
+      font-size: $fs-xs;
+      color: $clr-primary-dull-rose;
+      padding: 1rem 0;
+      grid-row: 2;
+      grid-column: 1;
+      align-self: center;
+    }
+    .category-container {
+      grid-row: 3;
+      grid-column: 1;
+      .category {
+        font-family: $ff-text;
+        font-size: $fs-xs;
+        color: $clr-primary-dull-rose;
+      }
+    }
+    .title {
+      font-family: $ff-headings;
+      color: $clr-primary-dull-rose;
+      font-size: $fs-xl;
+      grid-row: 1;
+      grid-column: 2;
+      justify-self: center;
+      text-align: center;
+    }
+  }
+
+  &__text {
+    font-family: $ff-text;
+    font-size: $fs-xs;
+    font-weight: 300;
+    padding: 1rem 0;
+  }
+
+  &__button {
+    background-color: $bg-primary-light-pink;
+    color: $clr-primary-dull-rose;
+    margin-top: 2rem;
+    align-self: center;
+  }
+}
