@@ -8,7 +8,7 @@ function App({ Component, pageProps }) {
   return (
     <Layout>
       {Component !== undefined && Component.name !== "Home" && (
-        <Component {...pageProps}>{console.log(Component)}</Component>
+        <Component {...pageProps}></Component>
       )}
       {Component === undefined && Component.name === "Home" && (
         <PostsDashboard></PostsDashboard>

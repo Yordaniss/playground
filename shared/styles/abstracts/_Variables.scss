@@ -1,32 +1,32 @@
 //font families
 
-$ff-headings: 'Babycakes';
-$ff-text: 'Josefin Sans';
-$ff-tiny-utilities: 'Babycakes';
+$ff-headings: "Babycakes";
+$ff-text: "Josefin Sans";
+$ff-tiny-utilities: "Babycakes";
 
 //font sizes:
 
-// $fontSizes: (
-//   ($fs-extra-big-headings "3rem")
-//   ($fs-headings "1.8rem")
-//   ($fs-text "1.3rem")
-//   ($fs-tiny-utilities "1.3rem")
-// );
+$headingSizes: (
+  extra-big-screen: 2.7rem,
+  medium-screen: 2.5rem,
+  extra-small-screen: 2rem,
+);
 
-$fs-extra-big-headings: 3rem;
-$fs-headings: 1.8rem;
-$fs-text: 1.3rem;
-$fs-tiny-utilities: 1.3rem;
+$fs-xl: clamp(1.8rem, 5vw, 2.7rem);
+$fs-m: clamp(1.2rem, 2.7vw, 1.6rem);
+$fs-s: clamp(1rem, 1.9vw, 1.8rem);
+$fs-xs: clamp(1rem, 1.5vw, 1.2rem);
 
 //font colors:
 
-$clr-primary-dull-wine: #6b2c3c;
-// $clr-primary-dull-wine: #562a35;
-$clr-primary-dull-rose: #964555;
-$clr-primary-light-pink: #FDC9C9;
+// $clr-primary-dull-wine: #6b2c3c;
+$clr-primary-dull-wine: #562a35;
+// $clr-primary-dull-rose: #964555;
+$clr-primary-dull-rose: #c4787c;
+$clr-primary-light-pink: #fdc9c9;
 $clr-primary-white: white;
 $clr-accent-wheat: #fcc4b7;
-$clr-accent-light-wheat: rgb(252, 252, 228);;
+$clr-accent-light-wheat: rgb(252, 252, 228);
 
 //background colors:
 
@@ -49,22 +49,15 @@ $bp-extra-big-screen: 1200px;
 // box shadows
 
 $box-sh-button: 0px 0px 5px rgba(255, 255, 255, 1),
-          0px 0px 10px rgba(255, 196, 199, .7),
-          0px 0px 15px rgba(255, 196, 199, .7),
-          0px 0px 20px rgba(255, 196, 199, .7),
-          0px 0px 30px rgba(255, 196, 199, .7),
-          0px 0px 40px rgba(255, 196, 199, .7),
-          0px 0px 55px rgba(255, 196, 199, .7),
-          0px 0px 75px rgba(255, 196, 199, .7);
-
+  0px 0px 10px rgba(255, 196, 199, 0.7), 0px 0px 15px rgba(255, 196, 199, 0.7),
+  0px 0px 20px rgba(255, 196, 199, 0.7), 0px 0px 30px rgba(255, 196, 199, 0.7),
+  0px 0px 40px rgba(255, 196, 199, 0.7), 0px 0px 55px rgba(255, 196, 199, 0.7),
+  0px 0px 75px rgba(255, 196, 199, 0.7);
 
 // text highlights
 
-$text-hightlight-primary: 0px 0px 5px white, 
-          0px 0px 5px rgba(253, 201, 201, 0.7), 
-          0px 0px 7px rgba(253, 201, 201, 0.7), 
-          0px 0px 10px rgba(253, 201, 201, 0.7), 
-          0px 0px 15px rgba(253, 201, 201, 0.7), 
-          0px 0px 20px rgba(253, 201, 201, 0.7), 
-          0px 0px 17px rgba(253, 201, 201, 0.7), 
-          0px 0px 37px rgba(253, 201, 201, 0.7);
+$text-hightlight-primary: 0px 0px 5px white,
+  0px 0px 5px rgba(253, 201, 201, 0.7), 0px 0px 7px rgba(253, 201, 201, 0.7),
+  0px 0px 10px rgba(253, 201, 201, 0.7), 0px 0px 15px rgba(253, 201, 201, 0.7),
+  0px 0px 20px rgba(253, 201, 201, 0.7), 0px 0px 17px rgba(253, 201, 201, 0.7),
+  0px 0px 37px rgba(253, 201, 201, 0.7);

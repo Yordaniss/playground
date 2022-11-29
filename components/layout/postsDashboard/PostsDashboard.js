@@ -17,7 +17,6 @@ export default function PostsDashboard(props) {
   return (
     <section className="postsDashboard" id="postsDashboard">
       <SearchManagement></SearchManagement>
-      {/* <AddPost></AddPost> */}
       <div className="dashboard">
         {isLoading && "Loading..."}
         {error && error}

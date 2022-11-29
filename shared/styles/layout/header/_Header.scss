@@ -1,5 +1,9 @@
 @use "../../abstracts/Variables" as *;
 
+@function fontSize($arrayOfFontSizes, $screenSize) {
+  @return map-get($arrayOfFontSizes, $screenSize);
+}
+
 .header {
   background-color: $bg-primary-light-pink;
   padding: 2rem;
@@ -51,7 +55,7 @@
         align-self: end;
 
         &__heading {
-          font-size: $fs-extra-big-headings;
+          font-size: $fs-xl;
           font-family: $ff-headings;
           color: rgba(255, 255, 224);
           text-align: center;
@@ -65,13 +69,14 @@
 
       &__text {
         font-family: $ff-text;
-        font-size: $fs-text;
+        font-size: $fs-s;
         color: $clr-primary-white;
         padding: 3rem 6rem 5rem 6rem;
       }
 
       &__button {
         background-color: $bg-primary-light-pink;
+        font-size: $fs-m;
         color: $clr-primary-dull-rose;
         justify-self: center;
         align-self: start;
@@ -82,7 +87,7 @@
 
 @media screen and (min-width: $bp-extra-big-screen) {
   .header {
-    min-height: 100vh;
+    min-height: 40rem;
     height: 100vh;
     .inner-container {
       grid-template-columns: 4fr 3fr;
@@ -91,21 +96,15 @@
     &__content {
       padding-top: 7rem;
       .article {
-        &__heading-container {
-          &__heading {
-            font-size: 4rem;
-          }
-        }
         &__text {
-          font-size: 1.8rem;
-          padding-top: 5rem;
+          font-size: 1.3rem;
+          padding-top: 3rem;
           max-width: 50rem;
         }
 
         &__button {
           margin: 0 0 1rem 0;
-          padding: 1.7rem;
-          font-size: 1.8rem;
+          padding: 1.2rem;
         }
       }
     }
@@ -129,14 +128,9 @@
     }
     &__content {
       .article {
-        &__text {
-          font-size: 1.5rem;
-        }
-
         &__button {
           margin: 0 0 1rem 0;
           padding: 1.7rem;
-          font-size: 1.8rem;
         }
       }
     }
@@ -153,7 +147,6 @@
       &__button {
         margin: 0 0 1rem 0;
         padding: 1.4rem;
-        font-size: 1.8rem;
       }
     }
   }
@@ -171,14 +164,7 @@
 
     &__content {
       .article {
-        &__heading-container {
-          &__heading {
-            font-size: 2.7rem;
-          }
-        }
-
         &__text {
-          font-size: 1.3rem;
           padding: 2rem;
           width: min(600px, 80%);
           text-align: justify;
@@ -187,7 +173,6 @@
         &__button {
           margin: 2rem 0;
           padding: 1.3rem;
-          font-size: 1.6rem;
         }
       }
     }
@@ -205,14 +190,9 @@
     &__content {
       .article {
         &__text {
-          font-size: 1.3rem;
           text-align: justify;
           padding: 2rem 0 1rem 0;
           width: min(450px, 100%);
-        }
-
-        &__button {
-          font-size: 1.5rem;
         }
       }
     }
@@ -222,15 +202,6 @@
 @media screen and (max-width: $bp-extra-small-screen) {
   .header {
     padding: 1.3rem;
-    &__content {
-      .article {
-        &__heading-container {
-          &__heading {
-            font-size: 2rem;
-          }
-        }
-      }
-    }
     &__illustration {
       padding-top: 2rem;
       max-width: 90%;
