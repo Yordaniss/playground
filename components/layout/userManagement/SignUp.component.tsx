@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from "next/router";
+import { setCookie } from 'cookies-next';
 
 const Register = () => {
   const router = useRouter()
@@ -19,7 +20,7 @@ const Register = () => {
       .then(async data => {
         const responseData = await data.json();
         if (responseData.success) {
-          document.cookie = `token=${responseData.token}`;
+          setCookie('token', responseData.token);
 
           router.push('/');
         }

@@ -1,6 +1,6 @@
 import User from '../../../models/User';
 import dbConnect from "../../../lib/mongoDBConnect";
-import generateAccessToken from '../../../helper/jwt_token';
+import generateAccessToken from '../../../helper/generateAccessToken';
 
 export default async function handler(req: any, res: any) {
     await dbConnect();
