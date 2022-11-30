@@ -4,7 +4,6 @@ import Layout from "../components/layout/Layout";
 import PostsDashboard from "../components/layout/postsDashboard/PostsDashboard";
 
 function App({ Component, pageProps }) {
-  console.log(Component);
   return (
     <Layout>
       {Component !== undefined && Component.name !== "Home" && (

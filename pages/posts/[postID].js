@@ -1,59 +1,37 @@
 import React, { useState, useEffect } from "react";
 import useHttpRequest from "../../components/hooks/useHttpRequest";
-
-function getPostIds() {
-  const [posts, setPosts] = useState(null);
-  const { isLoading, error, sendRequest: fetchPosts } = useHttpRequest();
-
-  useEffect(() => {
-    const postsFetchCallback = (fetchResult) => {
-      setPosts(fetchResult.data);
-    };
-    fetchPosts({ url: "http://localhost:3000/api/posts" }, postsFetchCallback);
-  }, []);
-
-  let ids = [];
-  posts.map((post) => {
-    ids.push(post._id);
-  });
-
-  return {
-    props: {
-      ids: ids,
-    },
-  };
-}
+import Post from "../../components/layout/postsDashboard/Post";
+import { useRouter } from "next/router";
 
 export async function getStaticPaths() {
-  const ids = getPostIds();
-  let paths = [];
-  ids.map((id) => {
-    paths.push({ params: { postID: id } });
-  });
+  const res = await fetch("http://localhost:3000/api/posts");
+  const posts = await res.json();
+  const paths = posts.data.map((post) => ({
+    params: { postID: post._id },
+  }));
   return { paths, fallback: false };
 }
 
-export async function getStaticProps(context) {
-  const { isLoading, error, sendRequest: fetchPost } = useHttpRequest();
-  const { params } = context;
-  const [post, setPost] = useState(null);
+export async function getStaticProps({ params }) {
+  const res = await fetch(`http://localhost:3000/api/${params.postID}`);
 
-  useEffect(() => {
-    const postFetchCallback = (fetchResult) => {
-      setPost(fetchResult.data);
-    };
-    fetchPost(
-      {
-        url: `http://localhost:3000/api/${params.postID}`,
-      },
-      postFetchCallback
-    );
-  }, []);
-  return {
-    props: {
-      post: post,
-    },
-  };
+  const post = await res.json();
+
+  return { props: { post } };
+}
+
+export default function PostInfo({ post }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+  // console.log(post);
+  return (
+    <div className="post-container">
+      <Post post={post.data}></Post>
+    </div>
+  );
 }
 
 // export const getServerSideProps = async (context) => {
@@ -106,13 +84,3 @@ export async function getStaticProps(context) {
 //     },
 //   };
 // };
-
-export default function PostInfo(props) {
-  return (
-    <React.Fragment>
-      {/* {isLoading && "Loading"}
-      {error && error}
-      <Post post={post}></Post> */}
-    </React.Fragment>
-  );
-}

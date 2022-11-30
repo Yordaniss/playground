@@ -20,10 +20,23 @@ export default function AgeInput() {
       <input
         className="ageInput"
         type="number"
-        defaultValue={currentStep}
+        value={currentStep}
         min="0"
         max="10"
-      />
+        onClick={(e) => {
+          e.target.value = "";
+        }}
+        onInput={(e) => {
+          if (e.target.value !== "") {
+            setCurrentStep(e.target.value);
+          }
+        }}
+        onBlur={(e) => {
+          e.target.value = currentStep;
+        }}
+      >
+        {console.log(currentStep)}
+      </input>
       <div className="ageInput__buttons">
         <button
           onClick={() => {

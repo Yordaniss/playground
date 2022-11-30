@@ -1,115 +1,145 @@
-@use '../../abstracts/Variables' as *;
+@use "../../abstracts/Variables" as *;
 
-.outer-container{
+.outer-container {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   min-height: 100vh;
   background-color: $bg-primary-light-pink;
 }
 
-  .addPost{
-    position: relative;
-    width: 60%;
-    height: 60%;
-    margin: auto;
-    padding: 3rem;
-    background-color: $bg-accent-dull-sakura;
+.addPost {
+  position: relative;
+  width: 60%;
+  height: 60%;
+  padding: 3rem;
+  background-color: $bg-accent-dull-sakura;
 
+  &__inner-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr min-content 1fr 1fr 1fr;
+    grid-template-areas: "labels inputs";
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 1rem;
 
-    &__inner-container{
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      grid-template-rows: 1fr min-content 1fr;
-      grid-template-areas: 
-      'labels inputs';
-      justify-content: space-between;
-      align-items: center;
-      row-gap: 1rem;
-    
-
-      label{
-        font-family: $ff-text;
-        font-weight: 600;
-        color: $clr-primary-dull-wine;
-        grid-area: labels;
-      }
-
-      textarea{
-        grid-area: inputs;
-        grid-row: 2;
-        color: rgb(black, 0.8);
-        border: none;
-        font-size: 1rem;
-        resize: vertical;
-        width: 100%;
-        min-width: 100%;
-      }
-
-      .dropdown{
-        grid-area: inputs;
-        grid-row: 3;
-        justify-self: end;
-
-        & * {
-          font-size: 1rem;
-        }
-
-        &__top{
-          color: $clr-primary-dull-rose;
-        }
-        
-      }
-
-      label:first-of-type{
-        grid-row: 1;
-      }
-
-      label:nth-of-type(2){
-        grid-row: 2;
-      }   
+    label {
+      font-family: $ff-text;
+      font-weight: 600;
+      color: $clr-primary-dull-wine;
+      grid-area: labels;
     }
-    
-    .formButtons{
-      display: flex;
-      justify-content: center;
-      align-content: center;
-      align-items: center;
-      column-gap: 2rem;
-      margin-top: 3rem;
 
-      .input{
+    textarea {
+      grid-area: inputs;
+      grid-row: 2;
+      color: rgb(black, 0.8);
+      border: none;
+      font-size: 1rem;
+      resize: vertical;
+      width: 100%;
+      min-width: 100%;
+    }
+
+    .labelForAgeInput {
+      grid-row: 3;
+      grid-column: 1;
+    }
+
+    .ageInput-container {
+      grid-row: 3;
+      grid-column: 2;
+      justify-self: right;
+    }
+
+    .dropdown {
+      grid-area: inputs;
+      grid-row: 4;
+      justify-self: end;
+
+      & * {
         font-size: 1rem;
-        color: rgb(black, 0.8);
-        border: none;
-
-        &[type="submit"]{
-          background-color: $bg-primary-dull-rose;
-          color: $clr-primary-white;
-          margin: 0 auto;
-        }
-
-        &-error{
-          color: rgb(223, 0, 104);
-          border: 1px solid rgb(223, 0, 104);
-        }
-
-        &:disabled, &:disabled:hover, &:disabled:active{
-          background-color: #c39ea0;
-          color: #846c6d;
-          box-shadow: none;
-          cursor: not-allowed;
-        }
-      } 
-      .cancel{
-        background-color: $bg-primary-dull-rose;
-        color: $clr-primary-white;
       }
+
+      &__top {
+        color: $clr-primary-dull-rose;
+      }
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .custom-file-input {
+      display: block;
+      grid-column: 2;
+      grid-row: 5;
+      justify-self: right;
+      color: $clr-primary-white;
+      font-family: $ff-text;
+      font-size: $fs-s;
+      background-color: $bg-primary-dull-rose;
+      width: min-content;
+      height: min-content;
+      &:hover {
+        box-shadow: none;
+      }
+    }
+
+    label:first-of-type {
+      grid-row: 1;
+    }
+
+    label:nth-of-type(2) {
+      grid-row: 2;
     }
   }
 
-@media screen and (max-width: $bp-medium-screen){
-  .addPost{
+  .formButtons {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    column-gap: 2rem;
+    margin-top: 3rem;
+
+    .submit {
+      background-color: $bg-primary-dull-rose;
+      color: $clr-primary-white;
+
+      &:disabled,
+      &:disabled:hover,
+      &:disabled:active {
+        background-color: #c39ea0;
+        color: #846c6d;
+        box-shadow: none;
+        cursor: not-allowed;
+      }
+    }
+    .cancel {
+      background-color: $bg-primary-dull-rose;
+      color: $clr-primary-white;
+    }
+  }
+
+  .input {
+    font-size: 1rem;
+    color: rgb(black, 0.8);
+    border: none;
+
+    &-error {
+      color: rgb(223, 0, 104);
+      border: 2px solid rgb(223, 0, 104);
+    }
+  }
+}
+
+@media screen and (max-width: $bp-medium-screen) {
+  .addPost {
     width: 80%;
   }
 }
