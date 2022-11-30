@@ -1,0 +1,16 @@
+@use "../../abstracts/Variables" as *;
+
+.post-container {
+  background-color: $bg-primary-light-pink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100vw;
+  height: 100vh;
+
+  & .card.post {
+    width: 70%;
+    height: 80%;
+  }
+}
