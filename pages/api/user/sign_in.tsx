@@ -18,7 +18,7 @@ export default async function handler(req: any, res: any) {
             return res.status(400).json({ message: "Credentials are not valid" });
         }
         const token = await generateAccessToken(req.body.username);
-        res.status(201).json({ message: "User loged in successully", token });
+        res.status(201).json({success: true, token });
     } catch (error) {
         return res.status(400).json({ success: false, data: error });
     }
