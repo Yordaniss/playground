@@ -6,15 +6,19 @@ export default async function handler(req: any, res: any) {
     await dbConnect();
 
     try {
-        const userToSearch = await User.findOne({ ...req.body.username });
+        const { username } = req.body;
+        const userToSearch = await User.findOne({ username });
         if (userToSearch) {
-          return res.status(400).json({ message: "User with username:#" + req.body.username + " already exists" });
+            return res.status(400).json({
+                success: false,
+                data: "User with username:#" + username + " already exists"
+            });
         }
 
         const userObject = new User({ ...req.body });
         await userObject.save();
-        const token = await generateAccessToken(req.body.username);
-        res.status(201).json({ message: "User created successfully", token });
+        const token = await generateAccessToken(username);
+        res.status(201).json({ success: true, token });
     } catch (error) {
         return res.status(400).json({ success: false, data: error });
     }
