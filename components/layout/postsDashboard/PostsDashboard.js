@@ -3,28 +3,41 @@ import useHttpRequest from "../../hooks/useHttpRequest";
 import SearchManagement from "../searchManagement/SearchManagement";
 import Post from "./Post";
 import { useSelector } from "react-redux";
-// import { searchConfigActions } from "../../../store/index";
+import { orderBy } from "lodash";
 
 export default function PostsDashboard() {
   const searchConfig = useSelector(({ searchConfig }) => searchConfig);
-  console.log(searchConfig);
 
-  const [posts, setPosts] = useState([]);
-  const { isLoading, error, sendRequest: fetchPosts } = useHttpRequest();
+  const {
+    isLoading,
+    error,
+    sendRequest: fetchPosts,
+    data: posts,
+  } = useHttpRequest();
+
+  let orderedPosts;
+  const sort = () => {
+    const sortedPosts = orderBy(
+      posts.data,
+      [searchConfig.sorting.property],
+      [searchConfig.sorting.direction]
+    );
+    return sortedPosts;
+  };
 
   useEffect(() => {
-    const postsFetchCallback = (fetchResult) => {
-      setPosts(fetchResult.data);
-    };
-
-    let url = "http://localhost:3000/api/";
-
-    if (searchConfig.filtration.filters.length > 0) {
-      url += "search/";
-    }
+    const postsFetchCallback = (fetchResult) => {};
     fetchPosts({ url: "http://localhost:3000/api/posts" }, postsFetchCallback);
   }, []);
 
+  if (
+    searchConfig.sorting.property !== "default" &&
+    searchConfig.sorting.direction !== "default"
+  ) {
+    if (posts) orderedPosts = sort();
+  } else {
+    if (posts) orderedPosts = posts.data;
+  }
   return (
     <section className="postsDashboard" id="postsDashboard">
       <SearchManagement
@@ -35,8 +48,8 @@ export default function PostsDashboard() {
       <div className="dashboard">
         {isLoading && "Loading..."}
         {error && error}
-        {posts &&
-          posts.map((post) => {
+        {orderedPosts &&
+          orderedPosts.map((post) => {
             return <Post key={Math.random()} post={post}></Post>;
           })}
       </div>
