@@ -1,39 +1,33 @@
-import { createStore } from "redux";
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 
-const reducer = (
-  state = {
-    filtration: {
-      filters: [],
-    },
-    sorting: { sortBy: "default", direction: "default" },
-  },
-  action
-) => {
-  if (action.type === "addFilter") {
-    return {
-      filtration: {
-        filters: [...state.filtration.filters, { ...action.filterBy }],
-      },
-    };
-  }
-
-  if (action.type === "removeFilter") {
-    return {
-      filtration: {
-        filters: [...action.filterBy],
-      },
-    };
-  }
-
-  if (action.type === "changeSorting") {
-    return {
-      sorting: { sortBy: { ...action.sortBy } },
-    };
-  }
-
-  return state;
+const initialSearchConfigState = {
+  filtration: { filters: [] },
+  sorting: { property: "default", direction: "default" },
 };
 
-const store = createStore(reducer);
+const searchConfigSlice = createSlice({
+  name: "searchConfig",
+  initialState: initialSearchConfigState,
+  reducers: {
+    changeSorting(state, action) {
+      state.sorting = { ...action.payload };
+    },
+    addFilter(state, action) {
+      state.filtration.filters = [
+        ...state.filtration.filters,
+        { ...action.payload },
+      ];
+    },
+    removeFilter(state, action) {
+      state.filtration.filters = [...action.payload];
+    },
+  },
+});
+
+const store = configureStore({
+  reducer: { searchConfig: searchConfigSlice.reducer },
+});
+
+export const searchConfigActions = searchConfigSlice.actions;
 
 export default store;

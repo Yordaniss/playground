@@ -1,21 +1,28 @@
 import { useSelector, useDispatch } from "react-redux";
+import { searchConfigActions } from "../../store/index";
 
 export default function Dropdown(props) {
   const dispatch = useDispatch();
-  const sortingState = useSelector((state) => state.sorting);
-  const filtrationState = useSelector((state) => state.filtration);
+  const sortingState = useSelector(({ searchConfig }) => searchConfig.sorting);
+  const filtrationState = useSelector(
+    ({ searchConfig }) => searchConfig.filtration
+  );
 
   const changeSorting = (propertyName, direction) => {
-    dispatch({
-      type: "changeSorting",
-      sortBy: { property: propertyName, direction: direction },
-    });
+    dispatch(
+      searchConfigActions.changeSorting({
+        property: propertyName,
+        direction: direction,
+      })
+    );
   };
   const addFilter = (propertyName, value) => {
-    dispatch({
-      type: "addFilter",
-      filterBy: { property: propertyName, value: value },
-    });
+    dispatch(
+      searchConfigActions.addFilter({
+        property: propertyName,
+        value: value,
+      })
+    );
   };
   const removeFilter = (propertyName, value) => {
     const filters = filtrationState.filters;
@@ -23,10 +30,7 @@ export default function Dropdown(props) {
       (filterOPtion) =>
         filterOPtion.property !== propertyName || filterOPtion.value !== value
     );
-    dispatch({
-      type: "removeFilter",
-      filterBy: [...filtered],
-    });
+    dispatch(searchConfigActions.removeFilter(filtered));
   };
 
   const className = props.className;
