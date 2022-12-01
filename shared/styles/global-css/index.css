@@ -1026,6 +1026,31 @@ label[for=menu-checkbox] a {
     padding: 1.3rem;
   }
 }
+.pagination {
+  display: flex;
+  width: min-content;
+  margin: 0 auto 2rem auto;
+}
+.pagination .page-number-item:hover {
+  background-color: #e7babc;
+  border-radius: 70px;
+  cursor: pointer;
+}
+.pagination .page-number-item:hover .page-number-link {
+  color: #c4787c;
+}
+.pagination .page-number-link {
+  display: inline-block;
+  width: 2.7rem;
+  text-align: center;
+  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
+  color: #c4787c;
+  font-family: "Babycakes";
+  text-decoration: none;
+  user-select: none;
+  padding: 0.7rem;
+}
+
 .textarea {
   padding: 2rem;
   border-radius: 50px;

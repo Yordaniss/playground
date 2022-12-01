@@ -1,0 +1,35 @@
+@use "../abstracts/Variables" as *;
+
+.pagination {
+  // background-color: $bg-primary-white;
+  display: flex;
+  width: min-content;
+  margin: 0 auto 2rem auto;
+
+  .page-number-item {
+    // border-collapse: collapse;
+    // border: 1px solid $bg-primary-dull-rose;
+
+    &:hover {
+      background-color: $bg-accent-dull-sakura;
+      border-radius: 70px;
+      cursor: pointer;
+
+      .page-number-link {
+        color: $clr-primary-dull-rose;
+      }
+    }
+  }
+
+  .page-number-link {
+    display: inline-block;
+    width: 2.7rem;
+    text-align: center;
+    font-size: $fs-m;
+    color: $clr-primary-dull-rose;
+    font-family: $ff-tiny-utilities;
+    text-decoration: none;
+    user-select: none;
+    padding: 0.7rem;
+  }
+}

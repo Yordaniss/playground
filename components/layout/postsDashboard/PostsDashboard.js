@@ -4,9 +4,12 @@ import SearchManagement from "../searchManagement/SearchManagement";
 import Post from "./Post";
 import { useSelector } from "react-redux";
 import { orderBy } from "lodash";
+import Pagination from "../../UI/Pagination";
 
 export default function PostsDashboard() {
   const searchConfig = useSelector(({ searchConfig }) => searchConfig);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(2);
 
   const {
     isLoading,
@@ -38,6 +41,18 @@ export default function PostsDashboard() {
   } else {
     if (posts) orderedPosts = posts.data;
   }
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  let currentPosts;
+  if (posts) {
+    currentPosts = orderedPosts.slice(indexOfFirstPost, indexOfLastPost);
+  }
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <section className="postsDashboard" id="postsDashboard">
       <SearchManagement
@@ -48,10 +63,17 @@ export default function PostsDashboard() {
       <div className="dashboard">
         {isLoading && "Loading..."}
         {error && error}
-        {orderedPosts &&
-          orderedPosts.map((post) => {
+        {posts &&
+          currentPosts.map((post) => {
             return <Post key={Math.random()} post={post}></Post>;
           })}
+        {posts && (
+          <Pagination
+            postsPerPage={postsPerPage}
+            totalPosts={posts.data.length}
+            paginate={paginate}
+          ></Pagination>
+        )}
       </div>
     </section>
   );
