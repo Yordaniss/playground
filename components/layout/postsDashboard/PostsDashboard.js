@@ -5,6 +5,7 @@ import Post from "./Post";
 import { useSelector } from "react-redux";
 import { orderBy } from "lodash";
 import Pagination from "../../UI/Pagination";
+import { server } from "../../../config/index";
 
 export default function PostsDashboard() {
   const searchConfig = useSelector(({ searchConfig }) => searchConfig);
@@ -30,7 +31,7 @@ export default function PostsDashboard() {
 
   useEffect(() => {
     const postsFetchCallback = (fetchResult) => {};
-    fetchPosts({ url: "http://localhost:3000/api/posts" }, postsFetchCallback);
+    fetchPosts({ url: `${server}/api/posts` }, postsFetchCallback);
   }, []);
 
   if (
