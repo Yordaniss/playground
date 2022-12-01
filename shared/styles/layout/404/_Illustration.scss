@@ -1,0 +1,59 @@
+svg.illustration {
+  width: 30%;
+  height: 30%;
+}
+
+svg#freepik_stories-404-error-with-a-cute-animal:not(.animated) .animable {
+  opacity: 0;
+}
+svg#freepik_stories-404-error-with-a-cute-animal.animated
+  #freepik--Shadows--inject-8 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) fadeIn;
+  animation-delay: 0s;
+}
+svg#freepik_stories-404-error-with-a-cute-animal.animated
+  #freepik--Plant--inject-8 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideRight;
+  animation-delay: 0s;
+}
+svg#freepik_stories-404-error-with-a-cute-animal.animated
+  #freepik--Character--inject-8 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideDown;
+  animation-delay: 0s;
+}
+svg#freepik_stories-404-error-with-a-cute-animal.animated
+  #freepik--Sign--inject-8 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideRight;
+  animation-delay: 0s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animator-hidden {
+  display: none;
+}
