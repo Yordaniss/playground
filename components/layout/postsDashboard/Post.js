@@ -1,9 +1,8 @@
-import Button from "../../UI/Button";
 import Card from "../../UI/Card";
 import Link from "next/link";
 
 export default function Post(props) {
-  const categories = ["Arts & crafts", "Cooking", "Sport", "Games"];
+  const categories = ["Arts & crafts", "Cooking", "Foraging", "Games", "Sport"];
 
   return (
     <Card className="post">

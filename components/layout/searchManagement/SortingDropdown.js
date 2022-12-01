@@ -8,15 +8,37 @@ export default function SortingDropdown(props) {
         key: Math.random(),
         title: "Sort by:",
         list: [
-          "Age ascending",
-          "Age descending",
-          "Date ascending",
-          "Date descending",
-          "Alphabet ascending",
-          "Alphabet descending",
+          {
+            optionTitle: "Age ascending",
+            sortBy: {
+              property: "age_category",
+              direction: "asc",
+            },
+          },
+          {
+            optionTitle: "Age descending",
+            sortBy: {
+              property: "age_category",
+              direction: "desc",
+            },
+          },
+          {
+            optionTitle: "Alphabet ascending",
+            sortBy: {
+              property: "title",
+              direction: "asc",
+            },
+          },
+          {
+            optionTitle: "Alphabet descending",
+            sortBy: {
+              property: "title",
+              direction: "desc",
+            },
+          },
         ],
       }}
-      selectionModifier="SORT"
+      selectionModifier={props.selectionModifier}
     ></Dropdown>
   );
 }
