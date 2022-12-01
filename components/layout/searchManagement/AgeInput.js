@@ -34,9 +34,7 @@ export default function AgeInput() {
         onBlur={(e) => {
           e.target.value = currentStep;
         }}
-      >
-        {console.log(currentStep)}
-      </input>
+      ></input>
       <div className="ageInput__buttons">
         <button
           onClick={() => {

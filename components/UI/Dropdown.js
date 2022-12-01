@@ -1,7 +1,36 @@
+import { useSelector, useDispatch } from "react-redux";
+
 export default function Dropdown(props) {
+  const dispatch = useDispatch();
+  const sortingState = useSelector((state) => state.sorting);
+  const filtrationState = useSelector((state) => state.filtration);
+
+  const changeSorting = (propertyName, direction) => {
+    dispatch({
+      type: "changeSorting",
+      sortBy: { property: propertyName, direction: direction },
+    });
+  };
+  const addFilter = (propertyName, value) => {
+    dispatch({
+      type: "addFilter",
+      filterBy: { property: propertyName, value: value },
+    });
+  };
+  const removeFilter = (propertyName, value) => {
+    const filters = filtrationState.filters;
+    const filtered = filters.filter(
+      (filterOPtion) =>
+        filterOPtion.property !== propertyName || filterOPtion.value !== value
+    );
+    dispatch({
+      type: "removeFilter",
+      filterBy: [...filtered],
+    });
+  };
+
   const className = props.className;
   const dropdownInputId = Math.ceil(Math.random() * 10000);
-
   return (
     <div className={className}>
       <input
@@ -28,21 +57,6 @@ export default function Dropdown(props) {
       <div className={className + "__options-container"}>
         <ul className={className + "__options"}>
           {props.dropdownList.list.map((el) => {
-            // if (typeof el === "object") {
-            //   return (
-            //     <li key={Math.random()}>
-            //       <Dropdown
-            //         key={Math.random()}
-            //         className="innerDropdown"
-            //         dropdownList={{
-            //           title: el.title,
-            //           list: el.list,
-            //         }}
-            //         selectionModifier={el.selectionModifier}
-            //       ></Dropdown>
-            //     </li>
-            //   );
-            // } else {
             const innerInputID = Math.ceil(Math.random() * 10000);
 
             let inputType;
@@ -56,13 +70,33 @@ export default function Dropdown(props) {
                   className="itemInput"
                   type={inputType}
                   name={props.dropdownList.title}
+                  onChange={() => {
+                    if (props.selectionModifier === "SORT") {
+                      changeSorting(el.sortBy.property, el.sortBy.direction);
+                    } else if (props.selectionModifier === "FILTER") {
+                      if (
+                        !filtrationState.filters.some(
+                          (filter) =>
+                            filter.property === el.filterBy.property &&
+                            filter.value === el.filterBy.value
+                        )
+                      ) {
+                        addFilter(el.filterBy.property, el.filterBy.value);
+                      } else {
+                        removeFilter(el.filterBy.property, el.filterBy.value);
+                      }
+                    }
+                  }}
                 />
+
                 <label htmlFor={innerInputID} className="itemLabel">
-                  {el}
+                  {el.optionTitle}
+                  {/* {console.log(filtrationState)} */}
                 </label>
               </li>
             );
           })}
+          {console.log(filtrationState)}
         </ul>
       </div>
     </div>
