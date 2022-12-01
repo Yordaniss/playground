@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Post from "../../components/layout/postsDashboard/Post";
 import { useRouter } from "next/router";
+import { server } from "../../config/index";
 
 export async function getStaticPaths() {
-  const res = await fetch("http://localhost:3000/api/posts");
+  const res = await fetch(`${server}/api/posts`);
   const posts = await res.json();
   const paths = posts.data.map((post) => ({
     params: { postID: post._id },
@@ -12,7 +13,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const res = await fetch(`http://localhost:3000/api/${params.postID}`);
+  const res = await fetch(`${server}/api/${params.postID}`);
 
   const post = await res.json();
 

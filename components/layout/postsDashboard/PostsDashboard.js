@@ -30,7 +30,7 @@ export default function PostsDashboard() {
 
   useEffect(() => {
     const postsFetchCallback = (fetchResult) => {};
-    fetchPosts({ url: "http://localhost:3000/api/posts" }, postsFetchCallback);
+    fetchPosts({ url: "/api/posts" }, postsFetchCallback);
   }, []);
 
   if (

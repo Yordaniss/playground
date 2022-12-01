@@ -1,0 +1,12 @@
+@use "../../abstracts/Variables" as *;
+
+.page-404 {
+  background-color: $bg-primary-light-pink;
+  display: flex;
+  justify-content: center;
+
+  .illustration {
+    width: 30%;
+    height: 30%;
+  }
+}
