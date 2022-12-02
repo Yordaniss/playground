@@ -1,33 +1,33 @@
-@use '../../../shared/styles/abstracts/Variables' as *;
+@use "../../../shared/styles/abstracts/Variables" as *;
 
-.dropdown{
+.dropdown {
   display: flex;
   filter: url(#goo);
-  
-  &__top{
+
+  &__top {
     width: fit-content;
     min-width: 10rem;
     padding: 1.5rem;
     z-index: 2;
-    
+
     border: none;
     border-radius: 70px;
     background-color: $bg-primary-white;
 
     color: $clr-primary-dull-wine;
     font-family: $ff-tiny-utilities;
-    font-size: $fs-tiny-utilities;
+    font-size: $fs-m;
     text-align: center;
     white-space: nowrap;
     user-select: none;
 
-    &:hover{
+    &:hover {
       color: $clr-primary-dull-rose;
       cursor: pointer;
     }
   }
 
-  &__options-container{
+  &__options-container {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -43,7 +43,7 @@
     opacity: 0;
     transition: all 0.4s cubic-bezier(0.93, 0.88, 0.1, 0.8);
 
-    &::before{
+    &::before {
       content: "";
       background-color: #fff;
       position: absolute;
@@ -54,12 +54,12 @@
     }
   }
 
-  svg{
+  svg {
     width: 0;
     height: 0;
   }
 
-  &__options{
+  &__options {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -74,22 +74,22 @@
     opacity: 0;
     transition: all 0.7s ease-in-out;
 
-    li{
+    li {
       font-family: $ff-text;
-      font-size: $fs-text;
+      font-size: $fs-s;
       font-weight: 300;
       white-space: nowrap;
       user-select: none;
 
-      &:hover > .itemLabel{
+      &:hover > .itemLabel {
         color: $clr-primary-dull-rose;
         cursor: pointer;
       }
-      &:not(li:first-child){
+      &:not(li:first-child) {
         margin-top: 15px;
       }
 
-      .itemInput{
+      .itemInput {
         width: 20px;
         height: 20px;
         margin-right: 10px;
@@ -97,27 +97,26 @@
         outline: none;
         border: 1px solid $bg-primary-dull-wine;
         border-radius: 40%;
-        
-        &:hover{
+
+        &:hover {
           border-color: $bg-primary-light-pink;
           cursor: pointer;
         }
 
-        &:checked{
+        &:checked {
           border-color: $bg-primary-dull-rose;
           background-color: $bg-primary-light-pink;
           content: "\2661";
         }
 
-        &:checked ~ .itemLabel{
+        &:checked ~ .itemLabel {
           color: $clr-primary-dull-wine;
         }
       }
     }
-
   }
 
-  &__arrow{
+  &__arrow {
     border-bottom: 2px solid #000;
     border-right: 2px solid #000;
     position: absolute;
@@ -129,40 +128,39 @@
     transform-origin: right;
   }
 
-  .dropdown__input{
+  .dropdown__input {
     display: none;
 
     &:checked ~ .dropdown__options-container {
       top: calc(100% + 25px);
       visibility: visible;
       opacity: 1;
-
     }
-    &:checked ~ .dropdown__options-container  .dropdown__options {
+    &:checked ~ .dropdown__options-container .dropdown__options {
       visibility: visible;
       opacity: 1;
     }
   }
 }
 
-.innerDropdown{
+.innerDropdown {
   position: relative;
   display: inline;
 
-  &__top{
-    &:hover{
+  &__top {
+    &:hover {
       color: $clr-primary-dull-rose;
       cursor: pointer;
     }
   }
 
-  &__options-container{
+  &__options-container {
     position: relative;
     height: 0;
     background-color: white;
-    transition: all .5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 
-    .innerDropdown__options{
+    .innerDropdown__options {
       position: relative;
       height: 0;
       opacity: 0;
@@ -170,13 +168,13 @@
       padding: 0;
       margin: 0;
       font-weight: 300;
-      transition: all .7s ease-in-out;
+      transition: all 0.7s ease-in-out;
       transition: min-height 1s ease-in-out;
 
-      & li{
+      & li {
         color: rgb(66, 66, 66);
 
-        &:hover{
+        &:hover {
           color: #000;
           font-weight: 300;
         }
@@ -184,7 +182,7 @@
     }
   }
 
-  &__input{
+  &__input {
     display: none;
 
     &:checked ~ .innerDropdown__options-container {
@@ -193,18 +191,18 @@
       margin-bottom: -15px;
       padding: 2rem 0;
     }
-    &:checked ~ .innerDropdown__options-container  .innerDropdown__options {
+    &:checked ~ .innerDropdown__options-container .innerDropdown__options {
       min-height: min-content;
       height: min-content;
       visibility: visible;
       opacity: 1;
     }
-    &:checked ~ .svgFilter{
+    &:checked ~ .svgFilter {
       display: inline;
     }
   }
 
-  .svgFilter{
+  .svgFilter {
     display: none;
   }
 }

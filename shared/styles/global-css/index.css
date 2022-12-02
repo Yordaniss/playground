@@ -167,8 +167,103 @@ table {
   font-display: swap;
   src: url("../../fonts/comfortaa/Comfortaa.ttf") format("woff2");
 }
+.page-404 {
+  background-color: #f7cac9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+.page-404__heading {
+  font-family: "Babycakes";
+  color: #c4787c;
+  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
+}
+.page-404__img-container {
+  width: 70%;
+  height: 70%;
+}
+.page-404__img-container img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.page-404__link {
+  font-family: "Josefin Sans";
+  color: #c4787c;
+  font-size: clamp(1rem, 1.9vw, 1.8rem);
+  text-decoration: none;
+}
+.page-404__link:hover {
+  color: white;
+  text-shadow: 0px 0px 5px white, 0px 0px 5px rgba(253, 201, 201, 0.7), 0px 0px 7px rgba(253, 201, 201, 0.7), 0px 0px 10px rgba(253, 201, 201, 0.7), 0px 0px 15px rgba(253, 201, 201, 0.7), 0px 0px 20px rgba(253, 201, 201, 0.7), 0px 0px 17px rgba(253, 201, 201, 0.7), 0px 0px 37px rgba(253, 201, 201, 0.7);
+  cursor: pointer;
+}
+
+svg#freepik_stories-404-error-with-a-cute-animal:not(.animated) .animable {
+  opacity: 0;
+}
+
+svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Shadows--inject-8 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) fadeIn;
+  animation-delay: 0s;
+}
+
+svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Plant--inject-8 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideRight;
+  animation-delay: 0s;
+}
+
+svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Character--inject-8 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideDown;
+  animation-delay: 0s;
+}
+
+svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Sign--inject-8 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideRight;
+  animation-delay: 0s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animator-hidden {
+  display: none;
+}
+
 .outer-container {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   min-height: 100vh;
@@ -179,14 +274,13 @@ table {
   position: relative;
   width: 60%;
   height: 60%;
-  margin: auto;
   padding: 3rem;
   background-color: #e7babc;
 }
 .addPost__inner-container {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr min-content 1fr;
+  grid-template-rows: 1fr min-content 1fr 1fr 1fr 1fr;
   grid-template-areas: "labels inputs";
   justify-content: space-between;
   align-items: center;
@@ -195,35 +289,65 @@ table {
 .addPost__inner-container label {
   font-family: "Josefin Sans";
   font-weight: 600;
-  color: #6b2c3c;
+  color: #562a35;
   grid-area: labels;
 }
-.addPost__inner-container textarea {
-  grid-area: inputs;
+.addPost__inner-container .labelForAgeInput {
+  grid-row: 3;
+  grid-column: 1;
+}
+.addPost__inner-container input[type=file] {
+  display: none;
+}
+.addPost__inner-container .labelForTitleInput {
+  grid-row: 1;
+}
+.addPost__inner-container .labelForTextarea {
   grid-row: 2;
-  color: rgba(0, 0, 0, 0.8);
-  border: none;
-  font-size: 1rem;
-  resize: vertical;
-  width: 100%;
-  min-width: 100%;
 }
 .addPost__inner-container .dropdown {
   grid-area: inputs;
-  grid-row: 3;
+  grid-row: 4;
   justify-self: end;
 }
 .addPost__inner-container .dropdown * {
   font-size: 1rem;
 }
 .addPost__inner-container .dropdown__top {
-  color: #964555;
+  color: #c4787c;
 }
-.addPost__inner-container label:first-of-type {
-  grid-row: 1;
+.addPost__inner-container .dropdown-input {
+  display: none;
 }
-.addPost__inner-container label:nth-of-type(2) {
-  grid-row: 2;
+.addPost__inner-container .labelForAgeInput {
+  grid-row: 5;
+}
+.addPost__inner-container .ageInput-container {
+  grid-row: 5;
+  grid-column: 2;
+  justify-self: right;
+}
+.addPost__inner-container .labelForAdditionalInfoInput {
+  grid-row: 3;
+}
+.addPost__inner-container .custom-file-input {
+  display: block;
+  grid-column: 2;
+  grid-row: 6;
+  justify-self: right;
+  color: white;
+  font-family: "Josefin Sans";
+  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
+  background-color: #c4787c;
+  width: min-content;
+  height: min-content;
+}
+.addPost__inner-container .custom-file-input:hover {
+  box-shadow: none;
+}
+.addPost__inner-container #inputAdditionalInfo {
+  grid-column: 2;
+  grid-row: 3;
 }
 .addPost .formButtons {
   display: flex;
@@ -233,21 +357,11 @@ table {
   column-gap: 2rem;
   margin-top: 3rem;
 }
-.addPost .formButtons .input {
-  font-size: 1rem;
-  color: rgba(0, 0, 0, 0.8);
-  border: none;
-}
-.addPost .formButtons .input[type=submit] {
+.addPost .formButtons .submit {
   background-color: #c4787c;
   color: white;
-  margin: 0 auto;
 }
-.addPost .formButtons .input-error {
-  color: rgb(223, 0, 104);
-  border: 1px solid rgb(223, 0, 104);
-}
-.addPost .formButtons .input:disabled, .addPost .formButtons .input:disabled:hover, .addPost .formButtons .input:disabled:active {
+.addPost .formButtons .submit:disabled, .addPost .formButtons .submit:disabled:hover, .addPost .formButtons .submit:disabled:active {
   background-color: #c39ea0;
   color: #846c6d;
   box-shadow: none;
@@ -256,6 +370,29 @@ table {
 .addPost .formButtons .cancel {
   background-color: #c4787c;
   color: white;
+}
+.addPost .input {
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.8);
+  border: none;
+}
+.addPost .input-error {
+  color: rgb(223, 0, 104);
+  border: 2px solid rgb(223, 0, 104);
+}
+.addPost .textarea {
+  grid-area: inputs;
+  grid-row: 2;
+  color: rgba(0, 0, 0, 0.8);
+  border: none;
+  font-size: 1rem;
+  resize: vertical;
+  width: 100%;
+  min-width: 100%;
+}
+.addPost .textarea-error {
+  color: rgb(223, 0, 104);
+  border: 2px solid rgb(223, 0, 104);
 }
 
 @media screen and (max-width: 890px) {
@@ -269,43 +406,83 @@ body {
   overflow-x: hidden;
 }
 
+.post {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 50px;
+  height: min-content;
+  padding: 3rem;
+}
+.post__header {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 2fr 1fr 1fr;
+  justify-content: center;
+}
+.post__header .authors-image {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: #c4787c;
+  grid-row: 1;
+  grid-column: 1;
+}
+.post__header .authors-username {
+  font-family: "Josefin Sans";
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: #c4787c;
+  padding: 1rem 0;
+  grid-row: 2;
+  grid-column: 1;
+  align-self: center;
+}
+.post__header .category-container {
+  grid-row: 3;
+  grid-column: 1;
+}
+.post__header .category-container .category {
+  font-family: "Josefin Sans";
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: #c4787c;
+}
+.post__header .title {
+  font-family: "Babycakes";
+  color: #c4787c;
+  font-size: clamp(1.8rem, 5vw, 2.7rem);
+  grid-row: 1;
+  grid-column: 2;
+  justify-self: center;
+  text-align: center;
+}
+.post__text {
+  font-family: "Josefin Sans";
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 300;
+  padding: 1rem 0;
+}
+.post__button {
+  background-color: #f7cac9;
+  color: #c4787c;
+  margin-top: 2rem;
+  align-self: center;
+}
+
 .postsDashboard {
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: min-content;
   background-color: #f7cac9;
 }
-.postsDashboard .svgUnderIllustration {
-  display: block;
-}
-.postsDashboard .svgUnderIllustration .path-0 {
-  animation: pathAnim-0 15s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-@media screen and (max-width: 890px) {
-  .postsDashboard .svgUnderIllustration .path-0 {
-    animation-duration: 4s;
-  }
-}
-@keyframes pathAnim-0 {
-  0% {
-    d: path("M 0,400 C 0,400 0,200 0,200 C 148.92857142857142,162.28571428571428 297.85714285714283,124.57142857142858 400,131 C 502.14285714285717,137.42857142857142 557.5000000000001,188 666,218 C 774.4999999999999,248 936.1428571428571,257.42857142857144 1074,251 C 1211.857142857143,244.57142857142858 1325.9285714285716,222.28571428571428 1440,200 C 1440,200 1440,400 1440,400 Z");
-  }
-  25% {
-    d: path("M 0,400 C 0,400 0,200 0,200 C 141.5,170.60714285714286 283,141.21428571428572 390,166 C 497,190.78571428571428 569.5,269.75 689,272 C 808.5,274.25 975,199.78571428571428 1108,175 C 1241,150.21428571428572 1340.5,175.10714285714286 1440,200 C 1440,200 1440,400 1440,400 Z");
-  }
-  50% {
-    d: path("M 0,400 C 0,400 0,200 0,200 C 144.42857142857144,234.14285714285714 288.8571428571429,268.2857142857143 410,259 C 531.1428571428571,249.71428571428572 629.0000000000001,197.00000000000003 734,179 C 838.9999999999999,160.99999999999997 951.1428571428571,177.7142857142857 1070,187 C 1188.857142857143,196.2857142857143 1314.4285714285716,198.14285714285717 1440,200 C 1440,200 1440,400 1440,400 Z");
-  }
-  75% {
-    d: path("M 0,400 C 0,400 0,200 0,200 C 88.53571428571428,193.03571428571428 177.07142857142856,186.07142857142858 293,194 C 408.92857142857144,201.92857142857142 552.2499999999999,224.74999999999994 701,243 C 849.7500000000001,261.25000000000006 1003.9285714285713,274.92857142857144 1128,267 C 1252.0714285714287,259.07142857142856 1346.0357142857142,229.53571428571428 1440,200 C 1440,200 1440,400 1440,400 Z");
-  }
-  100% {
-    d: path("M 0,400 C 0,400 0,200 0,200 C 148.92857142857142,162.28571428571428 297.85714285714283,124.57142857142858 400,131 C 502.14285714285717,137.42857142857142 557.5000000000001,188 666,218 C 774.4999999999999,248 936.1428571428571,257.42857142857144 1074,251 C 1211.857142857143,244.57142857142858 1325.9285714285716,222.28571428571428 1440,200 C 1440,200 1440,400 1440,400 Z");
-  }
+.postsDashboard .dashboard {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  width: 70%;
+  align-self: center;
+  margin-top: 3rem;
 }
 
 .ageInput-container {
@@ -320,8 +497,8 @@ body {
   border: none;
   appearance: textfield;
   font-family: "Babycakes";
-  font-size: 1.3rem;
-  color: #6b2c3c;
+  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
+  color: #562a35;
   max-width: 3rem;
 }
 .ageInput-container .ageInput:focus {
@@ -336,17 +513,17 @@ body {
   background-color: transparent;
   border: none;
   font-family: "Babycakes";
-  font-size: 1.43rem;
-  color: #964555;
+  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
+  color: #c4787c;
   height: 1.5rem;
   padding: 0 0.25rem;
 }
 .ageInput-container .ageInput__buttons > *:hover {
-  color: #FDC9C9;
+  color: #fdc9c9;
   cursor: pointer;
 }
 .ageInput-container .ageInput__buttons > *:active {
-  color: #964555;
+  color: #c4787c;
 }
 
 .searchBar {
@@ -366,8 +543,8 @@ body {
 .searchBar__searchInput {
   border: none;
   font-family: "Babycakes";
-  font-size: 1.3rem;
-  color: #6b2c3c;
+  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
+  color: #562a35;
   width: 10rem;
 }
 .searchBar__searchInput:focus {
@@ -379,7 +556,7 @@ body {
   height: 2rem;
   background-color: transparent;
   border: none;
-  font-size: 1.3rem;
+  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
 }
 .searchBar__searchButton:hover {
   cursor: pointer;
@@ -394,13 +571,20 @@ body {
   padding: 2rem;
   margin: 0 auto;
   border-radius: 50px;
-  overflow: hidden;
 }
-@media screen and (max-width: 1000px) {
-  .searchManagement {
-    min-width: 0;
-    width: 90%;
-  }
+
+.post-container {
+  background-color: #f7cac9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+.post-container .card.post {
+  width: 70%;
+  height: 80%;
 }
 
 .header {
@@ -451,7 +635,7 @@ body {
   align-self: end;
 }
 .header__content .article__heading-container__heading {
-  font-size: 3rem;
+  font-size: clamp(1.8rem, 5vw, 2.7rem);
   font-family: "Babycakes";
   color: rgb(255, 255, 224);
   text-align: center;
@@ -459,20 +643,21 @@ body {
 }
 .header__content .article__text {
   font-family: "Josefin Sans";
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 1.9vw, 1.8rem);
   color: white;
   padding: 3rem 6rem 5rem 6rem;
 }
 .header__content .article__button {
   background-color: #f7cac9;
-  color: #964555;
+  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
+  color: #c4787c;
   justify-self: center;
   align-self: start;
 }
 
 @media screen and (min-width: 1200px) {
   .header {
-    min-height: 100vh;
+    min-height: 40rem;
     height: 100vh;
   }
   .header .inner-container {
@@ -481,18 +666,14 @@ body {
   .header__content {
     padding-top: 7rem;
   }
-  .header__content .article__heading-container__heading {
-    font-size: 4rem;
-  }
   .header__content .article__text {
-    font-size: 1.8rem;
-    padding-top: 5rem;
+    font-size: 1.3rem;
+    padding-top: 3rem;
     max-width: 50rem;
   }
   .header__content .article__button {
     margin: 0 0 1rem 0;
-    padding: 1.7rem;
-    font-size: 1.8rem;
+    padding: 1.2rem;
   }
 }
 @media screen and (max-width: 1200px) {
@@ -509,13 +690,9 @@ body {
     max-width: 50%;
     max-height: 80%;
   }
-  .header__content .article__text {
-    font-size: 1.5rem;
-  }
   .header__content .article__button {
     margin: 0 0 1rem 0;
     padding: 1.7rem;
-    font-size: 1.8rem;
   }
 }
 @media screen and (max-width: 1000px) {
@@ -525,7 +702,6 @@ body {
   .header__content__button {
     margin: 0 0 1rem 0;
     padding: 1.4rem;
-    font-size: 1.8rem;
   }
 }
 @media screen and (max-width: 890px) {
@@ -535,11 +711,7 @@ body {
   .header__illustration {
     max-width: 60%;
   }
-  .header__content .article__heading-container__heading {
-    font-size: 2.7rem;
-  }
   .header__content .article__text {
-    font-size: 1.3rem;
     padding: 2rem;
     width: min(600px, 80%);
     text-align: justify;
@@ -547,7 +719,6 @@ body {
   .header__content .article__button {
     margin: 2rem 0;
     padding: 1.3rem;
-    font-size: 1.6rem;
   }
 }
 @media screen and (max-width: 768px) {
@@ -558,21 +729,14 @@ body {
     max-width: 70%;
   }
   .header__content .article__text {
-    font-size: 1.3rem;
     text-align: justify;
     padding: 2rem 0 1rem 0;
     width: min(450px, 100%);
-  }
-  .header__content .article__button {
-    font-size: 1.5rem;
   }
 }
 @media screen and (max-width: 470px) {
   .header {
     padding: 1.3rem;
-  }
-  .header__content .article__heading-container__heading {
-    font-size: 2rem;
   }
   .header__illustration {
     padding-top: 2rem;
@@ -588,7 +752,7 @@ body {
   border-radius: 50px;
   font-family: "Babycakes";
   font-weight: 800;
-  font-size: 1.3rem;
+  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
   text-decoration: none;
   text-transform: lowercase;
   height: min-content;
@@ -614,15 +778,15 @@ body {
   border: none;
   border-radius: 70px;
   background-color: white;
-  color: #6b2c3c;
+  color: #562a35;
   font-family: "Babycakes";
-  font-size: 1.3rem;
+  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
   text-align: center;
   white-space: nowrap;
   user-select: none;
 }
 .dropdown__top:hover {
-  color: #964555;
+  color: #c4787c;
   cursor: pointer;
 }
 .dropdown__options-container {
@@ -671,13 +835,13 @@ body {
 }
 .dropdown__options li {
   font-family: "Josefin Sans";
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 1.9vw, 1.8rem);
   font-weight: 300;
   white-space: nowrap;
   user-select: none;
 }
 .dropdown__options li:hover > .itemLabel {
-  color: #964555;
+  color: #c4787c;
   cursor: pointer;
 }
 .dropdown__options li:not(li:first-child) {
@@ -702,7 +866,7 @@ body {
   content: "♡";
 }
 .dropdown__options li .itemInput:checked ~ .itemLabel {
-  color: #6b2c3c;
+  color: #562a35;
 }
 .dropdown__arrow {
   border-bottom: 2px solid #000;
@@ -733,7 +897,7 @@ body {
   display: inline;
 }
 .innerDropdown__top:hover {
-  color: #964555;
+  color: #c4787c;
   cursor: pointer;
 }
 .innerDropdown__options-container {
@@ -821,7 +985,7 @@ body {
 }
 .nav__list-item {
   font-family: "Babycakes";
-  font-size: 1.8rem;
+  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
   padding: 2rem;
   user-select: none;
 }
@@ -857,7 +1021,7 @@ label[for=menu-checkbox] a {
   font-family: "Babycakes";
   font-weight: 900;
   color: white;
-  font-size: 2rem;
+  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
 }
 
 #menu-checkbox:checked ~ label[for=menu-checkbox] {
@@ -880,7 +1044,6 @@ label[for=menu-checkbox] a {
     background-color: transparent;
   }
   .nav__list-item {
-    font-size: 2.7rem;
     padding: 2rem;
     color: rgb(252, 252, 228);
   }
@@ -901,7 +1064,6 @@ label[for=menu-checkbox] a {
   }
   .nav__list-item {
     padding: 1.5rem;
-    font-size: 1.9rem;
     color: rgb(252, 252, 228);
   }
   label[for=menu-checkbox] {
@@ -924,7 +1086,6 @@ label[for=menu-checkbox] a {
     right: 10%;
   }
   label[for=menu-checkbox] a {
-    font-size: 1.5rem;
     padding: 1.3rem;
   }
   .button {
@@ -943,7 +1104,6 @@ label[for=menu-checkbox] a {
     right: 5%;
   }
   label[for=menu-checkbox] a {
-    font-size: 1.3rem;
     padding: 1rem;
   }
   .button {
@@ -969,21 +1129,46 @@ label[for=menu-checkbox] a {
     right: 5%;
   }
   label[for=menu-checkbox] a {
-    font-size: 1.3rem;
     padding: 1rem;
   }
   .button {
     padding: 1.3rem;
   }
 }
+.pagination {
+  display: flex;
+  width: min-content;
+  margin: 0 auto 2rem auto;
+}
+.pagination .page-number-item:hover {
+  background-color: #e7babc;
+  border-radius: 70px;
+  cursor: pointer;
+}
+.pagination .page-number-item:hover .page-number-link {
+  color: #c4787c;
+}
+.pagination .page-number-link {
+  display: inline-block;
+  width: 2.7rem;
+  text-align: center;
+  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
+  color: #c4787c;
+  font-family: "Babycakes";
+  text-decoration: none;
+  user-select: none;
+  padding: 0.7rem;
+}
+
 .textarea {
   padding: 2rem;
   border-radius: 50px;
   border: none;
   background-color: white;
-  color: #964555;
+  color: #c4787c;
   font-family: "Josefin Sans";
   height: min-content;
+  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
 }
 .textarea:focus {
   outline: none;

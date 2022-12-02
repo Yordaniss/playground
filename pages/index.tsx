@@ -1,7 +1,8 @@
 import clientPromise from '../lib/mongodb'
 import { InferGetServerSidePropsType } from 'next'
 import App from './_app';
-import { Component } from 'react';
+import React from "react";
+
 
 export async function getServerSideProps(context:any) {
   try {

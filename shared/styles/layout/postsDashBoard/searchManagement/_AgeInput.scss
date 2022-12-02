@@ -1,6 +1,6 @@
-@use '../../../abstracts/Variables' as *;
+@use "../../../abstracts/Variables" as *;
 
-.ageInput-container{
+.ageInput-container {
   display: flex;
   align-items: center;
   border-radius: 50px;
@@ -8,39 +8,39 @@
   font-family: $ff-tiny-utilities;
   padding: 0 0 0 1rem;
 
-  .ageInput{
+  .ageInput {
     border: none;
     appearance: textfield;
     font-family: $ff-tiny-utilities;
-    font-size: $fs-tiny-utilities;
+    font-size: $fs-m;
     color: $clr-primary-dull-wine;
     max-width: 3rem;
 
-    &:focus{
+    &:focus {
       outline: none;
     }
 
-    &__buttons{
+    &__buttons {
       display: flex;
       flex-direction: column;
-      padding: .8rem .5rem .8rem 0;
-      
-      & > *{
+      padding: 0.8rem 0.5rem 0.8rem 0;
+
+      & > * {
         background-color: transparent;
         border: none;
         font-family: $ff-tiny-utilities;
-        font-size: $fs-tiny-utilities * 1.1;
+        font-size: $fs-m;
         color: $clr-primary-dull-rose;
         height: 1.5rem;
-        padding: 0 .25rem;
+        padding: 0 0.25rem;
 
-        &:hover{
+        &:hover {
           color: $clr-primary-light-pink;
           cursor: pointer;
         }
 
-        &:active{
-          color: $clr-primary-dull-rose
+        &:active {
+          color: $clr-primary-dull-rose;
         }
       }
     }

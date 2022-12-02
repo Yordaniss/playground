@@ -3,6 +3,7 @@ import { useState } from "react";
 export default function useHttpRequest() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [data, setData] = useState(null);
 
   const sendRequest = async (requestConfig, fetchCallback) => {
     setIsLoading(true);
@@ -18,6 +19,7 @@ export default function useHttpRequest() {
         throw new Error("HTTP error: " + response.status);
       }
       const data = await response.json();
+      setData(data);
       fetchCallback(data);
     } catch (error) {
       setError("Couldn't get data :( Error: " + error);
@@ -29,5 +31,6 @@ export default function useHttpRequest() {
     isLoading,
     error,
     sendRequest,
+    data,
   };
 }
