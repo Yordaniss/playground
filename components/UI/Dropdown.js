@@ -1,8 +1,12 @@
-import { useSelector, useDispatch } from "react-redux";
-
 export default function Dropdown(props) {
   const className = props.className;
   const dropdownInputId = Math.ceil(Math.random() * 10000);
+  const inputName = props.selectionModifier + Math.ceil(Math.random() * 10000);
+
+  const changeHandler = (e) => {
+    props.onSelect(e);
+  };
+
   return (
     <div className={className}>
       <input
@@ -32,7 +36,8 @@ export default function Dropdown(props) {
             const innerInputID = Math.ceil(Math.random() * 10000);
 
             let inputType;
-            props.selectionModifier === "SORT"
+            props.selectionModifier === "SORT" ||
+            props.selectionModifier === "POST"
               ? (inputType = "radio")
               : (inputType = "checkbox");
             return (
@@ -41,10 +46,9 @@ export default function Dropdown(props) {
                   id={innerInputID}
                   className="itemInput"
                   type={inputType}
-                  name={props.dropdownList.titles}
-                  onChange={() => {
-                    props.onSelect(el);
-                  }}
+                  name={inputName}
+                  onChange={changeHandler}
+                  value={JSON.stringify(el)}
                 />
                 <label htmlFor={innerInputID} className="itemLabel">
                   {el.optionTitle}

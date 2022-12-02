@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function useInput(validateValue) {
   const [enteredValue, setEnteredValue] = useState("");
   const [isTouched, setIsTouched] = useState(false);
 
-  const valueChangeHandler = (e) => {
-    setEnteredValue(e.target.value);
-  };
+  const valueChangeHandler = (callBack) => {};
+  useEffect(() => {
+    (e, data) => {
+      if (e !== undefined) {
+        setEnteredValue(e.target.value);
+      } else if (data !== undefined) {
+        setEnteredValue(data);
+      }
+    };
+  }, []);
 
   const inputBlurHandler = (e) => {
     setIsTouched(true);

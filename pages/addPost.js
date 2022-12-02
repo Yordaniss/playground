@@ -1,4 +1,4 @@
-import AddPost from "../components/layout/postsDashboard/AddPost";
+import AddPost from "../components/layout/postsDashboard/addPost/AddPost";
 
 export default function () {
   return <AddPost></AddPost>;
