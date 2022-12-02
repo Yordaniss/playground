@@ -17,6 +17,12 @@ export async function getStaticProps({ params }) {
 
   const post = await res.json();
 
+  if (!post) {
+    return {
+      notFound: true,
+    };
+  }
+
   return { props: { post } };
 }
 

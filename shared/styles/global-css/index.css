@@ -170,16 +170,37 @@ table {
 .page-404 {
   background-color: #f7cac9;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
 }
-.page-404 .illustration {
-  width: 30%;
-  height: 30%;
+.page-404__heading {
+  font-family: "Babycakes";
+  color: #c4787c;
+  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
 }
-
-svg.illustration {
-  width: 30%;
-  height: 30%;
+.page-404__img-container {
+  width: 70%;
+  height: 70%;
+}
+.page-404__img-container img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.page-404__link {
+  font-family: "Josefin Sans";
+  color: #c4787c;
+  font-size: clamp(1rem, 1.9vw, 1.8rem);
+  text-decoration: none;
+}
+.page-404__link:hover {
+  color: white;
+  text-shadow: 0px 0px 5px white, 0px 0px 5px rgba(253, 201, 201, 0.7), 0px 0px 7px rgba(253, 201, 201, 0.7), 0px 0px 10px rgba(253, 201, 201, 0.7), 0px 0px 15px rgba(253, 201, 201, 0.7), 0px 0px 20px rgba(253, 201, 201, 0.7), 0px 0px 17px rgba(253, 201, 201, 0.7), 0px 0px 37px rgba(253, 201, 201, 0.7);
+  cursor: pointer;
 }
 
 svg#freepik_stories-404-error-with-a-cute-animal:not(.animated) .animable {
@@ -259,7 +280,7 @@ svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Sign--inject
 .addPost__inner-container {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr min-content 1fr 1fr 1fr;
+  grid-template-rows: 1fr min-content 1fr 1fr 1fr 1fr;
   grid-template-areas: "labels inputs";
   justify-content: space-between;
   align-items: center;
@@ -271,24 +292,18 @@ svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Sign--inject
   color: #562a35;
   grid-area: labels;
 }
-.addPost__inner-container textarea {
-  grid-area: inputs;
-  grid-row: 2;
-  color: rgba(0, 0, 0, 0.8);
-  border: none;
-  font-size: 1rem;
-  resize: vertical;
-  width: 100%;
-  min-width: 100%;
-}
 .addPost__inner-container .labelForAgeInput {
   grid-row: 3;
   grid-column: 1;
 }
-.addPost__inner-container .ageInput-container {
-  grid-row: 3;
-  grid-column: 2;
-  justify-self: right;
+.addPost__inner-container input[type=file] {
+  display: none;
+}
+.addPost__inner-container .labelForTitleInput {
+  grid-row: 1;
+}
+.addPost__inner-container .labelForTextarea {
+  grid-row: 2;
 }
 .addPost__inner-container .dropdown {
   grid-area: inputs;
@@ -301,17 +316,28 @@ svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Sign--inject
 .addPost__inner-container .dropdown__top {
   color: #c4787c;
 }
-.addPost__inner-container input[type=file] {
+.addPost__inner-container .dropdown-input {
   display: none;
+}
+.addPost__inner-container .labelForAgeInput {
+  grid-row: 5;
+}
+.addPost__inner-container .ageInput-container {
+  grid-row: 5;
+  grid-column: 2;
+  justify-self: right;
+}
+.addPost__inner-container .labelForAdditionalInfoInput {
+  grid-row: 3;
 }
 .addPost__inner-container .custom-file-input {
   display: block;
   grid-column: 2;
-  grid-row: 5;
+  grid-row: 6;
   justify-self: right;
   color: white;
   font-family: "Josefin Sans";
-  font-size: clamp(1rem, 1.9vw, 1.8rem);
+  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
   background-color: #c4787c;
   width: min-content;
   height: min-content;
@@ -319,11 +345,9 @@ svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Sign--inject
 .addPost__inner-container .custom-file-input:hover {
   box-shadow: none;
 }
-.addPost__inner-container label:first-of-type {
-  grid-row: 1;
-}
-.addPost__inner-container label:nth-of-type(2) {
-  grid-row: 2;
+.addPost__inner-container #inputAdditionalInfo {
+  grid-column: 2;
+  grid-row: 3;
 }
 .addPost .formButtons {
   display: flex;
@@ -353,6 +377,20 @@ svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Sign--inject
   border: none;
 }
 .addPost .input-error {
+  color: rgb(223, 0, 104);
+  border: 2px solid rgb(223, 0, 104);
+}
+.addPost .textarea {
+  grid-area: inputs;
+  grid-row: 2;
+  color: rgba(0, 0, 0, 0.8);
+  border: none;
+  font-size: 1rem;
+  resize: vertical;
+  width: 100%;
+  min-width: 100%;
+}
+.addPost .textarea-error {
   color: rgb(223, 0, 104);
   border: 2px solid rgb(223, 0, 104);
 }

@@ -24,10 +24,27 @@ const searchConfigSlice = createSlice({
   },
 });
 
+const initialAddPostState = {
+  category: { value: null },
+};
+const addPostSlice = createSlice({
+  name: "addPost",
+  initialState: initialAddPostState,
+  reducers: {
+    changeCategory(state, action) {
+      state.category = { ...action.payload };
+      console.log({ ...action.payload });
+    },
+  },
+});
+
 const store = configureStore({
-  reducer: { searchConfig: searchConfigSlice.reducer },
+  reducer: {
+    searchConfig: searchConfigSlice.reducer,
+    addPost: addPostSlice.reducer,
+  },
 });
 
 export const searchConfigActions = searchConfigSlice.actions;
-
+export const addPostActions = addPostSlice.actions;
 export default store;
