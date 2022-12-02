@@ -28,12 +28,18 @@ export default async (req: any, res: any) => {
         query = { ...query, ...categoryQuery }
     }
 
-    let finalQuery = [
+    let finalQuery = Object.keys(query).length !== 0 ? [
         {
             $search: {
                 compound: query
             }
         },
+        {
+            $match: {
+                "components": { $in: [components] }
+            }
+        }
+    ] : [
         {
             $match: {
                 "components": { $in: [components] }
