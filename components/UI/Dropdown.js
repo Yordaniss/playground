@@ -1,7 +1,11 @@
 export default function Dropdown(props) {
   const className = props.className;
   const dropdownInputId = Math.ceil(Math.random() * 10000);
-  const inputName = props.selectionModifier + Math.ceil(Math.random() * 10000);
+  let inputName;
+
+  props.selectionModifier === "SORT"
+    ? (inputName = props.selectionModifier + Math.ceil(Math.random() * 10000))
+    : "";
 
   const changeHandler = (e) => {
     props.onSelect(e);
@@ -14,6 +18,7 @@ export default function Dropdown(props) {
         type="checkbox"
         id={dropdownInputId}
       ></input>
+
       <svg className="svgFilter">
         <filter id="goo">
           <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
@@ -33,13 +38,12 @@ export default function Dropdown(props) {
       <div className={className + "__options-container"}>
         <ul className={className + "__options"}>
           {props.dropdownList.list.map((el) => {
-            const innerInputID = Math.ceil(Math.random() * 10000);
-
             let inputType;
             props.selectionModifier === "SORT" ||
             props.selectionModifier === "POST"
               ? (inputType = "radio")
               : (inputType = "checkbox");
+            const innerInputID = Math.ceil(Math.random() * 10000);
             return (
               <li key={Math.random()}>
                 <input
@@ -47,9 +51,16 @@ export default function Dropdown(props) {
                   className="itemInput"
                   type={inputType}
                   name={inputName}
-                  onChange={changeHandler}
+                  onChange={
+                    changeHandler
+                    // e.target.checked ? e.target.checked : "";
+                  }
+                  onClick={(e) => {
+                    console.log(e.target.checked + " " + el.optionTitle);
+                  }}
                   value={JSON.stringify(el)}
                 />
+
                 <label htmlFor={innerInputID} className="itemLabel">
                   {el.optionTitle}
                 </label>

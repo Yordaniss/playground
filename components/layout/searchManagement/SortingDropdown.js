@@ -2,9 +2,8 @@ import Dropdown from "../../UI/Dropdown";
 import { useSelector, useDispatch } from "react-redux";
 import { searchConfigActions } from "../../../store/index";
 
-export default function SortingDropdown(props) {
+export default function SortingDropdown() {
   const dispatch = useDispatch();
-  const sortingState = useSelector(({ searchConfig }) => searchConfig.sorting);
 
   const changeSorting = (propertyName, direction) => {
     dispatch(
@@ -53,7 +52,10 @@ export default function SortingDropdown(props) {
         ],
       }}
       selectionModifier="SORT"
-      onSelect={(el) => changeSorting(el.sortBy.property, el.sortBy.direction)}
+      onSelect={(e) => {
+        const sortBy = JSON.parse(e.currentTarget.value).sortBy;
+        changeSorting(sortBy.property, sortBy.direction);
+      }}
     ></Dropdown>
   );
 }

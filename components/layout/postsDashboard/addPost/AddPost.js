@@ -2,266 +2,140 @@ import AgeInput from "../../searchManagement/AgeInput";
 import { server } from "../../../../config/index";
 import { useForm } from "react-hook-form";
 import CategoryDropdown from "./CategoryDropdown";
-import { useSelector, useDispatch } from "react-redux";
-import { addPostActions } from "../../../../store/index";
+import { useSelector } from "react-redux";
+import useHttpRequest from "../../../hooks/useHttpRequest";
 
-// export default function AddPost({ action = `${server}/api/posts}` }) {
-//   const [formValues, setFormValues] = useState({
-//     title: "",
-//     text: "",
-//     additionalInfo: "",
-//     category: null,
-//     age: 0,
-//     file: null,
-//   });
-
-//   const selectionHandler = (el) => {
-//     if (el.option.property === "main_category") {
-//       let e = undefined;
-//       categoryChangeHandler(e, el);
-//     }
-//   };
-
-//   // const {
-//   //   value: title,
-//   //   isValid: titleIsValid,
-//   //   hasError: titleHasError,
-//   //   valueChangeHandler: titleChangeHandler,
-//   //   inputBlurHandler: titleInputBlurHandler,
-//   //   reset: resetTitleInput,
-//   // } = useInput((value) => value.trim() !== "");
-
-//   // const {
-//   //   value: additionalInfo,
-//   //   isValid: additionalInfoIsValid,
-//   //   hasError: additionalInfoHasError,
-//   //   valueChangeHandler: additionalInfoChangeHandler,
-//   //   inputBlurHandler: additionalInfoBlurHandler,
-//   //   reset: resetadditionalInfoInput,
-//   // } = useInput((value) => value.trim() !== "");
-
-//   // const {
-//   //   value: text,
-//   //   isValid: textIsValid,
-//   //   hasError: textHasError,
-//   //   valueChangeHandler: textChangeHandler,
-//   //   inputBlurHandler: textBlurHandler,
-//   //   reset: resetTextarea,
-//   // } = useInput((value) => value.trim() !== "");
-
-//   // const {
-//   //   value: category,
-//   //   isValid: categoryIsValid,
-//   //   hasError: categoryHasError,
-//   //   valueChangeHandler: categoryChangeHandler,
-//   //   inputBlurHandler: categoryBlurHandler,
-//   //   reset: resetCategory,
-//   // } = useInput((value) => value !== undefined);
-
-//   let isFormValid = false;
-
-//   if (titleIsValid) {
-//     isFormValid = true;
-//   } else {
-//     isFormValid = false;
-//   }
-
-//   useEffect(() => {
-//     const sendPostCallback = (sendingResult, postTitle) => {
-//       setPosts(fetchResult.data);
-//       // props.onAddPost();
-//     };
-//   }, []);
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     // sendPost(
-//     //   {
-//     //     url: "http://localhost:3000/api/posts",
-//     //     method: "POST",
-//     //     headers: {
-//     //       "Content-Type": "application/json",
-//     //     },
-//     //     body: {
-//     //       title: "hi",
-//     //       main_category: 2,
-//     //       age_category: 6,
-//     //       components: [
-//     //         ["Required items", ["rock", "paper", "scissors"]],
-//     //         ["Instruction", ["Die"]],
-//     //       ],
-//     //     },
-//     //   },
-//     //   sendPostCallback()
-//     //   // sendPostCallback.bind(null, postTitle)
-//     // );
-
-//     // if (!isFormValid) {
-//     //   return;
-//     // }
-//     // resetTitleInput();
-//     // resetAdditionalInfoInput();
-//     // resetTextarea();
-//     // resetCategory();
-
-//     const payload = {
-//       title,
-//       additionalInfo,
-//       text,
-//       category,
-//     };
-//     console.log(payload);
-//   };
-
-//   const { isLoading, error, sendRequest: sendPost } = useHttpRequest();
-
-//   return (
-//     <div className="outer-container">
-//       <form
-//         action={action}
-//         method="POST"
-//         className="form addPost"
-//         onSubmit={handleSubmit}
-//       >
-//         {isLoading && <p>{isLoading}</p>}
-//         {error && <p>{error}</p>}
-//         <div className="addPost__inner-container">
-//           <label className="labelForTitleInput" htmlFor="inputPostTitle">
-//             Post title:
-//           </label>
-//           <input
-//             className={`input ${titleHasError ? "input-error" : ""}`}
-//             onChange={titleChangeHandler}
-//             onBlur={titleInputBlurHandler}
-//             id="inputPostTitle"
-//             type="text"
-//             defaultValue={title}
-//             placeholder="Title is..."
-//           />
-//           <label className="labelForTextarea">Text of the post: </label>
-//           <textarea
-//             placeholder="Your funny activiy..."
-//             className={`textarea ${textHasError ? "textarea-error" : ""}`}
-//             minLength="50"
-//             defaultValue={text}
-//             onChange={textChangeHandler}
-//             onBlur={textBlurHandler}
-//           />
-//           <label className="labelForAgeInput">Enter child's age: </label>
-//           <AgeInput></AgeInput>
-//           <Dropdown
-//             //add has error
-//             className={`dropdown`}
-//             dropdownList={dropdownList}
-//             selectionModifier="POST"
-//             onSelect={(el) => selectionHandler(el)}
-//             onBlur={categoryBlurHandler}
-//           ></Dropdown>
-//           <label className="button custom-file-input" htmlFor="chooseFile">
-//             Choose file
-//           </label>
-//           <input id="chooseFile" type="file" />
-//           <label
-//             className="labelForAdditionalInfoInput"
-//             htmlFor="inputAdditionalInfo"
-//           >
-//             Additional info:
-//           </label>
-//           <input
-//             className={`input ${additionalInfoHasError ? "input-error" : ""}`}
-//             id="inputAdditionalInfo"
-//             type="text"
-//             defaultValue={additionalInfo}
-//             placeholder="Your additional info..."
-//             onChange={additionalInfoChangeHandler}
-//             onBlur={additionalInfoBlurHandler}
-//           />
-//         </div>
-//         <div className="formButtons">
-//           <input
-//             disabled={!isFormValid}
-//             className="button submit"
-//             type="submit"
-//             value="submit post"
-//           />
-//           <input type="reset" value="cancel" className="button cancel" />
-//         </div>
-//       </form>
-//     </div>
-//   );
-// }
-
-export default function AddPost({ action = `${server}/api/posts}` }) {
+export default function AddPost({ action = `${server}/api/posts` }) {
   const {
     register,
     setValue,
+    getValues,
     handleSubmit,
-    formState: { errors },
-  } = useForm();
+    formState: { errors, isValid },
+  } = useForm({
+    mode: "onBlur",
+    reValidateMode: "onChange",
+    // defaultValues: null,
+    criteriaMode: "firstError",
+    shouldUseNativeValidation: true,
+  });
+
+  const { isLoading, postError, sendRequest: postForm } = useHttpRequest();
+
+  const url = `${server}/api/posts`;
+
+  const onSubmit = (data) => {
+    console.log(data);
+    console.log(JSON.stringify(data));
+    postForm(
+      {
+        url: url,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: data,
+      },
+      () => {
+        console.log("success!");
+      }
+    );
+  };
+
+  const onError = (errors, e) => console.log(errors, e);
 
   const categoryState = useSelector(({ addPost }) => addPost.category.value);
-  // console.log(categoryState);
-
-  // const onSubmit = (data) => {
-  //   console.log(data);
-  // };
+  const ageState = useSelector(({ addPost }) => addPost.age.value);
 
   return (
     <div className="outer-container">
+      {isLoading && <div>{isLoading}</div>}
+      {postError && <div>{postError}</div>}
       <form
         action={action}
         method="POST"
         className="form addPost"
-        onSubmit={handleSubmit((data) => console.log(data))}
+        onSubmit={handleSubmit((data) => onSubmit(data), onError)}
       >
-        {/* {isLoading && <p>{isLoading}</p>} */}
-        {/* {error && <p>{error}</p>} */}
         <div className="addPost__inner-container">
-          <label className="labelForTitleInput" htmlFor="inputPostTitle">
-            Post title:
-          </label>
-          <input
-            className={`input`}
-            id="inputPostTitle"
-            type="text"
-            placeholder="Title is..."
-            {...register("title")}
-          />
-          <label className="labelForTextarea">Text of the post: </label>
-          <textarea
-            placeholder="Your funny activiy..."
-            className={`textarea`}
-            // minLength="50"
-            {...register("text")}
-          />
-          <label className="labelForAgeInput">Enter child's age: </label>
-          <AgeInput></AgeInput>
-          <CategoryDropdown
-            onClick={() => setValue("category", { value: categoryState })}
-          ></CategoryDropdown>
-          <label className="button custom-file-input" htmlFor="chooseFile">
-            Choose file
-          </label>
-          <input id="chooseFile" type="file" />
-          <label
-            className="labelForAdditionalInfoInput"
-            htmlFor="inputAdditionalInfo"
-          >
-            Additional info:
-          </label>
-          <input
-            className={`input`}
-            id="inputAdditionalInfo"
-            type="text"
-            placeholder="Your additional info..."
-          />
+          <div className="title-group">
+            <label htmlFor="inputPostTitle">Post title:</label>
+            <input
+              className={`input ${errors.title && "error"}`}
+              id="inputPostTitle"
+              type="text"
+              placeholder="Title is..."
+              {...register("title", {
+                required: "Title is required!",
+              })}
+            />
+          </div>
+          <div className="text-group">
+            <label>Text of the post: </label>
+            <textarea
+              placeholder="Your funny activiy..."
+              className={`textarea ${errors.text && "error"}`}
+              // minLength="50"
+              {...register("text", {
+                required: "Text is required!",
+              })}
+            />
+          </div>
+          <div className="additional-info-group">
+            <label htmlFor="inputAdditionalInfo">Additional info:</label>
+            <input
+              className={`input ${errors.components && "error"}`}
+              id="inputAdditionalInfo"
+              type="text"
+              placeholder="Your additional info..."
+              {...register("components", {
+                required: "Sorry, this is also required :(",
+              })}
+            />
+          </div>
+          <div className="age-group">
+            <label>Enter child's age: </label>
+            <AgeInput
+              className={`${errors.age_category && "error"}`}
+              {...register("age_category", {
+                required: "Please enter minimal child's age",
+              })}
+            ></AgeInput>
+            {ageState ? setValue("age_category", ageState) : null}
+          </div>
+
+          <div className="category-group">
+            <CategoryDropdown
+              {...register("main_category", {
+                required: "Please enter category",
+              })}
+            ></CategoryDropdown>
+            {categoryState ? setValue("main_category", categoryState) : null}
+          </div>
+          <div className="file-input-group">
+            <label className="button custom-file-input" htmlFor="chooseFile">
+              Choose file
+            </label>
+            <input
+              id="chooseFile"
+              type="file"
+              {...register("file", {
+                required: "Don't be shy, add some nice files",
+              })}
+            />
+          </div>
         </div>
         <div className="formButtons">
           <input
-            disabled={!true}
+            disabled={!isValid}
             className="button submit"
             type="submit"
             value="submit post"
+            onClick={() => {
+              ({ ...getValues("components") }
+                ? setValue("components", [getValues("components")])
+                : "");
+            }}
           />
           <input type="reset" value="cancel" className="button cancel" />
         </div>

@@ -179,8 +179,8 @@ table {
 }
 .page-404__heading {
   font-family: "Babycakes";
-  color: #c4787c;
-  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
+  color: #aa324a;
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
 }
 .page-404__img-container {
   width: 70%;
@@ -193,8 +193,8 @@ table {
 }
 .page-404__link {
   font-family: "Josefin Sans";
-  color: #c4787c;
-  font-size: clamp(1rem, 1.9vw, 1.8rem);
+  color: #aa324a;
+  font-size: clamp(1.2rem, 1.2vw, 1.5rem);
   text-decoration: none;
 }
 .page-404__link:hover {
@@ -260,7 +260,6 @@ svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Sign--inject
 }
 
 .outer-container {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -271,83 +270,95 @@ svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Sign--inject
 }
 
 .addPost {
-  position: relative;
   width: 60%;
-  height: 60%;
-  padding: 3rem;
+  min-width: min-content;
+  height: 40%;
+  padding: 4rem;
   background-color: #e7babc;
 }
 .addPost__inner-container {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr;
+  grid-auto-columns: 0;
   grid-template-rows: 1fr min-content 1fr 1fr 1fr 1fr;
-  grid-template-areas: "labels inputs";
-  justify-content: space-between;
   align-items: center;
+  align-content: center;
   row-gap: 1rem;
 }
 .addPost__inner-container label {
-  font-family: "Josefin Sans";
   font-weight: 600;
-  color: #562a35;
-  grid-area: labels;
+  font-family: "Josefin Sans";
+  border: none;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  color: #a74c59;
+  user-select: none;
+  margin-right: 10%;
+  white-space: nowrap;
 }
-.addPost__inner-container .labelForAgeInput {
-  grid-row: 3;
-  grid-column: 1;
+.addPost__inner-container input,
+.addPost__inner-container textarea {
+  font-family: "Josefin Sans";
+  border: none;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  width: 50%;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 350;
 }
-.addPost__inner-container input[type=file] {
-  display: none;
+.addPost__inner-container > * {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
 }
-.addPost__inner-container .labelForTitleInput {
+.addPost__inner-container .error {
+  color: rgb(223, 0, 104);
+  border: 2px solid rgb(223, 0, 104);
+}
+.addPost__inner-container .error * {
+  color: rgb(223, 0, 104);
+}
+.addPost__inner-container .title-group {
   grid-row: 1;
 }
-.addPost__inner-container .labelForTextarea {
+.addPost__inner-container .text-group {
   grid-row: 2;
 }
-.addPost__inner-container .dropdown {
-  grid-area: inputs;
-  grid-row: 4;
-  justify-self: end;
+.addPost__inner-container .text-group textarea {
+  resize: vertical;
+  padding: 2rem 1.2rem 1.3rem 1.2rem;
+  height: min-content;
+  min-height: 15rem;
+  width: 70%;
 }
-.addPost__inner-container .dropdown * {
-  font-size: 1rem;
-}
-.addPost__inner-container .dropdown__top {
-  color: #c4787c;
-}
-.addPost__inner-container .dropdown-input {
-  display: none;
-}
-.addPost__inner-container .labelForAgeInput {
-  grid-row: 5;
-}
-.addPost__inner-container .ageInput-container {
-  grid-row: 5;
-  grid-column: 2;
-  justify-self: right;
-}
-.addPost__inner-container .labelForAdditionalInfoInput {
+.addPost__inner-container .additional-info-group {
   grid-row: 3;
 }
-.addPost__inner-container .custom-file-input {
-  display: block;
-  grid-column: 2;
-  grid-row: 6;
-  justify-self: right;
-  color: white;
-  font-family: "Josefin Sans";
-  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
-  background-color: #c4787c;
-  width: min-content;
-  height: min-content;
+.addPost__inner-container .age-group {
+  grid-row: 4;
 }
-.addPost__inner-container .custom-file-input:hover {
+.addPost__inner-container .category-group {
+  grid-row: 5;
+  justify-content: right;
+}
+.addPost__inner-container .category-group label.dropdown__top {
+  margin: 0;
+}
+.addPost__inner-container .file-input-group {
+  grid-row: 6;
+  justify-content: right;
+}
+.addPost__inner-container .file-input-group .button {
+  margin: 0;
+}
+.addPost__inner-container .file-input-group .custom-file-input {
+  color: white;
+  background-color: #c4787c;
+}
+.addPost__inner-container .file-input-group .custom-file-input:hover {
   box-shadow: none;
 }
-.addPost__inner-container #inputAdditionalInfo {
-  grid-column: 2;
-  grid-row: 3;
+.addPost__inner-container .file-input-group input[type=file] {
+  display: none;
 }
 .addPost .formButtons {
   display: flex;
@@ -370,29 +381,6 @@ svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Sign--inject
 .addPost .formButtons .cancel {
   background-color: #c4787c;
   color: white;
-}
-.addPost .input {
-  font-size: 1rem;
-  color: rgba(0, 0, 0, 0.8);
-  border: none;
-}
-.addPost .input-error {
-  color: rgb(223, 0, 104);
-  border: 2px solid rgb(223, 0, 104);
-}
-.addPost .textarea {
-  grid-area: inputs;
-  grid-row: 2;
-  color: rgba(0, 0, 0, 0.8);
-  border: none;
-  font-size: 1rem;
-  resize: vertical;
-  width: 100%;
-  min-width: 100%;
-}
-.addPost .textarea-error {
-  color: rgb(223, 0, 104);
-  border: 2px solid rgb(223, 0, 104);
 }
 
 @media screen and (max-width: 890px) {
@@ -430,8 +418,8 @@ body {
 }
 .post__header .authors-username {
   font-family: "Josefin Sans";
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
-  color: #c4787c;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  color: #aa324a;
   padding: 1rem 0;
   grid-row: 2;
   grid-column: 1;
@@ -443,12 +431,12 @@ body {
 }
 .post__header .category-container .category {
   font-family: "Josefin Sans";
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
-  color: #c4787c;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  color: #aa324a;
 }
 .post__header .title {
   font-family: "Babycakes";
-  color: #c4787c;
+  color: #aa324a;
   font-size: clamp(1.8rem, 5vw, 2.7rem);
   grid-row: 1;
   grid-column: 2;
@@ -457,13 +445,13 @@ body {
 }
 .post__text {
   font-family: "Josefin Sans";
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
   font-weight: 300;
   padding: 1rem 0;
 }
 .post__button {
   background-color: #f7cac9;
-  color: #c4787c;
+  color: #aa324a;
   margin-top: 2rem;
   align-self: center;
 }
@@ -497,7 +485,7 @@ body {
   border: none;
   appearance: textfield;
   font-family: "Babycakes";
-  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
   color: #562a35;
   max-width: 3rem;
 }
@@ -513,8 +501,8 @@ body {
   background-color: transparent;
   border: none;
   font-family: "Babycakes";
-  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
-  color: #c4787c;
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
+  color: #aa324a;
   height: 1.5rem;
   padding: 0 0.25rem;
 }
@@ -523,7 +511,7 @@ body {
   cursor: pointer;
 }
 .ageInput-container .ageInput__buttons > *:active {
-  color: #c4787c;
+  color: #aa324a;
 }
 
 .searchBar {
@@ -543,7 +531,7 @@ body {
 .searchBar__searchInput {
   border: none;
   font-family: "Babycakes";
-  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
   color: #562a35;
   width: 10rem;
 }
@@ -556,7 +544,7 @@ body {
   height: 2rem;
   background-color: transparent;
   border: none;
-  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
 }
 .searchBar__searchButton:hover {
   cursor: pointer;
@@ -643,14 +631,14 @@ body {
 }
 .header__content .article__text {
   font-family: "Josefin Sans";
-  font-size: clamp(1rem, 1.9vw, 1.8rem);
+  font-size: clamp(1.2rem, 1.2vw, 1.5rem);
   color: white;
   padding: 3rem 6rem 5rem 6rem;
 }
 .header__content .article__button {
   background-color: #f7cac9;
-  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
-  color: #c4787c;
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
+  color: #aa324a;
   justify-self: center;
   align-self: start;
 }
@@ -752,7 +740,7 @@ body {
   border-radius: 50px;
   font-family: "Babycakes";
   font-weight: 800;
-  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
   text-decoration: none;
   text-transform: lowercase;
   height: min-content;
@@ -780,13 +768,13 @@ body {
   background-color: white;
   color: #562a35;
   font-family: "Babycakes";
-  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
   text-align: center;
   white-space: nowrap;
   user-select: none;
 }
 .dropdown__top:hover {
-  color: #c4787c;
+  color: #aa324a;
   cursor: pointer;
 }
 .dropdown__options-container {
@@ -835,13 +823,13 @@ body {
 }
 .dropdown__options li {
   font-family: "Josefin Sans";
-  font-size: clamp(1rem, 1.9vw, 1.8rem);
+  font-size: clamp(1.2rem, 1.2vw, 1.5rem);
   font-weight: 300;
   white-space: nowrap;
   user-select: none;
 }
 .dropdown__options li:hover > .itemLabel {
-  color: #c4787c;
+  color: #aa324a;
   cursor: pointer;
 }
 .dropdown__options li:not(li:first-child) {
@@ -897,7 +885,7 @@ body {
   display: inline;
 }
 .innerDropdown__top:hover {
-  color: #c4787c;
+  color: #aa324a;
   cursor: pointer;
 }
 .innerDropdown__options-container {
@@ -946,6 +934,35 @@ body {
   display: none;
 }
 
+.error-div {
+  position: absolute;
+  border-radius: 10px;
+  width: min-content;
+  align-self: flex-end !important;
+}
+.error-div .arrow {
+  width: 0.7rem;
+  height: 1rem;
+  margin-bottom: -0.7rem;
+  margin-left: 10%;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 17.32px solid white;
+  border-top: 10px solid transparent;
+  display: inline-block;
+}
+.error-div .message {
+  font-family: "Josefin Sans";
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  color: #660000;
+  font-weight: 300;
+  white-space: nowrap;
+  text-align: center;
+  padding: 0.6rem;
+  background-color: white;
+  border-radius: 10px;
+}
+
 .form {
   border-radius: 70px;
 }
@@ -985,7 +1002,7 @@ body {
 }
 .nav__list-item {
   font-family: "Babycakes";
-  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
   padding: 2rem;
   user-select: none;
 }
@@ -1021,7 +1038,7 @@ label[for=menu-checkbox] a {
   font-family: "Babycakes";
   font-weight: 900;
   color: white;
-  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
 }
 
 #menu-checkbox:checked ~ label[for=menu-checkbox] {
@@ -1146,14 +1163,14 @@ label[for=menu-checkbox] a {
   cursor: pointer;
 }
 .pagination .page-number-item:hover .page-number-link {
-  color: #c4787c;
+  color: #aa324a;
 }
 .pagination .page-number-link {
   display: inline-block;
   width: 2.7rem;
   text-align: center;
-  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
-  color: #c4787c;
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
+  color: #aa324a;
   font-family: "Babycakes";
   text-decoration: none;
   user-select: none;
@@ -1165,10 +1182,10 @@ label[for=menu-checkbox] a {
   border-radius: 50px;
   border: none;
   background-color: white;
-  color: #c4787c;
+  color: #aa324a;
   font-family: "Josefin Sans";
   height: min-content;
-  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
 }
 .textarea:focus {
   outline: none;

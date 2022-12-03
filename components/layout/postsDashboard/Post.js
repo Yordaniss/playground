@@ -14,10 +14,10 @@ export default function Post(props) {
         <h1 className="title">{props.post.title}</h1>
         <p className="category-container">
           <Link
-            href={`/${categories[props.post.main_category - 1]}`}
+            href={`/${categories[props.post.main_category]}`}
             className="category"
           >
-            #{categories[props.post.main_category - 1]}
+            #{categories[props.post.main_category]}
           </Link>
         </p>
       </div>

@@ -4,8 +4,6 @@ import { addPostActions } from "../../../../store/index";
 
 export default function CategoryDropdown() {
   const dispatch = useDispatch();
-  const categoryState = useSelector(({ addPost }) => addPost.category);
-
   const changeCategory = (value) => {
     dispatch(
       addPostActions.changeCategory({
@@ -57,7 +55,6 @@ export default function CategoryDropdown() {
 
   return (
     <Dropdown
-      //add has error
       className={`dropdown`}
       dropdownList={dropdownList}
       selectionModifier="POST"

@@ -2,7 +2,7 @@ import Dropdown from "../../UI/Dropdown";
 import { useSelector, useDispatch } from "react-redux";
 import { searchConfigActions } from "../../../store/index";
 
-export default function FilterDropdown(props) {
+export default function FilterDropdown() {
   const dispatch = useDispatch();
   const filtrationState = useSelector(
     ({ searchConfig }) => searchConfig.filtration
@@ -25,15 +25,18 @@ export default function FilterDropdown(props) {
     dispatch(searchConfigActions.removeFilter(filtered));
   };
 
-  const filtrationHandler = (el) => {
-    if (
-      !filtrationState.filters.some(
-        (filter) =>
-          filter.property === el.filterBy.property &&
-          filter.value === el.filterBy.value
-      )
-    ) {
-      addFilter(el.filterBy.property, el.filterBy.value);
+  const filtrationHandler = (el, e) => {
+    console.log({ ...el.filterBy } + " " + e.currentTarget.checked);
+    if (e.currentTarget.checked) {
+      if (
+        !filtrationState.filters.some(
+          (filter) =>
+            filter.property === el.filterBy.property &&
+            filter.value === el.filterBy.value
+        )
+      ) {
+        addFilter(el.filterBy.property, el.filterBy.value);
+      }
     } else {
       removeFilter(el.filterBy.property, el.filterBy.value);
     }
@@ -84,9 +87,12 @@ export default function FilterDropdown(props) {
         ],
       }}
       selectionModifier="FILTER"
-      onSelect={(el) => {
-        filtrationHandler(el);
+      onSelect={(e) => {
+        const el = JSON.parse(e.currentTarget.value);
+        filtrationHandler(el, e);
       }}
-    ></Dropdown>
+    >
+      {console.log(filtrationState)}
+    </Dropdown>
   );
 }

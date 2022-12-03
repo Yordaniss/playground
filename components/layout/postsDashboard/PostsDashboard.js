@@ -10,7 +10,7 @@ import { server } from "../../../config/index";
 export default function PostsDashboard() {
   const searchConfig = useSelector(({ searchConfig }) => searchConfig);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(2);
+  const [postsPerPage] = useState(2);
 
   const {
     isLoading,
@@ -29,9 +29,10 @@ export default function PostsDashboard() {
     return sortedPosts;
   };
 
+  const url = `${server}/api/posts`;
+
   useEffect(() => {
-    const postsFetchCallback = (fetchResult) => {};
-    fetchPosts({ url: `${server}/api/posts` }, postsFetchCallback);
+    fetchPosts({ url: url }, () => {});
   }, []);
 
   if (
@@ -56,11 +57,7 @@ export default function PostsDashboard() {
 
   return (
     <section className="postsDashboard" id="postsDashboard">
-      <SearchManagement
-      // onSelect={(orderingProps, selectionModifier) =>
-      //   onSelect(orderingProps, selectionModifier)
-      // }
-      ></SearchManagement>
+      <SearchManagement></SearchManagement>
       <div className="dashboard">
         {isLoading && "Loading..."}
         {error && error}

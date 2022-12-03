@@ -1,7 +1,22 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addPostActions } from "../../../store/index";
 
-export default function AgeInput() {
+export default function AgeInput(props) {
   const [currentStep, setCurrentStep] = useState(0);
+  const dispatch = useDispatch();
+  let className = "ageInput-container";
+  if (props.className) {
+    className = "ageInput-container " + props.className;
+  }
+
+  const changeAge = (value) => {
+    dispatch(
+      addPostActions.changeAge({
+        value: value,
+      })
+    );
+  };
 
   const makeStep = (modifier) => {
     let newStep = currentStep;
@@ -13,6 +28,7 @@ export default function AgeInput() {
       return;
     }
     setCurrentStep(newStep);
+    changeAge(newStep);
   };
 
   return (
@@ -33,6 +49,7 @@ export default function AgeInput() {
         }}
         onBlur={(e) => {
           e.target.value = currentStep;
+          changeAge(currentStep);
         }}
       ></input>
       <div className="ageInput__buttons">

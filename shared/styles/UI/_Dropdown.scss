@@ -106,7 +106,7 @@
         &:checked {
           border-color: $bg-primary-dull-rose;
           background-color: $bg-primary-light-pink;
-          content: "\2661";
+          // content: "\2661";
         }
 
         &:checked ~ .itemLabel {
