@@ -1,4 +1,3 @@
-@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -259,7 +258,7 @@ svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Sign--inject
   display: none;
 }
 
-.outer-container {
+.sign-in-outer-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -734,6 +733,188 @@ body {
     padding: 1.3rem 0.4rem 0 0.4rem;
   }
 }
+.sign-in-outer-container {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  width: 60%;
+  min-width: min-content;
+  height: 40%;
+  border-radius: 70px;
+}
+.sign-in-outer-container .no-account {
+  padding: 4rem;
+  white-space: pre-wrap;
+  font-family: "Josefin Sans";
+  color: #a74c59;
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
+  white-space: nowrap;
+}
+.sign-in-outer-container .no-account .link-register {
+  text-decoration: none;
+  color: #aa324a;
+  font-family: "Babycakes";
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
+}
+.sign-in-outer-container .no-account .link-register:hover {
+  color: rgb(252, 252, 228);
+  text-shadow: 0px 0px 5px white, 0px 0px 5px rgba(253, 201, 201, 0.7), 0px 0px 7px rgba(253, 201, 201, 0.7), 0px 0px 10px rgba(253, 201, 201, 0.7), 0px 0px 15px rgba(253, 201, 201, 0.7), 0px 0px 20px rgba(253, 201, 201, 0.7), 0px 0px 17px rgba(253, 201, 201, 0.7), 0px 0px 37px rgba(253, 201, 201, 0.7);
+}
+
+.sign-in {
+  border-radius: 70px;
+  padding: 4rem;
+  background-color: #e7babc;
+}
+.sign-in__inner-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+.sign-in__inner-container label {
+  font-weight: 600;
+  font-family: "Josefin Sans";
+  border: none;
+  font-size: clamp(1.2rem, 1.2vw, 1.5rem);
+  color: #a74c59;
+  user-select: none;
+  white-space: nowrap;
+  text-align: center;
+}
+.sign-in__inner-container input {
+  font-family: "Josefin Sans";
+  border: none;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 350;
+}
+.sign-in__inner-container .error {
+  color: rgb(223, 0, 104);
+  border: 2px solid rgb(223, 0, 104);
+}
+.sign-in__inner-container .error * {
+  color: rgb(223, 0, 104);
+}
+.sign-in .formButtons {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  column-gap: 2rem;
+  margin-top: 3rem;
+}
+.sign-in .formButtons .submit {
+  background-color: #c4787c;
+  color: white;
+}
+.sign-in .formButtons .submit:disabled, .sign-in .formButtons .submit:disabled:hover, .sign-in .formButtons .submit:disabled:active {
+  background-color: #c39ea0;
+  color: #846c6d;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.sign-in .formButtons .cancel {
+  background-color: #c4787c;
+  color: white;
+}
+
+@media screen and (max-width: 890px) {
+  .sign-in {
+    width: 80%;
+  }
+}
+.sign-up-outer-container {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  width: 60%;
+  min-width: min-content;
+  height: 40%;
+  border-radius: 70px;
+}
+.sign-up-outer-container .have-account {
+  padding: 4rem;
+  white-space: pre-wrap;
+  font-family: "Josefin Sans";
+  color: #a74c59;
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
+  white-space: nowrap;
+}
+.sign-up-outer-container .have-account .link-login {
+  text-decoration: none;
+  color: #aa324a;
+  font-family: "Babycakes";
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
+}
+.sign-up-outer-container .have-account .link-login:hover {
+  color: rgb(252, 252, 228);
+  text-shadow: 0px 0px 5px white, 0px 0px 5px rgba(253, 201, 201, 0.7), 0px 0px 7px rgba(253, 201, 201, 0.7), 0px 0px 10px rgba(253, 201, 201, 0.7), 0px 0px 15px rgba(253, 201, 201, 0.7), 0px 0px 20px rgba(253, 201, 201, 0.7), 0px 0px 17px rgba(253, 201, 201, 0.7), 0px 0px 37px rgba(253, 201, 201, 0.7);
+}
+
+.sign-up {
+  border-radius: 70px;
+  padding: 4rem;
+  background-color: #e7babc;
+}
+.sign-up__inner-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+.sign-up__inner-container label {
+  font-weight: 600;
+  font-family: "Josefin Sans";
+  border: none;
+  font-size: clamp(1.2rem, 1.2vw, 1.5rem);
+  color: #a74c59;
+  user-select: none;
+  white-space: nowrap;
+  text-align: center;
+}
+.sign-up__inner-container input {
+  font-family: "Josefin Sans";
+  border: none;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 350;
+}
+.sign-up__inner-container .error {
+  color: rgb(223, 0, 104);
+  border: 2px solid rgb(223, 0, 104);
+}
+.sign-up__inner-container .error * {
+  color: rgb(223, 0, 104);
+}
+.sign-up .formButtons {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  column-gap: 2rem;
+  margin-top: 3rem;
+}
+.sign-up .formButtons .submit {
+  background-color: #c4787c;
+  color: white;
+}
+.sign-up .formButtons .submit:disabled, .sign-up .formButtons .submit:disabled:hover, .sign-up .formButtons .submit:disabled:active {
+  background-color: #c39ea0;
+  color: #846c6d;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.sign-up .formButtons .cancel {
+  background-color: #c4787c;
+  color: white;
+}
+
+@media screen and (max-width: 890px) {
+  .sign-up {
+    width: 80%;
+  }
+}
 .button {
   display: block;
   border: none;
@@ -851,7 +1032,6 @@ body {
 .dropdown__options li .itemInput:checked {
   border-color: #c4787c;
   background-color: #f7cac9;
-  content: "♡";
 }
 .dropdown__options li .itemInput:checked ~ .itemLabel {
   color: #562a35;
@@ -963,8 +1143,23 @@ body {
   border-radius: 10px;
 }
 
+.outer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background-color: #f7cac9;
+}
+
 .form {
   border-radius: 70px;
+  width: 60%;
+  min-width: min-content;
+  height: 40%;
+  padding: 4rem;
+  background-color: #e7babc;
 }
 
 .input {

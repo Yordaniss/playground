@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from "next/router";
 import { setCookie } from 'cookies-next';
+import {server} from '../../../config/index'
 
 const Register = () => {
   const router = useRouter()
@@ -28,30 +29,27 @@ const Register = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Username</p>
-          <input type="text" onChange={e => setUserName(e.target.value)} />
-        </label>
-        <label>
-          <p>Email</p>
-          <input type="text" onChange={e => setEmail(e.target.value)} />
-        </label>
-        <label>
-          <p>Password</p>
-          <input type="password" onChange={e => setPassword(e.target.value)} />
-        </label>
-        <div>
-          <button type="submit">Submit</button>
+    <div className='outer-container'>
+      <div className='sign-up-outer-container'>
+        <form className='sign-up' onSubmit={handleSubmit}>
+          <div className='sign-up__inner-container'>
+              <label htmlFor='sign-up-username'>Username</label>
+              <input id='sign-up-username' className='input' type="text" onChange={e => setUserName(e.target.value)} />
+              <label htmlFor='sign-up-email'>Email</label>
+              <input id='sign-up-email' className='input' type="email" onChange={e => setEmail(e.target.value)} />
+              <label htmlFor='sign-up-password'>Password</label>
+              <input id='sign-up-password' className='input' type="password" onChange={e => setPassword(e.target.value)} />
+          </div>
+          <div className='formButtons'>
+            <input disabled={false} className='button submit' type="submit" value="submit" />
+            <input className='button cancel' type="reset" value="cancel" />
+          </div>
+        </form>
+        
+        <div className='have-account'>
+          <p>Already have an account?<br/><br/></p>
+          <Link className='link-login' href={`${server}/user/sign_in`}>Login</Link>
         </div>
-      </form>
-      <div>
-        <p>Already have an account
-          <Link href="/user/sign_in">
-            <small>Login</small>
-          </Link>
-        </p>
       </div>
     </div>
   )
