@@ -15,7 +15,6 @@ export default function AddPost({ action = `${server}/api/posts` }) {
   } = useForm({
     mode: "onBlur",
     reValidateMode: "onChange",
-    // defaultValues: null,
     criteriaMode: "firstError",
     shouldUseNativeValidation: true,
   });
@@ -43,8 +42,9 @@ export default function AddPost({ action = `${server}/api/posts` }) {
   };
 
   const onError = (errors, e) => console.log(errors, e);
-
-  const categoryState = useSelector(({ addPost }) => addPost.category.value);
+  const categoriesState = useSelector(
+    ({ addPost }) => addPost.categories.value
+  );
   const ageState = useSelector(({ addPost }) => addPost.age.value);
 
   return (
@@ -110,7 +110,9 @@ export default function AddPost({ action = `${server}/api/posts` }) {
                 required: "Please enter category",
               })}
             ></CategoryDropdown>
-            {categoryState ? setValue("main_category", categoryState) : null}
+            {categoriesState
+              ? setValue("main_category", categoriesState)
+              : null}
           </div>
           <div className="file-input-group">
             <label className="button custom-file-input" htmlFor="chooseFile">
