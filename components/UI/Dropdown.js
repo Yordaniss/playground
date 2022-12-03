@@ -1,14 +1,29 @@
+import { useState } from "react";
+
 export default function Dropdown(props) {
   const className = props.className;
   const dropdownInputId = Math.ceil(Math.random() * 10000);
-  let inputName;
+  const inputName = props.selectionModifier + Math.ceil(Math.random() * 10000);
 
-  props.selectionModifier === "SORT"
-    ? (inputName = props.selectionModifier + Math.ceil(Math.random() * 10000))
-    : "";
+  const [checkedState, setCheckedState] = useState(
+    new Array(props.dropdownList.list.length).fill(false)
+  );
 
-  const changeHandler = (e) => {
-    props.onSelect(e);
+  const handleChange = (position) => {
+    let updatedCheckedState;
+    if (props.selectionModifier === "FILTER") {
+      updatedCheckedState = checkedState.map((item, index) =>
+        index === position ? !item : item
+      );
+    } else {
+      updatedCheckedState = new Array(props.dropdownList.list.length).fill(
+        false
+      );
+      updatedCheckedState[position] = true;
+    }
+
+    setCheckedState(updatedCheckedState);
+    props.onSelect(updatedCheckedState);
   };
 
   return (
@@ -37,7 +52,7 @@ export default function Dropdown(props) {
       </label>
       <div className={className + "__options-container"}>
         <ul className={className + "__options"}>
-          {props.dropdownList.list.map((el) => {
+          {props.dropdownList.list.map((el, index) => {
             let inputType;
             props.selectionModifier === "SORT" ||
             props.selectionModifier === "POST"
@@ -45,20 +60,15 @@ export default function Dropdown(props) {
               : (inputType = "checkbox");
             const innerInputID = Math.ceil(Math.random() * 10000);
             return (
-              <li key={Math.random()}>
+              <li key={index}>
                 <input
                   id={innerInputID}
                   className="itemInput"
                   type={inputType}
                   name={inputName}
-                  onChange={
-                    changeHandler
-                    // e.target.checked ? e.target.checked : "";
-                  }
-                  onClick={(e) => {
-                    console.log(e.target.checked + " " + el.optionTitle);
+                  onChange={() => {
+                    handleChange(index);
                   }}
-                  value={JSON.stringify(el)}
                 />
 
                 <label htmlFor={innerInputID} className="itemLabel">

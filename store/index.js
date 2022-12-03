@@ -9,16 +9,10 @@ const searchConfigSlice = createSlice({
   name: "searchConfig",
   initialState: initialSearchConfigState,
   reducers: {
-    changeSorting(state, action) {
+    setSorting(state, action) {
       state.sorting = { ...action.payload };
     },
-    addFilter(state, action) {
-      state.filtration.filters = [
-        ...state.filtration.filters,
-        { ...action.payload },
-      ];
-    },
-    removeFilter(state, action) {
+    setFilters(state, action) {
       state.filtration.filters = [...action.payload];
     },
   },

@@ -29,10 +29,24 @@ export default function PostsDashboard() {
     return sortedPosts;
   };
 
-  const url = `${server}/api/posts`;
+  const url = `${server}/api/search`;
 
   useEffect(() => {
-    fetchPosts({ url: url }, () => {});
+    fetchPosts(
+      {
+        url: url,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: {
+          title: "",
+          main_category: "",
+          components: [],
+        },
+      },
+      () => {}
+    );
   }, []);
 
   if (

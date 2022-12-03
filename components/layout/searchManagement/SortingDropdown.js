@@ -1,60 +1,64 @@
 import Dropdown from "../../UI/Dropdown";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { searchConfigActions } from "../../../store/index";
+
+const dropdownList = {
+  key: Math.random(),
+  title: "Sort by:",
+  list: [
+    {
+      optionTitle: "Age ascending",
+      sortBy: {
+        property: "age_category",
+        direction: "asc",
+      },
+    },
+    {
+      optionTitle: "Age descending",
+      sortBy: {
+        property: "age_category",
+        direction: "desc",
+      },
+    },
+    {
+      optionTitle: "Alphabet ascending",
+      sortBy: {
+        property: "title",
+        direction: "asc",
+      },
+    },
+    {
+      optionTitle: "Alphabet descending",
+      sortBy: {
+        property: "title",
+        direction: "desc",
+      },
+    },
+  ],
+};
 
 export default function SortingDropdown() {
   const dispatch = useDispatch();
 
-  const changeSorting = (propertyName, direction) => {
-    dispatch(
-      searchConfigActions.changeSorting({
-        property: propertyName,
-        direction: direction,
+  const sortingHandler = (checkedItems) => {
+    const list = dropdownList.list;
+    const checkedItem = checkedItems
+      .map((state, index) => {
+        if (state) {
+          return list[index];
+        }
       })
-    );
+      .filter(Boolean);
+    dispatch(searchConfigActions.setSorting(...checkedItem));
   };
 
   return (
     <Dropdown
       className="dropdown"
-      dropdownList={{
-        key: Math.random(),
-        title: "Sort by:",
-        list: [
-          {
-            optionTitle: "Age ascending",
-            sortBy: {
-              property: "age_category",
-              direction: "asc",
-            },
-          },
-          {
-            optionTitle: "Age descending",
-            sortBy: {
-              property: "age_category",
-              direction: "desc",
-            },
-          },
-          {
-            optionTitle: "Alphabet ascending",
-            sortBy: {
-              property: "title",
-              direction: "asc",
-            },
-          },
-          {
-            optionTitle: "Alphabet descending",
-            sortBy: {
-              property: "title",
-              direction: "desc",
-            },
-          },
-        ],
-      }}
+      dropdownList={dropdownList}
       selectionModifier="SORT"
-      onSelect={(e) => {
-        const sortBy = JSON.parse(e.currentTarget.value).sortBy;
-        changeSorting(sortBy.property, sortBy.direction);
+      onSelect={(checkedItems) => {
+        sortingHandler(checkedItems);
       }}
     ></Dropdown>
   );
