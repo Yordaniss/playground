@@ -58,14 +58,6 @@
       color: rgb(black, 0.8);
       font-weight: 350;
     }
-
-    .error {
-      color: rgb(223, 0, 104);
-      border: 2px solid rgb(223, 0, 104);
-      & * {
-        color: rgb(223, 0, 104);
-      }
-    }
   }
 
   .formButtons {

@@ -11,7 +11,10 @@ export default function Dropdown(props) {
 
   const handleChange = (position) => {
     let updatedCheckedState;
-    if (props.selectionModifier === "SORT") {
+    if (
+      props.selectionModifier === "SORT" ||
+      props.selectionModifier === "ADD_POST"
+    ) {
       updatedCheckedState = new Array(props.dropdownList.list.length).fill(
         false
       );
@@ -54,7 +57,8 @@ export default function Dropdown(props) {
         <ul className={className + "__options"}>
           {props.dropdownList.list.map((el, index) => {
             let inputType;
-            props.selectionModifier === "SORT"
+            props.selectionModifier === "SORT" ||
+            props.selectionModifier === "ADD_POST"
               ? (inputType = "radio")
               : (inputType = "checkbox");
             const innerInputID = Math.ceil(Math.random() * 10000);

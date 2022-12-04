@@ -19,15 +19,15 @@ const searchConfigSlice = createSlice({
 });
 
 const initialAddPostState = {
-  categories: [],
+  category: null,
   age: { value: null },
 };
 const addPostSlice = createSlice({
   name: "addPost",
   initialState: initialAddPostState,
   reducers: {
-    setCategories(state, action) {
-      state.categories = [...action.payload];
+    setCategory(state, action) {
+      state.category = action.payload;
     },
     changeAge(state, action) {
       state.age = action.payload;

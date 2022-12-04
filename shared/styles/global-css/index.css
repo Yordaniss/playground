@@ -276,13 +276,10 @@ svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Sign--inject
   background-color: #e7babc;
 }
 .addPost__inner-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-columns: 0;
-  grid-template-rows: 1fr min-content 1fr 1fr 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  align-content: center;
-  row-gap: 1rem;
+  row-gap: 1.5rem;
 }
 .addPost__inner-container label {
   font-weight: 600;
@@ -307,20 +304,7 @@ svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Sign--inject
   display: flex;
   justify-content: space-between;
   align-items: center;
-  align-content: center;
-}
-.addPost__inner-container .error {
-  color: rgb(223, 0, 104);
-  border: 2px solid rgb(223, 0, 104);
-}
-.addPost__inner-container .error * {
-  color: rgb(223, 0, 104);
-}
-.addPost__inner-container .title-group {
-  grid-row: 1;
-}
-.addPost__inner-container .text-group {
-  grid-row: 2;
+  width: 100%;
 }
 .addPost__inner-container .text-group textarea {
   resize: vertical;
@@ -329,34 +313,24 @@ svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Sign--inject
   min-height: 15rem;
   width: 70%;
 }
-.addPost__inner-container .additional-info-group {
-  grid-row: 3;
-}
-.addPost__inner-container .age-group {
-  grid-row: 4;
-}
 .addPost__inner-container .category-group {
-  grid-row: 5;
   justify-content: right;
 }
 .addPost__inner-container .category-group label.dropdown__top {
   margin: 0;
 }
-.addPost__inner-container .file-input-group {
-  grid-row: 6;
+.addPost__inner-container .file-group {
   justify-content: right;
 }
-.addPost__inner-container .file-input-group .button {
-  margin: 0;
-}
-.addPost__inner-container .file-input-group .custom-file-input {
+.addPost__inner-container .file-group .custom-file-input {
   color: white;
   background-color: #c4787c;
+  margin: 0;
 }
-.addPost__inner-container .file-input-group .custom-file-input:hover {
+.addPost__inner-container .file-group .custom-file-input:hover {
   box-shadow: none;
 }
-.addPost__inner-container .file-input-group input[type=file] {
+.addPost__inner-container .file-group input[type=file] {
   display: none;
 }
 .addPost .formButtons {
@@ -382,7 +356,7 @@ svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Sign--inject
   color: white;
 }
 
-@media screen and (max-width: 890px) {
+@media screen and (max-width: 1000px) {
   .addPost {
     width: 80%;
   }
@@ -789,13 +763,6 @@ body {
   color: rgba(0, 0, 0, 0.8);
   font-weight: 350;
 }
-.sign-in__inner-container .error {
-  color: rgb(223, 0, 104);
-  border: 2px solid rgb(223, 0, 104);
-}
-.sign-in__inner-container .error * {
-  color: rgb(223, 0, 104);
-}
 .sign-in .formButtons {
   display: flex;
   justify-content: center;
@@ -861,7 +828,7 @@ body {
 .sign-up__inner-container {
   display: flex;
   flex-direction: column;
-  row-gap: 1rem;
+  row-gap: 1.5rem;
 }
 .sign-up__inner-container label {
   font-weight: 600;
@@ -879,13 +846,6 @@ body {
   font-size: clamp(1rem, 1.3vw, 1.2rem);
   color: rgba(0, 0, 0, 0.8);
   font-weight: 350;
-}
-.sign-up__inner-container .error {
-  color: rgb(223, 0, 104);
-  border: 2px solid rgb(223, 0, 104);
-}
-.sign-up__inner-container .error * {
-  color: rgb(223, 0, 104);
 }
 .sign-up .formButtons {
   display: flex;
@@ -1160,6 +1120,24 @@ body {
   height: 40%;
   padding: 4rem;
   background-color: #e7babc;
+}
+
+.error {
+  color: rgb(223, 0, 104) !important;
+  border: 2px solid rgb(223, 0, 104) !important;
+}
+.error * {
+  color: rgb(223, 0, 104) !important;
+}
+
+.error-message {
+  color: rgb(223, 0, 104);
+  font-family: "Josefin Sans";
+  display: inline-block;
+  width: min-content;
+  align-self: flex-end;
+  white-space: nowrap;
+  margin: -1rem 3% -1rem 0;
 }
 
 .input {

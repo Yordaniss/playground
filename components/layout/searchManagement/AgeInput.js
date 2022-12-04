@@ -54,6 +54,7 @@ export default function AgeInput(props) {
       ></input>
       <div className="ageInput__buttons">
         <button
+          type="button"
           onClick={() => {
             makeStep("+");
           }}
@@ -62,6 +63,7 @@ export default function AgeInput(props) {
           +
         </button>
         <button
+          type="button"
           onClick={() => {
             makeStep("-");
           }}

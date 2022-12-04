@@ -39,7 +39,7 @@
   &__inner-container {
     display: flex;
     flex-direction: column;
-    row-gap: 1rem;
+    row-gap: 1.5rem;
 
     label {
       font-weight: 600;
@@ -57,14 +57,6 @@
       font-size: $fs-xs;
       color: rgb(black, 0.8);
       font-weight: 350;
-    }
-
-    .error {
-      color: rgb(223, 0, 104);
-      border: 2px solid rgb(223, 0, 104);
-      & * {
-        color: rgb(223, 0, 104);
-      }
     }
   }
 

@@ -55,14 +55,14 @@ export default function CategoryDropdown() {
         }
       })
       .filter(Boolean);
-    dispatch(addPostActions.setCategories(categories));
+    dispatch(addPostActions.setCategory(categories[0].option.value));
   };
 
   return (
     <Dropdown
       className={`dropdown`}
       dropdownList={dropdownList}
-      selectionModifier="POST"
+      selectionModifier="ADD_POST"
       onSelect={(checkedItems) => {
         categoriesChangeHanlder(checkedItems);
       }}

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import CategoryDropdown from "./CategoryDropdown";
 import { useSelector } from "react-redux";
 import useHttpRequest from "../../../hooks/useHttpRequest";
+import { getCookie } from "cookies-next";
 
 export default function AddPost({ action = `${server}/api/posts` }) {
   const {
@@ -16,7 +17,6 @@ export default function AddPost({ action = `${server}/api/posts` }) {
     mode: "onBlur",
     reValidateMode: "onChange",
     criteriaMode: "firstError",
-    shouldUseNativeValidation: true,
   });
 
   const { isLoading, postError, sendRequest: postForm } = useHttpRequest();
@@ -26,12 +26,14 @@ export default function AddPost({ action = `${server}/api/posts` }) {
   const onSubmit = (data) => {
     console.log(data);
     console.log(JSON.stringify(data));
+    const token = getCookie("token");
     postForm(
       {
         url: url,
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          // authorization: token,
         },
         body: data,
       },
@@ -42,9 +44,8 @@ export default function AddPost({ action = `${server}/api/posts` }) {
   };
 
   const onError = (errors, e) => console.log(errors, e);
-  const categoriesState = useSelector(
-    ({ addPost }) => addPost.categories.value
-  );
+
+  const categoryState = useSelector(({ addPost }) => addPost.category);
   const ageState = useSelector(({ addPost }) => addPost.age.value);
 
   return (
@@ -66,10 +67,13 @@ export default function AddPost({ action = `${server}/api/posts` }) {
               type="text"
               placeholder="Title is..."
               {...register("title", {
-                required: "Title is required!",
+                required: "Title is required ^_^",
               })}
             />
           </div>
+          {errors.title && (
+            <p className="error-message">{errors.title.message}</p>
+          )}
           <div className="text-group">
             <label>Text of the post: </label>
             <textarea
@@ -77,10 +81,13 @@ export default function AddPost({ action = `${server}/api/posts` }) {
               className={`textarea ${errors.text && "error"}`}
               // minLength="50"
               {...register("text", {
-                required: "Text is required!",
+                required: "Text is required ;-;",
               })}
             />
           </div>
+          {errors.text && (
+            <p className="error-message">{errors.text?.message}</p>
+          )}
           <div className="additional-info-group">
             <label htmlFor="inputAdditionalInfo">Additional info:</label>
             <input
@@ -93,6 +100,9 @@ export default function AddPost({ action = `${server}/api/posts` }) {
               })}
             />
           </div>
+          {errors.components && (
+            <p className="error-message">{errors.components?.message}</p>
+          )}
           <div className="age-group">
             <label>Enter child's age: </label>
             <AgeInput
@@ -103,18 +113,21 @@ export default function AddPost({ action = `${server}/api/posts` }) {
             ></AgeInput>
             {ageState ? setValue("age_category", ageState) : null}
           </div>
-
+          {errors.age_category && (
+            <p className="error-message">{errors.age_category?.message}</p>
+          )}
           <div className="category-group">
             <CategoryDropdown
               {...register("main_category", {
                 required: "Please enter category",
               })}
             ></CategoryDropdown>
-            {categoriesState
-              ? setValue("main_category", categoriesState)
-              : null}
+            {categoryState ? setValue("main_category", categoryState) : null}
           </div>
-          <div className="file-input-group">
+          {errors.main_category && (
+            <p className="error-message">{errors.main_category?.message}</p>
+          )}
+          <div className="file-group">
             <label className="button custom-file-input" htmlFor="chooseFile">
               Choose file
             </label>
@@ -126,6 +139,9 @@ export default function AddPost({ action = `${server}/api/posts` }) {
               })}
             />
           </div>
+          {errors.file && (
+            <p className="error-message">{errors.file?.message}</p>
+          )}
         </div>
         <div className="formButtons">
           <input

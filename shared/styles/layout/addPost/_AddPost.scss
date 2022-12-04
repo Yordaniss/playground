@@ -18,13 +18,10 @@
   background-color: $bg-accent-dull-sakura;
 
   &__inner-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-auto-columns: 0;
-    grid-template-rows: 1fr min-content 1fr 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    align-content: center;
-    row-gap: 1rem;
+    row-gap: 1.5rem;
 
     label {
       font-weight: 600;
@@ -50,24 +47,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      align-content: center;
-    }
-
-    .error {
-      color: rgb(223, 0, 104);
-      border: 2px solid rgb(223, 0, 104);
-      & * {
-        color: rgb(223, 0, 104);
-      }
-    }
-
-    .title-group {
-      grid-row: 1;
+      width: 100%;
     }
 
     .text-group {
-      grid-row: 2;
-
       textarea {
         resize: vertical;
         padding: 2rem 1.2rem 1.3rem 1.2rem;
@@ -77,34 +60,19 @@
       }
     }
 
-    .additional-info-group {
-      grid-row: 3;
-    }
-
-    .age-group {
-      grid-row: 4;
-    }
-
     .category-group {
-      grid-row: 5;
       justify-content: right;
-
       label.dropdown__top {
         margin: 0;
       }
     }
 
-    .file-input-group {
-      grid-row: 6;
+    .file-group {
       justify-content: right;
-
-      .button {
-        margin: 0;
-      }
-
       .custom-file-input {
         color: $clr-primary-white;
         background-color: $bg-primary-dull-rose;
+        margin: 0;
         &:hover {
           box-shadow: none;
         }
@@ -144,7 +112,7 @@
   }
 }
 
-@media screen and (max-width: $bp-medium-screen) {
+@media screen and (max-width: $bp-big-screen) {
   .addPost {
     width: 80%;
   }

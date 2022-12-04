@@ -17,3 +17,21 @@
   padding: 4rem;
   background-color: $bg-accent-dull-sakura;
 }
+
+.error {
+  color: rgb(223, 0, 104) !important;
+  border: 2px solid rgb(223, 0, 104) !important;
+  & * {
+    color: rgb(223, 0, 104) !important;
+  }
+}
+
+.error-message {
+  color: rgb(223, 0, 104);
+  font-family: $ff-text;
+  display: inline-block;
+  width: min-content;
+  align-self: flex-end;
+  white-space: nowrap;
+  margin: -1rem 3% -1rem 0;
+}
