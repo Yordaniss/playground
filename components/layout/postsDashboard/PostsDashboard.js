@@ -29,20 +29,15 @@ export default function PostsDashboard() {
     return sortedPosts;
   };
 
-  const url = `${server}/api/search`;
+  const url = `${server}/api/posts`;
 
   useEffect(() => {
     fetchPosts(
       {
         url: url,
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
-        },
-        body: {
-          title: "",
-          main_category: "",
-          components: [],
         },
       },
       () => {}

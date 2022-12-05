@@ -74,22 +74,56 @@ export default function AddPost({ action = `${server}/api/posts` }) {
   const { isLoading, postError, sendRequest: postForm } = useHttpRequest();
 
   const url = `${server}/api/posts`;
-  const onSubmit = async (data) => {
-    console.log(getValues());
-    const token = getCookie("token");
-    const authorizationObj = { authorization: `Bearer ${token}` };
+  const onSubmit = (data) => {
+    const formData = new FormData();
+    for (let key in data) {
+      if (key !== "file") formData.append(key, data[key]);
+      // console.log(key)
+    }
+    console.log(data);
+    console.log(data.file[0]);
+    formData.append("file", data.file[0]);
+    console.log(formData);
 
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        // "Content-Type": "application/json",
-        ...authorizationObj,
+    const token = getCookie("token");
+    const authorization = { authorization: `Bearer ${token}` };
+
+    postForm(
+      {
+        url: url,
+        method: "POST",
+        headers: { ...authorization },
+        body: formData,
       },
-      body: data,
-    });
-    const result = await res;
-    console.log(result);
+      () => {
+        console.log("success");
+      }
+    );
   };
+  // const onSubmit = async (data) => {
+  //   console.log(getValues());
+  //   const formData = new FormData();
+  //   for (let key in data) {
+  //     if (key !== "file") formData.append(key, data[key]);
+  //     // console.log(key)
+  //   }
+  //   formData.append("file", data.file[0]);
+
+  //   console.log(formData);
+  //   const token = getCookie("token");
+  //   const authorizationObj = { authorization: `Bearer ${token}` };
+
+  //   const res = await fetch(url, {
+  //     method: "POST",
+  //     headers: {
+  //       // "Content-Type": "application/json",
+  //       ...authorizationObj,
+  //     },
+  //     body: formData,
+  //   });
+  //   const result = await res;
+  //   console.log(result);
+  // };
 
   const onError = (errors, e) => console.log(errors, e);
 
@@ -105,7 +139,7 @@ export default function AddPost({ action = `${server}/api/posts` }) {
       {isLoading && <div>{isLoading}</div>}
       {postError && <div>{postError}</div>}
       <form
-        encType="multipart/form-data"
+        // encType="multipart/form-data"
         method="POST"
         action={action}
         className="form addPost"

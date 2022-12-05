@@ -9,11 +9,11 @@ export default function useHttpRequest() {
     setIsLoading(true);
     setError(null);
     try {
-      console.log(JSON.stringify(requestConfig.body));
+      console.log(requestConfig);
       const response = await fetch(requestConfig.url, {
         method: requestConfig.method ? requestConfig.method : "GET",
         headers: requestConfig.headers ? requestConfig.headers : {},
-        body: requestConfig.body ? JSON.stringify(requestConfig.body) : null,
+        body: requestConfig.body,
       });
       if (!response.ok) {
         setError("HTTP error: " + response.status);
