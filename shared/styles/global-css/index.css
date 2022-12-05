@@ -314,7 +314,9 @@ svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Sign--inject
   width: 70%;
 }
 .addPost__inner-container .category-group {
-  justify-content: right;
+  display: grid;
+  row-gap: 1rem;
+  justify-content: end;
 }
 .addPost__inner-container .category-group label.dropdown__top {
   margin: 0;
@@ -1138,6 +1140,35 @@ body {
   align-self: flex-end;
   white-space: nowrap;
   margin: -1rem 3% -1rem 0;
+}
+
+.dropdown-error .dropdown__top {
+  color: rgb(223, 0, 104) !important;
+  background-color: rgb(255, 220, 235) !important;
+}
+.dropdown-error .dropdown__options {
+  background-color: rgb(255, 220, 235) !important;
+}
+.dropdown-error .dropdown__options-container {
+  background-color: rgb(255, 220, 235) !important;
+}
+.dropdown-error .dropdown__options-container::before {
+  background-color: rgb(255, 220, 235) !important;
+}
+
+.ageInput-container-error {
+  background-color: rgb(255, 220, 235) !important;
+}
+.ageInput-container-error input {
+  background-color: rgb(255, 220, 235) !important;
+  color: rgb(223, 0, 104) !important;
+}
+.ageInput-container-error button {
+  color: rgb(223, 0, 104) !important;
+}
+
+.file-error {
+  border: 2px solid rgb(223, 0, 104) !important;
 }
 
 .input {

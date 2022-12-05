@@ -44,7 +44,7 @@ const dropdownList = {
   ],
 };
 
-export default function CategoryDropdown() {
+export default function CategoryDropdown(props) {
   const dispatch = useDispatch();
   const categoriesChangeHanlder = (checkedItems) => {
     const list = dropdownList.list;
@@ -60,7 +60,7 @@ export default function CategoryDropdown() {
 
   return (
     <Dropdown
-      className={`dropdown`}
+      className={`${props.className && props.className}`}
       dropdownList={dropdownList}
       selectionModifier="ADD_POST"
       onSelect={(checkedItems) => {

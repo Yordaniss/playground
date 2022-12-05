@@ -21,6 +21,7 @@ const searchConfigSlice = createSlice({
 const initialAddPostState = {
   category: null,
   age: { value: null },
+  touchedFields: [],
 };
 const addPostSlice = createSlice({
   name: "addPost",
@@ -31,6 +32,9 @@ const addPostSlice = createSlice({
     },
     changeAge(state, action) {
       state.age = action.payload;
+    },
+    addTouchedField(state, action) {
+      state.touchedFields = [...state.touchedFields, action.payload];
     },
   },
 });

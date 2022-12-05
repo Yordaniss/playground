@@ -1,14 +1,13 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addPostActions } from "../../../store/index";
 
 export default function AgeInput(props) {
+  const touchedFieldsRedux = useSelector(
+    ({ addPost }) => addPost.touchedFields
+  );
   const [currentStep, setCurrentStep] = useState(0);
   const dispatch = useDispatch();
-  let className = "ageInput-container";
-  if (props.className) {
-    className = "ageInput-container " + props.className;
-  }
 
   const changeAge = (value) => {
     dispatch(
@@ -16,6 +15,14 @@ export default function AgeInput(props) {
         value: value,
       })
     );
+  };
+  const setAsTouched = () => {
+    const isAlreadyTouched = touchedFieldsRedux.some((field) => {
+      return field === "age_category";
+    });
+    if (!isAlreadyTouched) {
+      dispatch(addPostActions.addTouchedField("age_category"));
+    }
   };
 
   const makeStep = (modifier) => {
@@ -32,7 +39,7 @@ export default function AgeInput(props) {
   };
 
   return (
-    <div className="ageInput-container">
+    <div className={`ageInput-container ${props.className}`}>
       <input
         className="ageInput"
         type="number"
@@ -50,6 +57,7 @@ export default function AgeInput(props) {
         onBlur={(e) => {
           e.target.value = currentStep;
           changeAge(currentStep);
+          setAsTouched();
         }}
       ></input>
       <div className="ageInput__buttons">
@@ -57,6 +65,7 @@ export default function AgeInput(props) {
           type="button"
           onClick={() => {
             makeStep("+");
+            setAsTouched();
           }}
           className="ageInput__buttons__stepHigher"
         >
@@ -66,6 +75,7 @@ export default function AgeInput(props) {
           type="button"
           onClick={() => {
             makeStep("-");
+            setAsTouched();
           }}
           className="ageInput__buttons__stepLower"
         >

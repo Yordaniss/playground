@@ -61,7 +61,9 @@
     }
 
     .category-group {
-      justify-content: right;
+      display: grid;
+      row-gap: 1rem;
+      justify-content: end;
       label.dropdown__top {
         margin: 0;
       }

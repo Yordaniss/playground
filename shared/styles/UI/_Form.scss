@@ -35,3 +35,38 @@
   white-space: nowrap;
   margin: -1rem 3% -1rem 0;
 }
+
+.dropdown-error {
+  .dropdown__top {
+    color: rgb(223, 0, 104) !important;
+    background-color: rgb(255, 220, 235) !important;
+  }
+
+  .dropdown__options {
+    background-color: rgb(255, 220, 235) !important;
+
+    &-container {
+      background-color: rgb(255, 220, 235) !important;
+    }
+    &-container::before {
+      background-color: rgb(255, 220, 235) !important;
+    }
+  }
+}
+
+.ageInput-container-error {
+  background-color: rgb(255, 220, 235) !important;
+
+  input {
+    background-color: rgb(255, 220, 235) !important;
+    color: rgb(223, 0, 104) !important;
+  }
+
+  button {
+    color: rgb(223, 0, 104) !important;
+  }
+}
+
+.file-error {
+  border: 2px solid rgb(223, 0, 104) !important;
+}

@@ -5,6 +5,55 @@ import CategoryDropdown from "./CategoryDropdown";
 import { useSelector } from "react-redux";
 import useHttpRequest from "../../../hooks/useHttpRequest";
 import { getCookie } from "cookies-next";
+import { useState } from "react";
+
+const isFieldTouchedInRedux = (fieldsName, fieldsInRedux) => {
+  return fieldsInRedux.some((field) => {
+    return field === fieldsName;
+  });
+};
+
+const validateCategory = (
+  e,
+  touchedFieldsRedux,
+  categoryState,
+  setError,
+  clearErrors
+) => {
+  if (!e.target.className.includes("dropdown")) {
+    const dropDownInput = document.querySelector(".dropdown__input");
+    if (
+      isFieldTouchedInRedux("main_category", touchedFieldsRedux) &&
+      !categoryState &&
+      categoryState !== 0
+    ) {
+      dropDownInput.checked = false;
+      setError("main_category", {
+        type: "custom",
+        message: "Please, choose category",
+      });
+    } else if (categoryState || categoryState === 0) {
+      clearErrors("main_category");
+      dropDownInput.checked = false;
+    }
+  }
+};
+
+const validateFile = (e, fileIsTouched, setError, getValues, clearErrors) => {
+  if (
+    fileIsTouched &&
+    getValues("file").length === 0 &&
+    !e.target.className.includes("file-input") &&
+    e.target.className !== ""
+  ) {
+    setError("file", {
+      type: "custom",
+      message: "Choose some files pls :3",
+    });
+  } else if (getValues("file")) {
+    clearErrors("file");
+  }
+};
 
 export default function AddPost({ action = `${server}/api/posts` }) {
   const {
@@ -12,7 +61,10 @@ export default function AddPost({ action = `${server}/api/posts` }) {
     setValue,
     getValues,
     handleSubmit,
-    formState: { errors, isValid },
+    getFieldState,
+    setError,
+    clearErrors,
+    formState: { errors, isValid, isDirty, touchedFields },
   } = useForm({
     mode: "onBlur",
     reValidateMode: "onChange",
@@ -22,41 +74,52 @@ export default function AddPost({ action = `${server}/api/posts` }) {
   const { isLoading, postError, sendRequest: postForm } = useHttpRequest();
 
   const url = `${server}/api/posts`;
-
-  const onSubmit = (data) => {
-    console.log(data);
-    console.log(JSON.stringify(data));
+  const onSubmit = async (data) => {
+    console.log(getValues());
     const token = getCookie("token");
-    postForm(
-      {
-        url: url,
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // authorization: token,
-        },
-        body: data,
+    const authorizationObj = { authorization: `Bearer ${token}` };
+
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        // "Content-Type": "application/json",
+        ...authorizationObj,
       },
-      () => {
-        console.log("success!");
-      }
-    );
+      body: data,
+    });
+    const result = await res;
+    console.log(result);
   };
 
   const onError = (errors, e) => console.log(errors, e);
 
   const categoryState = useSelector(({ addPost }) => addPost.category);
   const ageState = useSelector(({ addPost }) => addPost.age.value);
+  const touchedFieldsRedux = useSelector(
+    ({ addPost }) => addPost.touchedFields
+  );
+  const [fileIsTouched, setFileAsTouched] = useState(false);
 
   return (
     <div className="outer-container">
       {isLoading && <div>{isLoading}</div>}
       {postError && <div>{postError}</div>}
       <form
-        action={action}
+        encType="multipart/form-data"
         method="POST"
+        action={action}
         className="form addPost"
         onSubmit={handleSubmit((data) => onSubmit(data), onError)}
+        onClick={(e) => {
+          validateCategory(
+            e,
+            touchedFieldsRedux,
+            categoryState,
+            setError,
+            clearErrors
+          );
+          validateFile(e, fileIsTouched, setError, getValues, clearErrors);
+        }}
       >
         <div className="addPost__inner-container">
           <div className="title-group">
@@ -106,38 +169,53 @@ export default function AddPost({ action = `${server}/api/posts` }) {
           <div className="age-group">
             <label>Enter child's age: </label>
             <AgeInput
-              className={`${errors.age_category && "error"}`}
+              className={`${
+                !ageState &&
+                isFieldTouchedInRedux("age_category", touchedFieldsRedux)
+                  ? "ageInput-container-error"
+                  : ""
+              }`}
               {...register("age_category", {
                 required: "Please enter minimal child's age",
               })}
             ></AgeInput>
             {ageState ? setValue("age_category", ageState) : null}
           </div>
-          {errors.age_category && (
-            <p className="error-message">{errors.age_category?.message}</p>
-          )}
+          {!ageState &&
+            isFieldTouchedInRedux("age_category", touchedFieldsRedux) && (
+              <p className="error-message">Please enter minimal child's age</p>
+            )}
           <div className="category-group">
             <CategoryDropdown
+              className={`${
+                errors.main_category && !categoryState && categoryState !== 0
+                  ? "dropdown-error"
+                  : ""
+              }`}
               {...register("main_category", {
-                required: "Please enter category",
+                value: setValue("main_category", categoryState),
               })}
             ></CategoryDropdown>
-            {categoryState ? setValue("main_category", categoryState) : null}
           </div>
-          {errors.main_category && (
+          {errors.main_category && !categoryState && categoryState !== 0 && (
             <p className="error-message">{errors.main_category?.message}</p>
           )}
           <div className="file-group">
-            <label className="button custom-file-input" htmlFor="chooseFile">
+            <label
+              className={`button custom-file-input ${
+                errors.file && "file-error"
+              }`}
+              onClick={() => {
+                setFileAsTouched(true);
+              }}
+            >
+              <input
+                type="file"
+                {...register("file")}
+                accept="image/*, audio/*, video/*"
+              />
               Choose file
             </label>
-            <input
-              id="chooseFile"
-              type="file"
-              {...register("file", {
-                required: "Don't be shy, add some nice files",
-              })}
-            />
           </div>
           {errors.file && (
             <p className="error-message">{errors.file?.message}</p>
@@ -150,9 +228,9 @@ export default function AddPost({ action = `${server}/api/posts` }) {
             type="submit"
             value="submit post"
             onClick={() => {
-              ({ ...getValues("components") }
+              getValues("components")
                 ? setValue("components", [getValues("components")])
-                : "");
+                : "";
             }}
           />
           <input type="reset" value="cancel" className="button cancel" />
