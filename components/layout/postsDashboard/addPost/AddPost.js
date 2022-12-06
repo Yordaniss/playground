@@ -5,7 +5,9 @@ import CategoryDropdown from "./CategoryDropdown";
 import { useSelector } from "react-redux";
 import useHttpRequest from "../../../hooks/useHttpRequest";
 import { getCookie } from "cookies-next";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import ModuleWindow from "../../../UI/ModuleWindow";
 
 const isFieldTouchedInRedux = (fieldsName, fieldsInRedux) => {
   return fieldsInRedux.some((field) => {
@@ -56,12 +58,13 @@ const validateFile = (e, fileIsTouched, setError, getValues, clearErrors) => {
 };
 
 export default function AddPost({ action = `${server}/api/posts` }) {
+  const router = useRouter();
+
   const {
     register,
     setValue,
     getValues,
     handleSubmit,
-    getFieldState,
     setError,
     clearErrors,
     formState: { errors, isValid, isDirty, touchedFields },
@@ -71,20 +74,19 @@ export default function AddPost({ action = `${server}/api/posts` }) {
     criteriaMode: "firstError",
   });
 
-  const { isLoading, postError, sendRequest: postForm } = useHttpRequest();
+  const {
+    isLoading,
+    error: postError,
+    sendRequest: postForm,
+  } = useHttpRequest();
 
-  const url = `${server}/api/posts`;
+  const url = `${server}/ai/posts`;
   const onSubmit = (data) => {
     const formData = new FormData();
     for (let key in data) {
       if (key !== "file") formData.append(key, data[key]);
-      // console.log(key)
     }
-    console.log(data);
-    console.log(data.file[0]);
     formData.append("file", data.file[0]);
-    console.log(formData);
-
     const token = getCookie("token");
     const authorization = { authorization: `Bearer ${token}` };
 
@@ -96,36 +98,10 @@ export default function AddPost({ action = `${server}/api/posts` }) {
         body: formData,
       },
       () => {
-        console.log("success");
+        router.push("/");
       }
     );
   };
-  // const onSubmit = async (data) => {
-  //   console.log(getValues());
-  //   const formData = new FormData();
-  //   for (let key in data) {
-  //     if (key !== "file") formData.append(key, data[key]);
-  //     // console.log(key)
-  //   }
-  //   formData.append("file", data.file[0]);
-
-  //   console.log(formData);
-  //   const token = getCookie("token");
-  //   const authorizationObj = { authorization: `Bearer ${token}` };
-
-  //   const res = await fetch(url, {
-  //     method: "POST",
-  //     headers: {
-  //       // "Content-Type": "application/json",
-  //       ...authorizationObj,
-  //     },
-  //     body: formData,
-  //   });
-  //   const result = await res;
-  //   console.log(result);
-  // };
-
-  const onError = (errors, e) => console.log(errors, e);
 
   const categoryState = useSelector(({ addPost }) => addPost.category);
   const ageState = useSelector(({ addPost }) => addPost.age.value);
@@ -133,17 +109,50 @@ export default function AddPost({ action = `${server}/api/posts` }) {
     ({ addPost }) => addPost.touchedFields
   );
   const [fileIsTouched, setFileAsTouched] = useState(false);
+  // const [showErrorModule, setShowErrorModule] = useState(false);
+  // const [showLoadingModule, setShowLoadingModule] = useState(false);
+
+  // useEffect(() => {
+  //   if (isLoading) {
+  //     setShowLoadingModule(true);
+  //   }
+  //   if (postError) {
+  //     setTimeout(() => {
+  //       setShowErrorModule(true);
+  //     }, 2000);
+  //   }
+  // }, [postError, isLoading]);
 
   return (
     <div className="outer-container">
-      {isLoading && <div>{isLoading}</div>}
-      {postError && <div>{postError}</div>}
+      {postError && (
+        <ModuleWindow
+          type="ERROR"
+          message={`Sorry, something went wrong... :(`}
+          image={{
+            src: "/images/sad-unicorn.svg",
+            className: "sending-post-animation",
+          }}
+          blur="addPost-blur"
+        ></ModuleWindow>
+      )}
+      {isLoading && (
+        <ModuleWindow
+          type="INFO"
+          message="Your post is being sent..."
+          image={{
+            src: "/images/post-office.svg",
+            className: "sending-post-animation",
+          }}
+          blur="addPost-blur"
+        ></ModuleWindow>
+      )}
+
       <form
-        // encType="multipart/form-data"
         method="POST"
         action={action}
         className="form addPost"
-        onSubmit={handleSubmit((data) => onSubmit(data), onError)}
+        onSubmit={handleSubmit((data) => onSubmit(data))}
         onClick={(e) => {
           validateCategory(
             e,

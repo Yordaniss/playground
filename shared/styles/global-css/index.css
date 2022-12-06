@@ -258,14 +258,15 @@ svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Sign--inject
   display: none;
 }
 
-.sign-in-outer-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.addPost-blur {
+  position: fixed;
   width: 100%;
   height: 100%;
-  min-height: 100vh;
-  background-color: #f7cac9;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
 }
 
 .addPost {
@@ -363,6 +364,22 @@ svg#freepik_stories-404-error-with-a-cute-animal.animated #freepik--Sign--inject
     width: 80%;
   }
 }
+.sending-post-animation {
+  margin-top: -10%;
+  animation: floating 3s ease-in-out infinite both;
+}
+@keyframes floating {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, 20px);
+  }
+  100% {
+    transform: translate(0, 0px);
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -438,14 +455,26 @@ body {
   width: 100%;
   height: min-content;
   background-color: #f7cac9;
+  overflow: hidden;
 }
 .postsDashboard .dashboard {
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
   width: 70%;
+  min-height: 35rem;
   align-self: center;
   margin-top: 3rem;
+}
+.postsDashboard .postsDashboard-blur {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  overflow: auto;
+}
+.postsDashboard .postsDashboard-loading {
+  margin-left: 15%;
 }
 
 .ageInput-container {
@@ -905,7 +934,7 @@ body {
   width: fit-content;
   min-width: 10rem;
   padding: 1.5rem;
-  z-index: 2;
+  z-index: 1;
   border: none;
   border-radius: 70px;
   background-color: white;
@@ -1190,6 +1219,71 @@ body {
   font-family: "Josefin Sans";
 }
 
+.module-window-blur {
+  backdrop-filter: blur(30px);
+  z-index: 1;
+}
+
+.module-window {
+  padding: 3rem;
+  z-index: 1;
+  position: absolute;
+  width: 50%;
+  height: 70%;
+  max-width: 35rem;
+  max-height: 35rem;
+  background-color: white;
+  border-radius: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  border: none !important;
+}
+.module-window__close-icon-container {
+  padding: 0.5rem;
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+  margin-right: 1rem;
+  width: 3rem;
+  height: 3rem;
+}
+.module-window__close-icon-container > * {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.module-window__close-icon-container > * > path {
+  fill: #f7cac9;
+}
+.module-window__close-icon-container:hover {
+  cursor: pointer;
+}
+.module-window__close-icon-container:hover > * > path {
+  fill: #e7babc;
+}
+.module-window__img-container {
+  width: 50%;
+  height: 50%;
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+}
+.module-window__img-container img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.module-window__message {
+  position: relative;
+  font-family: "Josefin Sans";
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
+  color: rgb(255, 163, 186) !important;
+  white-space: pre-line;
+  text-align: center;
+}
+
 .nav {
   position: absolute;
   top: 8%;
@@ -1379,6 +1473,10 @@ label[for=menu-checkbox] a {
   text-decoration: none;
   user-select: none;
   padding: 0.7rem;
+}
+.pagination .clicked-page-link {
+  background-color: #e7babc;
+  border-radius: 70px;
 }
 
 .textarea {

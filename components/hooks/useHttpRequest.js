@@ -9,7 +9,6 @@ export default function useHttpRequest() {
     setIsLoading(true);
     setError(null);
     try {
-      console.log(requestConfig);
       const response = await fetch(requestConfig.url, {
         method: requestConfig.method ? requestConfig.method : "GET",
         headers: requestConfig.headers ? requestConfig.headers : {},

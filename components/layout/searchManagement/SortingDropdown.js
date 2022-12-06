@@ -7,20 +7,6 @@ const dropdownList = {
   title: "Sort by:",
   list: [
     {
-      optionTitle: "Age ascending",
-      sortBy: {
-        property: "age_category",
-        direction: "asc",
-      },
-    },
-    {
-      optionTitle: "Age descending",
-      sortBy: {
-        property: "age_category",
-        direction: "desc",
-      },
-    },
-    {
       optionTitle: "Alphabet ascending",
       sortBy: {
         property: "title",
@@ -31,6 +17,34 @@ const dropdownList = {
       optionTitle: "Alphabet descending",
       sortBy: {
         property: "title",
+        direction: "desc",
+      },
+    },
+    {
+      optionTitle: "Newest",
+      sortBy: {
+        property: "date",
+        direction: "desc",
+      },
+    },
+    {
+      optionTitle: "Oldest",
+      sortBy: {
+        property: "date",
+        direction: "asc",
+      },
+    },
+    {
+      optionTitle: "Age ascending",
+      sortBy: {
+        property: "age_category",
+        direction: "asc",
+      },
+    },
+    {
+      optionTitle: "Age descending",
+      sortBy: {
+        property: "age_category",
         direction: "desc",
       },
     },
@@ -49,7 +63,7 @@ export default function SortingDropdown() {
         }
       })
       .filter(Boolean);
-    dispatch(searchConfigActions.setSorting(...checkedItem));
+    dispatch(searchConfigActions.setSorting(checkedItem[0].sortBy));
   };
 
   return (
