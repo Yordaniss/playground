@@ -1,7 +1,7 @@
 import FilterDropdown from "./FilterDropdown";
 import AgeInput from "./AgeInput";
 import SortingDropdown from "./SortingDropdown";
-import PostsSearchbar from "./PostsSearchBar";
+import PostsSearchbar from "./PostsSearchbar";
 
 export default function SearchManagement(props) {
   return (

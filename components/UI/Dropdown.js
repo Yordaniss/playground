@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addPostActions } from "../../store/index";
 
 export default function Dropdown(props) {
+  const dropdownTitleRef = useRef(null);
   const touchedFieldsRedux = useSelector(
     ({ addPost }) => addPost.touchedFields
   );
@@ -26,7 +27,7 @@ export default function Dropdown(props) {
     new Array(props.dropdownList.list.length).fill(false)
   );
 
-  const handleChange = (position) => {
+  const handleChange = (position, optionTitle) => {
     let updatedCheckedState;
     // if (
     //   props.selectionModifier === "SORT" ||
@@ -34,6 +35,7 @@ export default function Dropdown(props) {
     // ) {
     updatedCheckedState = new Array(props.dropdownList.list.length).fill(false);
     updatedCheckedState[position] = true;
+    dropdownTitleRef.current.innerText = optionTitle;
     // } else {
     //   updatedCheckedState = checkedState.map((item, index) =>
     //     index === position ? !item : item
@@ -68,7 +70,11 @@ export default function Dropdown(props) {
           <feBlend in="SourceGraphic" in2="composite" />
         </filter>
       </svg>
-      <label className="dropdown__top" htmlFor={dropdownInputId}>
+      <label
+        ref={dropdownTitleRef}
+        className="dropdown__top"
+        htmlFor={dropdownInputId}
+      >
         {props.dropdownList.title}
       </label>
       <div className="dropdown__options-container">
@@ -88,7 +94,7 @@ export default function Dropdown(props) {
                   type={inputType}
                   name={inputName}
                   onChange={() => {
-                    handleChange(index);
+                    handleChange(index, el.optionTitle);
                   }}
                 />
 

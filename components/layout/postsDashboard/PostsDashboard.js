@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { orderBy } from "lodash";
 import Pagination from "../../UI/Pagination";
 import ModuleWindow from "../../UI/ModuleWindow";
-import { main_categories } from "../searchManagement/SearchConstants";
 
 export default function PostsDashboard() {
   const searchConfig = useSelector(({ searchConfig }) => searchConfig);
@@ -21,38 +20,23 @@ export default function PostsDashboard() {
   } = useHttpRequest();
 
   useEffect(() => {
-    if (searchConfig.filtration) {
-      const filterObj = searchConfig.filtration;
-      // console.log(searchConfig.filtration.filters[0].filterBy);
-      const filtersJSON = JSON.stringify(filterObj);
-      console.log(filtersJSON);
-      fetchPosts(
-        {
-          url: `/api/search`,
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: filtersJSON,
+    const filterObj = searchConfig.filtration;
+    const filtersJSON = JSON.stringify(filterObj);
+    console.log(filtersJSON);
+
+    fetchPosts(
+      {
+        url: `/api/search`,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        () => {
-          console.log("filtered");
-        }
-      );
-    } else {
-      fetchPosts(
-        {
-          url: `/api/posts`,
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        },
-        () => {
-          console.log("not filtered");
-        }
-      );
-    }
+        body: filtersJSON,
+      },
+      (posts) => {
+        console.log(posts);
+      }
+    );
   }, [searchConfig]);
 
   const sort = () => {

@@ -518,7 +518,7 @@ body {
   color: #aa324a;
 }
 
-.searchBar {
+.searchbar {
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -532,17 +532,17 @@ body {
   font-family: "Babycakes";
   height: min-content;
 }
-.searchBar__searchInput {
+.searchbar__searchInput {
   border: none;
   font-family: "Babycakes";
   font-size: clamp(1.4rem, 2vw, 1.6rem);
   color: #562a35;
   width: 10rem;
 }
-.searchBar__searchInput:focus {
+.searchbar__searchInput:focus {
   outline: none;
 }
-.searchBar__searchButton {
+.searchbar__searchButton {
   padding: 0.2rem 0;
   width: 2rem;
   height: 2rem;
@@ -550,7 +550,7 @@ body {
   border: none;
   font-size: clamp(1.4rem, 2vw, 1.6rem);
 }
-.searchBar__searchButton:hover {
+.searchbar__searchButton:hover {
   cursor: pointer;
 }
 

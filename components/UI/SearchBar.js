@@ -1,12 +1,23 @@
-export default function SearchBar(props) {
+import { useRef } from "react";
+
+export default function Searchbar(props) {
+  const searchbarRef = useRef(null);
+
+  const handleClick = () => {
+    props.onSearch(searchbarRef.current.value.trim());
+  };
+
   return (
-    <div className="searchBar">
+    <div className="searchbar">
       <input
-        className="searchBar__searchInput"
+        className="searchbar__searchInput"
         type="text"
         placeholder="Search..."
+        ref={searchbarRef}
       />
-      <button className="searchBar__searchButton">🔍</button>
+      <button className="searchbar__searchButton" onClick={handleClick}>
+        🔍
+      </button>
     </div>
   );
 }
