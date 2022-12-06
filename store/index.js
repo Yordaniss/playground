@@ -1,7 +1,8 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 const initialSearchConfigState = {
-  filtration: { filters: [] },
+  // filtration: { filters: [] },
+  filtration: { title: "", main_category: "", components: [] },
   sorting: { property: "default", direction: "default" },
 };
 
@@ -13,7 +14,8 @@ const searchConfigSlice = createSlice({
       state.sorting = { ...action.payload };
     },
     setFilters(state, action) {
-      state.filtration.filters = [...action.payload];
+      // state.filtration.filters = [...action.payload];
+      state.filtration = { ...action.payload };
     },
   },
 });

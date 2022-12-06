@@ -1,44 +1,45 @@
 import Dropdown from "../../UI/Dropdown";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchConfigActions } from "../../../store/index";
+import { main_categories } from "./SearchConstants";
 
 const dropdownList = {
   key: Math.random(),
   title: "Choose category:",
   list: [
     {
-      optionTitle: "Arts & Crafts",
+      optionTitle: main_categories.ARTS_AND_CRAFTS.title,
       filterBy: {
         property: "main_category",
-        value: 0,
+        value: main_categories.ARTS_AND_CRAFTS.value,
       },
     },
     {
-      optionTitle: "Cooking",
+      optionTitle: main_categories.COOKING.title,
       filterBy: {
         property: "main_category",
-        value: 1,
+        value: main_categories.COOKING.value,
       },
     },
     {
-      optionTitle: "Foraging",
+      optionTitle: main_categories.FORAGING.title,
       filterBy: {
         property: "main_category",
-        value: 2,
+        value: main_categories.FORAGING.value,
       },
     },
     {
-      optionTitle: "Games",
+      optionTitle: main_categories.GAMES.title,
       filterBy: {
         property: "main_category",
-        value: 3,
+        value: main_categories.GAMES.value,
       },
     },
     {
-      optionTitle: "Sport",
+      optionTitle: main_categories.SPORT.title,
       filterBy: {
         property: "main_category",
-        value: 4,
+        value: main_categories.SPORT.value,
       },
     },
   ],
@@ -46,16 +47,24 @@ const dropdownList = {
 
 export default function FilterDropdown() {
   const dispatch = useDispatch();
+  const searchConfig = useSelector(({ searchConfig }) => searchConfig);
 
   const filtrationHandler = (checkedItems) => {
     const list = dropdownList.list;
-    const filters = checkedItems
+    const checkedItem = checkedItems
       .map((state, index) => {
         if (state) {
           return list[index];
         }
       })
       .filter(Boolean);
+    let filters = { ...searchConfig.filtration };
+    if (checkedItem[0].filterBy.property === "main_category") {
+      filters = {
+        ...searchConfig.filtration,
+        main_category: checkedItem[0].optionTitle,
+      };
+    }
 
     dispatch(searchConfigActions.setFilters(filters));
   };

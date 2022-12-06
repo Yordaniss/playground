@@ -58,6 +58,9 @@ label[for="menu-checkbox"] {
   box-shadow: $box-sh-button;
   border-radius: 50%;
   z-index: 2;
+  // background-color: $bg-primary-white;
+  // opacity: 5%;
+  backdrop-filter: blur(5px);
 
   & a {
     font-family: $ff-tiny-utilities;
@@ -69,6 +72,7 @@ label[for="menu-checkbox"] {
 
 #menu-checkbox:checked ~ label[for="menu-checkbox"] {
   box-shadow: none;
+  backdrop-filter: none;
   &:hover,
   .button:hover {
     text-shadow: $text-hightlight-primary;

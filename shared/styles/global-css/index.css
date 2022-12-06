@@ -1331,6 +1331,7 @@ label[for=menu-checkbox] {
   box-shadow: 0px 0px 5px rgb(255, 255, 255), 0px 0px 10px rgba(255, 196, 199, 0.7), 0px 0px 15px rgba(255, 196, 199, 0.7), 0px 0px 20px rgba(255, 196, 199, 0.7), 0px 0px 30px rgba(255, 196, 199, 0.7), 0px 0px 40px rgba(255, 196, 199, 0.7), 0px 0px 55px rgba(255, 196, 199, 0.7), 0px 0px 75px rgba(255, 196, 199, 0.7);
   border-radius: 50%;
   z-index: 2;
+  backdrop-filter: blur(5px);
 }
 label[for=menu-checkbox] a {
   font-family: "Babycakes";
@@ -1341,6 +1342,7 @@ label[for=menu-checkbox] a {
 
 #menu-checkbox:checked ~ label[for=menu-checkbox] {
   box-shadow: none;
+  backdrop-filter: none;
 }
 #menu-checkbox:checked ~ label[for=menu-checkbox]:hover,
 #menu-checkbox:checked ~ label[for=menu-checkbox] .button:hover {

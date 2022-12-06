@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { orderBy } from "lodash";
 import Pagination from "../../UI/Pagination";
 import ModuleWindow from "../../UI/ModuleWindow";
+import { main_categories } from "../searchManagement/SearchConstants";
 
 export default function PostsDashboard() {
   const searchConfig = useSelector(({ searchConfig }) => searchConfig);
@@ -18,19 +19,40 @@ export default function PostsDashboard() {
     sendRequest: fetchPosts,
     data: posts,
   } = useHttpRequest();
+
   useEffect(() => {
-    fetchPosts(
-      {
-        url: `/api/posts`,
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
+    if (searchConfig.filtration) {
+      const filterObj = searchConfig.filtration;
+      // console.log(searchConfig.filtration.filters[0].filterBy);
+      const filtersJSON = JSON.stringify(filterObj);
+      console.log(filtersJSON);
+      fetchPosts(
+        {
+          url: `/api/search`,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: filtersJSON,
         },
-      },
-      () => {
-        console.log("success");
-      }
-    );
+        () => {
+          console.log("filtered");
+        }
+      );
+    } else {
+      fetchPosts(
+        {
+          url: `/api/posts`,
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+        () => {
+          console.log("not filtered");
+        }
+      );
+    }
   }, [searchConfig]);
 
   const sort = () => {
