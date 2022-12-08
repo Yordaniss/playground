@@ -882,7 +882,7 @@ body {
 }
 .footer-links__navigation > *:hover {
   text-shadow: 0px 0px 5px white, 0px 0px 5px rgba(253, 201, 201, 0.7), 0px 0px 7px rgba(253, 201, 201, 0.7), 0px 0px 10px rgba(253, 201, 201, 0.7), 0px 0px 15px rgba(253, 201, 201, 0.7), 0px 0px 20px rgba(253, 201, 201, 0.7), 0px 0px 17px rgba(253, 201, 201, 0.7), 0px 0px 37px rgba(253, 201, 201, 0.7);
-  color: #fcc4b7;
+  color: white;
 }
 .footer-links__github > * {
   font-family: "Josefin Sans";
@@ -892,7 +892,7 @@ body {
 }
 .footer-links__github > *:hover {
   text-shadow: 0px 0px 5px white, 0px 0px 5px rgba(253, 201, 201, 0.7), 0px 0px 7px rgba(253, 201, 201, 0.7), 0px 0px 10px rgba(253, 201, 201, 0.7), 0px 0px 15px rgba(253, 201, 201, 0.7), 0px 0px 20px rgba(253, 201, 201, 0.7), 0px 0px 17px rgba(253, 201, 201, 0.7), 0px 0px 37px rgba(253, 201, 201, 0.7);
-  color: #fcc4b7;
+  color: white;
 }
 .footer-links .project-name {
   color: #562a35;

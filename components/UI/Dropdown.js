@@ -43,7 +43,7 @@ export default function Dropdown(props) {
   if (!props.selectionModifier.includes("PROFILE")) {
     dropdownTitle = props.dropdownList.title;
   } else {
-    dropdownTitle = <img src="../icons/profile.png"></img>;
+    dropdownTitle = <img src="../../icons/profile.png"></img>;
   }
 
   return (

@@ -2,8 +2,6 @@ import Card from "../../UI/Card";
 import Link from "next/link";
 
 export default function Post(props) {
-  const categories = ["Arts & crafts", "Cooking", "Foraging", "Games", "Sport"];
-
   return (
     <Card className="post">
       <div className="post__header">
@@ -13,20 +11,23 @@ export default function Post(props) {
         </Link>
         <h1 className="title">{props.post.title}</h1>
         <p className="category-container">
-          <Link
-            href={`/${categories[props.post.main_category]}`}
-            className="category"
-          >
-            #{categories[props.post.main_category]}
+          <Link href={`/${props.post.main_category}`} className="category">
+            #{props.post.main_category}
           </Link>
+          <Link href={`/${props.post.main_category}`} className="category">
+            from {props.post.age_category} y.o.
+          </Link>
+          {console.log(props.post)}
         </p>
       </div>
 
       <p className="post__text">{props.post.text}</p>
 
-      <Link href={`/posts/${props.post._id}`} className="button post__button">
-        View more
-      </Link>
+      {props.viewModifier === "POST_CARD" && (
+        <Link href={`/posts/${props.post._id}`} className="button post__button">
+          View more
+        </Link>
+      )}
     </Card>
   );
 }

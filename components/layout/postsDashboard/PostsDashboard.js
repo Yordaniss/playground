@@ -112,7 +112,13 @@ export default function PostsDashboard() {
         )}
         {postsForPage &&
           postsForPage.map((post) => {
-            return <Post key={Math.random()} post={post}></Post>;
+            return (
+              <Post
+                viewModifier="POST_CARD"
+                key={Math.random()}
+                post={post}
+              ></Post>
+            );
           })}
         {postsForPage && (
           <Pagination
