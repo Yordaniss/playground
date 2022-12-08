@@ -1,0 +1,32 @@
+@use "../abstracts/Variables" as *;
+
+.error-div {
+  position: absolute;
+  border-radius: 10px;
+  width: min-content;
+  align-self: flex-end !important;
+
+  .arrow {
+    width: 0.7rem;
+    height: 1rem;
+    margin-bottom: -0.7rem;
+    margin-left: 10%;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: calc(2 * 10px * 0.866) solid $bg-primary-white;
+    border-top: 10px solid transparent;
+    display: inline-block;
+  }
+
+  .message {
+    font-family: $ff-text;
+    font-size: $fs-xxs;
+    color: #660000;
+    font-weight: 300;
+    white-space: nowrap;
+    text-align: center;
+    padding: 0.6rem;
+    background-color: $bg-primary-white;
+    border-radius: 10px;
+  }
+}

@@ -1,68 +1,71 @@
 import Dropdown from "../../../UI/Dropdown";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addPostActions } from "../../../../store/index";
+import { main_categories } from "../../searchManagement/SearchConstants";
 
-export default function CategoryDropdown() {
+const dropdownList = {
+  key: Math.random(),
+  title: "Choose category:",
+  list: [
+    {
+      optionTitle: main_categories.ARTS_AND_CRAFTS.title,
+      filterBy: {
+        property: "main_category",
+        value: main_categories.ARTS_AND_CRAFTS.value,
+      },
+    },
+    {
+      optionTitle: main_categories.COOKING.title,
+      filterBy: {
+        property: "main_category",
+        value: main_categories.COOKING.value,
+      },
+    },
+    {
+      optionTitle: main_categories.FORAGING.title,
+      filterBy: {
+        property: "main_category",
+        value: main_categories.FORAGING.value,
+      },
+    },
+    {
+      optionTitle: main_categories.GAMES.title,
+      filterBy: {
+        property: "main_category",
+        value: main_categories.GAMES.value,
+      },
+    },
+    {
+      optionTitle: main_categories.SPORT.title,
+      filterBy: {
+        property: "main_category",
+        value: main_categories.SPORT.value,
+      },
+    },
+  ],
+};
+
+export default function CategoryDropdown(props) {
   const dispatch = useDispatch();
-  const categoryState = useSelector(({ addPost }) => addPost.category);
-
-  const changeCategory = (value) => {
-    dispatch(
-      addPostActions.changeCategory({
-        value: value.option.value,
+  const categoriesChangeHanlder = (checkedItems) => {
+    const list = dropdownList.list;
+    const categories = checkedItems
+      .map((state, index) => {
+        if (state) {
+          return list[index];
+        }
       })
-    );
-  };
-  const dropdownList = {
-    key: Math.random(),
-    title: "Choose category:",
-    list: [
-      {
-        optionTitle: "Arts & Crafts",
-        option: {
-          property: "main_category",
-          value: 0,
-        },
-      },
-      {
-        optionTitle: "Cooking",
-        option: {
-          property: "main_category",
-          value: 1,
-        },
-      },
-      {
-        optionTitle: "Foraging",
-        option: {
-          property: "main_category",
-          value: 2,
-        },
-      },
-      {
-        optionTitle: "Games",
-        option: {
-          property: "main_category",
-          value: 3,
-        },
-      },
-      {
-        optionTitle: "Sport",
-        option: {
-          property: "main_category",
-          value: 4,
-        },
-      },
-    ],
+      .filter(Boolean);
+    dispatch(addPostActions.setCategory(categories[0].option.value));
   };
 
   return (
     <Dropdown
-      //add has error
-      className={`dropdown`}
+      className={`${props.className && props.className}`}
       dropdownList={dropdownList}
-      selectionModifier="POST"
-      onSelect={(e) => {
-        changeCategory(JSON.parse(e.currentTarget.value));
+      selectionModifier="ADD_POST"
+      onSelect={(checkedItems) => {
+        categoriesChangeHanlder(checkedItems);
       }}
     ></Dropdown>
   );

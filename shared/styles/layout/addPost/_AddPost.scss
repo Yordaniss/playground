@@ -1,110 +1,88 @@
 @use "../../abstracts/Variables" as *;
-
-.outer-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.addPost-blur {
+  position: fixed;
   width: 100%;
   height: 100%;
-  min-height: 100vh;
-  background-color: $bg-primary-light-pink;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
 }
 
 .addPost {
-  position: relative;
   width: 60%;
-  height: 60%;
-  padding: 3rem;
+  min-width: min-content;
+  height: 40%;
+  padding: 4rem;
   background-color: $bg-accent-dull-sakura;
 
   &__inner-container {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr min-content 1fr 1fr 1fr 1fr;
-    grid-template-areas: "labels inputs";
-    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    row-gap: 1rem;
+    row-gap: 1.5rem;
 
     label {
-      font-family: $ff-text;
       font-weight: 600;
-      color: $clr-primary-dull-wine;
-      grid-area: labels;
+      font-family: $ff-text;
+      border: none;
+      font-size: $fs-xs;
+      color: $clr-accent-dusty-wine;
+      user-select: none;
+      margin-right: 10%;
+      white-space: nowrap;
+    }
+    input,
+    textarea {
+      font-family: $ff-text;
+      border: none;
+      font-size: $fs-xs;
+      width: 50%;
+      color: rgb(black, 0.8);
+      font-weight: 350;
     }
 
-    .labelForAgeInput {
-      grid-row: 3;
-      grid-column: 1;
+    & > * {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
     }
 
-    input[type="file"] {
-      display: none;
+    .text-group {
+      textarea {
+        resize: vertical;
+        padding: 2rem 1.2rem 1.3rem 1.2rem;
+        height: min-content;
+        min-height: 15rem;
+        width: 70%;
+      }
     }
 
-    .labelForTitleInput {
-      grid-row: 1;
+    .category-group {
+      display: grid;
+      row-gap: 1rem;
+      justify-content: end;
+      label.dropdown__top {
+        margin: 0;
+      }
     }
 
-    .labelForTextarea {
-      grid-row: 2;
-    }
-
-    .dropdown {
-      grid-area: inputs;
-      grid-row: 4;
-      justify-self: end;
-
-      & * {
-        font-size: 1rem;
+    .file-group {
+      justify-content: right;
+      .custom-file-input {
+        color: $clr-primary-white;
+        background-color: $bg-primary-dull-rose;
+        margin: 0;
+        &:hover {
+          box-shadow: none;
+        }
       }
 
-      &__top {
-        color: $clr-primary-dull-rose;
-      }
-
-      // &-error {
-      //   color: rgb(223, 0, 104);
-      //   border: 2px solid rgb(223, 0, 104);
-      // }
-      &-input {
+      input[type="file"] {
         display: none;
       }
-    }
-
-    .labelForAgeInput {
-      grid-row: 5;
-    }
-
-    .ageInput-container {
-      grid-row: 5;
-      grid-column: 2;
-      justify-self: right;
-    }
-
-    .labelForAdditionalInfoInput {
-      grid-row: 3;
-    }
-
-    .custom-file-input {
-      display: block;
-      grid-column: 2;
-      grid-row: 6;
-      justify-self: right;
-      color: $clr-primary-white;
-      font-family: $ff-text;
-      font-size: $fs-m;
-      background-color: $bg-primary-dull-rose;
-      width: min-content;
-      height: min-content;
-      &:hover {
-        box-shadow: none;
-      }
-    }
-    #inputAdditionalInfo {
-      grid-column: 2;
-      grid-row: 3;
     }
   }
 
@@ -134,36 +112,9 @@
       color: $clr-primary-white;
     }
   }
-
-  .input {
-    font-size: 1rem;
-    color: rgb(black, 0.8);
-    border: none;
-
-    &-error {
-      color: rgb(223, 0, 104);
-      border: 2px solid rgb(223, 0, 104);
-    }
-  }
-
-  .textarea {
-    grid-area: inputs;
-    grid-row: 2;
-    color: rgb(black, 0.8);
-    border: none;
-    font-size: 1rem;
-    resize: vertical;
-    width: 100%;
-    min-width: 100%;
-
-    &-error {
-      color: rgb(223, 0, 104);
-      border: 2px solid rgb(223, 0, 104);
-    }
-  }
 }
 
-@media screen and (max-width: $bp-medium-screen) {
+@media screen and (max-width: $bp-big-screen) {
   .addPost {
     width: 80%;
   }

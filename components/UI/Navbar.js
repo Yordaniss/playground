@@ -1,13 +1,39 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Button from "./Button";
+import Dropdown from "./Dropdown";
+import { getCookie, removeCookies } from "cookies-next";
 
 export default function Navbar() {
   let navItems = [
     { title: "home", href: "/" },
-    { title: "about", href: "/about" },
     { title: "add post", href: "/addPost" },
   ];
+
+  const dropdownListNotLogged = {
+    key: Math.random(),
+    title: "Profile",
+    list: [
+      {
+        optionTitle: "Sign in",
+        href: "/sign_in",
+      },
+      {
+        optionTitle: "Sign up",
+        href: "/sign_up",
+      },
+    ],
+  };
+  const dropdownListLogged = {
+    key: Math.random(),
+    title: "Profile",
+    list: [
+      {
+        optionTitle: "Sign out",
+        href: "/",
+      },
+    ],
+  };
 
   const [isChecked, setIsChecked] = useState(false);
 
@@ -19,6 +45,29 @@ export default function Navbar() {
     window.addEventListener("scroll", scrollHandler);
     return () => window.removeEventListener("scroll", scrollHandler);
   }, []);
+
+  const [dropdown, setDropdown] = useState(null);
+  useEffect(() => {
+    console.log(getCookie("token"));
+    const onSignOut = () => removeCookies("token");
+    let selectionModifier;
+    let dropdownList;
+    if (getCookie("token")) {
+      selectionModifier = "PROFILE__LOGGED";
+      dropdownList = dropdownListLogged;
+    } else {
+      selectionModifier = "PROFILE__NOT__LOGGED";
+      dropdownList = dropdownListNotLogged;
+    }
+
+    setDropdown(
+      <Dropdown
+        selectionModifier={selectionModifier}
+        dropdownList={dropdownList}
+        onSignOut={onSignOut}
+      ></Dropdown>
+    );
+  }, [getCookie("token")]);
 
   return (
     <React.Fragment>
@@ -43,6 +92,9 @@ export default function Navbar() {
               </li>
             );
           })}
+          <li key={Math.random()} className="nav__list-item">
+            {dropdown && dropdown}
+          </li>
         </ul>
       </nav>
     </React.Fragment>

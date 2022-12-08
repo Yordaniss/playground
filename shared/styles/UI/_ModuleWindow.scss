@@ -1,0 +1,70 @@
+@use "../abstracts/Variables" as *;
+
+.module-window-blur {
+  backdrop-filter: blur(30px);
+  z-index: 1;
+}
+
+.module-window {
+  padding: 3rem;
+  z-index: 1;
+  position: absolute;
+  width: 50%;
+  height: 70%;
+  max-width: 35rem;
+  max-height: 35rem;
+  background-color: $bg-primary-white;
+  border-radius: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  border: none !important;
+
+  &__close-icon-container {
+    padding: 0.5rem;
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
+    margin-right: 1rem;
+    width: 3rem;
+    height: 3rem;
+    & > * {
+      display: block;
+      width: 100%;
+      height: 100%;
+      & > path {
+        fill: $bg-primary-light-pink;
+      }
+    }
+    &:hover {
+      cursor: pointer;
+
+      & > * > path {
+        fill: $bg-accent-dull-sakura;
+      }
+    }
+  }
+
+  &__img-container {
+    width: 50%;
+    height: 50%;
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__message {
+    position: relative;
+    font-family: $ff-text;
+    font-size: $fs-m;
+    color: $clr-accent-pink !important;
+    white-space: pre-line;
+    text-align: center;
+  }
+}

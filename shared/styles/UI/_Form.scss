@@ -1,3 +1,81 @@
+@use "../abstracts/Variables" as *;
+.outer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background-color: $bg-primary-light-pink;
+}
+
 .form {
   border-radius: 70px;
+  width: 60%;
+  min-width: min-content;
+  height: 40%;
+  padding: 4rem;
+  background-color: $bg-accent-dull-sakura;
+}
+
+.error {
+  color: rgb(223, 0, 104) !important;
+  border: 2px solid rgb(223, 0, 104) !important;
+  & * {
+    color: rgb(223, 0, 104) !important;
+  }
+}
+
+.error-message {
+  color: rgb(223, 0, 104);
+  font-family: $ff-text;
+  display: inline-block;
+  width: min-content;
+  align-self: flex-end;
+  white-space: nowrap;
+  margin: -1rem 3% -1rem 0;
+}
+
+.dropdown-error {
+  .dropdown__top {
+    color: rgb(223, 0, 104) !important;
+    background-color: rgb(255, 220, 235) !important;
+  }
+
+  .dropdown__options {
+    background-color: rgb(255, 220, 235) !important;
+
+    &-container {
+      background-color: rgb(255, 220, 235) !important;
+    }
+    &-container::before {
+      background-color: rgb(255, 220, 235) !important;
+    }
+  }
+}
+
+.ageInput-container-error {
+  background-color: rgb(255, 220, 235) !important;
+
+  input {
+    background-color: rgb(255, 220, 235) !important;
+    color: rgb(223, 0, 104) !important;
+  }
+
+  button {
+    color: rgb(223, 0, 104) !important;
+  }
+}
+
+.file-error {
+  border: 2px solid rgb(223, 0, 104) !important;
+}
+
+.submit:disabled,
+.submit:disabled:hover,
+.submit:disabled:active {
+  background-color: #c39ea0;
+  color: #846c6d;
+  box-shadow: none;
+  cursor: not-allowed;
 }

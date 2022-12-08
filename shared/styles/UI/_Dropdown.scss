@@ -8,7 +8,7 @@
     width: fit-content;
     min-width: 10rem;
     padding: 1.5rem;
-    z-index: 2;
+    z-index: 1;
 
     border: none;
     border-radius: 70px;
@@ -42,16 +42,6 @@
     visibility: hidden;
     opacity: 0;
     transition: all 0.4s cubic-bezier(0.93, 0.88, 0.1, 0.8);
-
-    &::before {
-      content: "";
-      background-color: #fff;
-      position: absolute;
-      bottom: 100%;
-      left: 40%;
-      height: 40px;
-      width: 20px;
-    }
   }
 
   svg {
@@ -65,6 +55,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-content: flex-end;
+    row-gap: 1rem;
     background-color: $bg-primary-white;
     border-radius: 50px;
     top: 50%;
@@ -85,9 +76,6 @@
         color: $clr-primary-dull-rose;
         cursor: pointer;
       }
-      &:not(li:first-child) {
-        margin-top: 15px;
-      }
 
       .itemInput {
         width: 20px;
@@ -106,7 +94,7 @@
         &:checked {
           border-color: $bg-primary-dull-rose;
           background-color: $bg-primary-light-pink;
-          content: "\2661";
+          // content: "\2661";
         }
 
         &:checked ~ .itemLabel {
@@ -143,66 +131,28 @@
   }
 }
 
-.innerDropdown {
-  position: relative;
-  display: inline;
+@media screen and (max-width: $bp-medium-screen) {
+  .dropdown {
+    height: 3rem;
 
-  &__top {
-    &:hover {
-      color: $clr-primary-dull-rose;
-      cursor: pointer;
+    &__top {
+      padding: 1rem;
+      min-width: 8rem;
     }
-  }
+    &__options-container {
+      width: min-content;
+    }
+    &__options {
+      padding: 1.2rem;
+      row-gap: 0.5rem;
 
-  &__options-container {
-    position: relative;
-    height: 0;
-    background-color: white;
-    transition: all 0.5s ease-in-out;
-
-    .innerDropdown__options {
-      position: relative;
-      height: 0;
-      opacity: 0;
-      visibility: hidden;
-      padding: 0;
-      margin: 0;
-      font-weight: 300;
-      transition: all 0.7s ease-in-out;
-      transition: min-height 1s ease-in-out;
-
-      & li {
-        color: rgb(66, 66, 66);
-
-        &:hover {
-          color: #000;
-          font-weight: 300;
-        }
+      .itemLabel {
+        font-size: $fs-xxs;
+      }
+      .itemInput {
+        width: 0.5rem;
+        height: 0.5rem;
       }
     }
-  }
-
-  &__input {
-    display: none;
-
-    &:checked ~ .innerDropdown__options-container {
-      min-height: min-content;
-      height: min-content;
-      margin-bottom: -15px;
-      padding: 2rem 0;
-    }
-    &:checked ~ .innerDropdown__options-container .innerDropdown__options {
-      min-height: min-content;
-      height: min-content;
-      visibility: visible;
-      opacity: 1;
-    }
-    &:checked ~ .svgFilter {
-      display: inline;
-    }
-  }
-
-  .svgFilter {
-    display: none;
   }
 }

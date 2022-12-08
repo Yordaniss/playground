@@ -2,266 +2,272 @@ import AgeInput from "../../searchManagement/AgeInput";
 import { server } from "../../../../config/index";
 import { useForm } from "react-hook-form";
 import CategoryDropdown from "./CategoryDropdown";
-import { useSelector, useDispatch } from "react-redux";
-import { addPostActions } from "../../../../store/index";
+import { useSelector } from "react-redux";
+import useHttpRequest from "../../../hooks/useHttpRequest";
+import { getCookie, removeCookies } from "cookies-next";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import ModuleWindow from "../../../UI/ModuleWindow";
 
-// export default function AddPost({ action = `${server}/api/posts}` }) {
-//   const [formValues, setFormValues] = useState({
-//     title: "",
-//     text: "",
-//     additionalInfo: "",
-//     category: null,
-//     age: 0,
-//     file: null,
-//   });
+const isFieldTouchedInRedux = (fieldsName, fieldsInRedux) => {
+  return fieldsInRedux.some((field) => {
+    return field === fieldsName;
+  });
+};
 
-//   const selectionHandler = (el) => {
-//     if (el.option.property === "main_category") {
-//       let e = undefined;
-//       categoryChangeHandler(e, el);
-//     }
-//   };
+const validateCategory = (
+  e,
+  touchedFieldsRedux,
+  categoryState,
+  setError,
+  clearErrors
+) => {
+  if (!e.target.className.includes("dropdown")) {
+    const dropDownInput = document.querySelector(".dropdown__input");
+    if (
+      isFieldTouchedInRedux("main_category", touchedFieldsRedux) &&
+      !categoryState &&
+      categoryState !== 0
+    ) {
+      dropDownInput.checked = false;
+      setError("main_category", {
+        type: "custom",
+        message: "Please, choose category",
+      });
+    } else if (categoryState || categoryState === 0) {
+      clearErrors("main_category");
+      dropDownInput.checked = false;
+    }
+  }
+};
 
-//   // const {
-//   //   value: title,
-//   //   isValid: titleIsValid,
-//   //   hasError: titleHasError,
-//   //   valueChangeHandler: titleChangeHandler,
-//   //   inputBlurHandler: titleInputBlurHandler,
-//   //   reset: resetTitleInput,
-//   // } = useInput((value) => value.trim() !== "");
+const validateFile = (e, fileIsTouched, setError, getValues, clearErrors) => {
+  if (
+    fileIsTouched &&
+    getValues("file").length === 0 &&
+    !e.target.className.includes("file-input") &&
+    e.target.className !== ""
+  ) {
+    setError("file", {
+      type: "custom",
+      message: "Choose some files pls :3",
+    });
+  } else if (getValues("file")) {
+    clearErrors("file");
+  }
+};
 
-//   // const {
-//   //   value: additionalInfo,
-//   //   isValid: additionalInfoIsValid,
-//   //   hasError: additionalInfoHasError,
-//   //   valueChangeHandler: additionalInfoChangeHandler,
-//   //   inputBlurHandler: additionalInfoBlurHandler,
-//   //   reset: resetadditionalInfoInput,
-//   // } = useInput((value) => value.trim() !== "");
+export default function AddPost({ action = `${server}/api/posts` }) {
+  const router = useRouter();
 
-//   // const {
-//   //   value: text,
-//   //   isValid: textIsValid,
-//   //   hasError: textHasError,
-//   //   valueChangeHandler: textChangeHandler,
-//   //   inputBlurHandler: textBlurHandler,
-//   //   reset: resetTextarea,
-//   // } = useInput((value) => value.trim() !== "");
+  useEffect(() => {
+    if (!getCookie("token")) {
+      router.push("/sign_up");
+    }
+  }, []);
 
-//   // const {
-//   //   value: category,
-//   //   isValid: categoryIsValid,
-//   //   hasError: categoryHasError,
-//   //   valueChangeHandler: categoryChangeHandler,
-//   //   inputBlurHandler: categoryBlurHandler,
-//   //   reset: resetCategory,
-//   // } = useInput((value) => value !== undefined);
-
-//   let isFormValid = false;
-
-//   if (titleIsValid) {
-//     isFormValid = true;
-//   } else {
-//     isFormValid = false;
-//   }
-
-//   useEffect(() => {
-//     const sendPostCallback = (sendingResult, postTitle) => {
-//       setPosts(fetchResult.data);
-//       // props.onAddPost();
-//     };
-//   }, []);
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     // sendPost(
-//     //   {
-//     //     url: "http://localhost:3000/api/posts",
-//     //     method: "POST",
-//     //     headers: {
-//     //       "Content-Type": "application/json",
-//     //     },
-//     //     body: {
-//     //       title: "hi",
-//     //       main_category: 2,
-//     //       age_category: 6,
-//     //       components: [
-//     //         ["Required items", ["rock", "paper", "scissors"]],
-//     //         ["Instruction", ["Die"]],
-//     //       ],
-//     //     },
-//     //   },
-//     //   sendPostCallback()
-//     //   // sendPostCallback.bind(null, postTitle)
-//     // );
-
-//     // if (!isFormValid) {
-//     //   return;
-//     // }
-//     // resetTitleInput();
-//     // resetAdditionalInfoInput();
-//     // resetTextarea();
-//     // resetCategory();
-
-//     const payload = {
-//       title,
-//       additionalInfo,
-//       text,
-//       category,
-//     };
-//     console.log(payload);
-//   };
-
-//   const { isLoading, error, sendRequest: sendPost } = useHttpRequest();
-
-//   return (
-//     <div className="outer-container">
-//       <form
-//         action={action}
-//         method="POST"
-//         className="form addPost"
-//         onSubmit={handleSubmit}
-//       >
-//         {isLoading && <p>{isLoading}</p>}
-//         {error && <p>{error}</p>}
-//         <div className="addPost__inner-container">
-//           <label className="labelForTitleInput" htmlFor="inputPostTitle">
-//             Post title:
-//           </label>
-//           <input
-//             className={`input ${titleHasError ? "input-error" : ""}`}
-//             onChange={titleChangeHandler}
-//             onBlur={titleInputBlurHandler}
-//             id="inputPostTitle"
-//             type="text"
-//             defaultValue={title}
-//             placeholder="Title is..."
-//           />
-//           <label className="labelForTextarea">Text of the post: </label>
-//           <textarea
-//             placeholder="Your funny activiy..."
-//             className={`textarea ${textHasError ? "textarea-error" : ""}`}
-//             minLength="50"
-//             defaultValue={text}
-//             onChange={textChangeHandler}
-//             onBlur={textBlurHandler}
-//           />
-//           <label className="labelForAgeInput">Enter child's age: </label>
-//           <AgeInput></AgeInput>
-//           <Dropdown
-//             //add has error
-//             className={`dropdown`}
-//             dropdownList={dropdownList}
-//             selectionModifier="POST"
-//             onSelect={(el) => selectionHandler(el)}
-//             onBlur={categoryBlurHandler}
-//           ></Dropdown>
-//           <label className="button custom-file-input" htmlFor="chooseFile">
-//             Choose file
-//           </label>
-//           <input id="chooseFile" type="file" />
-//           <label
-//             className="labelForAdditionalInfoInput"
-//             htmlFor="inputAdditionalInfo"
-//           >
-//             Additional info:
-//           </label>
-//           <input
-//             className={`input ${additionalInfoHasError ? "input-error" : ""}`}
-//             id="inputAdditionalInfo"
-//             type="text"
-//             defaultValue={additionalInfo}
-//             placeholder="Your additional info..."
-//             onChange={additionalInfoChangeHandler}
-//             onBlur={additionalInfoBlurHandler}
-//           />
-//         </div>
-//         <div className="formButtons">
-//           <input
-//             disabled={!isFormValid}
-//             className="button submit"
-//             type="submit"
-//             value="submit post"
-//           />
-//           <input type="reset" value="cancel" className="button cancel" />
-//         </div>
-//       </form>
-//     </div>
-//   );
-// }
-
-export default function AddPost({ action = `${server}/api/posts}` }) {
   const {
     register,
     setValue,
+    getValues,
     handleSubmit,
-    formState: { errors },
-  } = useForm();
+    setError,
+    clearErrors,
+    formState: { errors, isValid, isDirty, touchedFields },
+  } = useForm({
+    mode: "onBlur",
+    reValidateMode: "onChange",
+    criteriaMode: "firstError",
+  });
 
-  const categoryState = useSelector(({ addPost }) => addPost.category.value);
-  // console.log(categoryState);
+  const {
+    isLoading,
+    error: postError,
+    sendRequest: postForm,
+  } = useHttpRequest();
 
-  // const onSubmit = (data) => {
-  //   console.log(data);
-  // };
+  const url = `${server}/ai/posts`;
+  const onSubmit = (data) => {
+    const formData = new FormData();
+    for (let key in data) {
+      if (key !== "file") formData.append(key, data[key]);
+    }
+    formData.append("file", data.file[0]);
+    const token = getCookie("token");
+    const authorization = { authorization: `Bearer ${token}` };
+
+    postForm(
+      {
+        url: url,
+        method: "POST",
+        headers: { ...authorization },
+        body: formData,
+      },
+      () => {
+        router.push("/");
+      }
+    );
+  };
+
+  const categoryState = useSelector(({ addPost }) => addPost.category);
+  const ageState = useSelector(({ addPost }) => addPost.age.value);
+  const touchedFieldsRedux = useSelector(
+    ({ addPost }) => addPost.touchedFields
+  );
+  const [fileIsTouched, setFileAsTouched] = useState(false);
 
   return (
     <div className="outer-container">
+      {postError && (
+        <ModuleWindow
+          type="ERROR"
+          message={`Sorry, something went wrong... :(`}
+          image={{
+            src: "/images/sad-unicorn.svg",
+            className: "sending-post-animation",
+          }}
+          blur="addPost-blur"
+        ></ModuleWindow>
+      )}
+      {isLoading && (
+        <ModuleWindow
+          type="INFO"
+          message="Your post is being sent..."
+          image={{
+            src: "/images/post-office.svg",
+            className: "sending-post-animation",
+          }}
+          blur="addPost-blur"
+        ></ModuleWindow>
+      )}
+
       <form
-        action={action}
         method="POST"
+        action={action}
         className="form addPost"
-        onSubmit={handleSubmit((data) => console.log(data))}
+        onSubmit={handleSubmit((data) => onSubmit(data))}
+        onClick={(e) => {
+          validateCategory(
+            e,
+            touchedFieldsRedux,
+            categoryState,
+            setError,
+            clearErrors
+          );
+          validateFile(e, fileIsTouched, setError, getValues, clearErrors);
+        }}
       >
-        {/* {isLoading && <p>{isLoading}</p>} */}
-        {/* {error && <p>{error}</p>} */}
         <div className="addPost__inner-container">
-          <label className="labelForTitleInput" htmlFor="inputPostTitle">
-            Post title:
-          </label>
-          <input
-            className={`input`}
-            id="inputPostTitle"
-            type="text"
-            placeholder="Title is..."
-            {...register("title")}
-          />
-          <label className="labelForTextarea">Text of the post: </label>
-          <textarea
-            placeholder="Your funny activiy..."
-            className={`textarea`}
-            // minLength="50"
-            {...register("text")}
-          />
-          <label className="labelForAgeInput">Enter child's age: </label>
-          <AgeInput></AgeInput>
-          <CategoryDropdown
-            onClick={() => setValue("category", { value: categoryState })}
-          ></CategoryDropdown>
-          <label className="button custom-file-input" htmlFor="chooseFile">
-            Choose file
-          </label>
-          <input id="chooseFile" type="file" />
-          <label
-            className="labelForAdditionalInfoInput"
-            htmlFor="inputAdditionalInfo"
-          >
-            Additional info:
-          </label>
-          <input
-            className={`input`}
-            id="inputAdditionalInfo"
-            type="text"
-            placeholder="Your additional info..."
-          />
+          <div className="title-group">
+            <label htmlFor="inputPostTitle">Post title:</label>
+            <input
+              className={`input ${errors.title && "error"}`}
+              id="inputPostTitle"
+              type="text"
+              placeholder="Title is..."
+              {...register("title", {
+                required: "Title is required ^_^",
+              })}
+            />
+          </div>
+          {errors.title && (
+            <p className="error-message">{errors.title.message}</p>
+          )}
+          <div className="text-group">
+            <label>Text of the post: </label>
+            <textarea
+              placeholder="Your funny activiy..."
+              className={`textarea ${errors.text && "error"}`}
+              // minLength="50"
+              {...register("text", {
+                required: "Text is required ;-;",
+              })}
+            />
+          </div>
+          {errors.text && (
+            <p className="error-message">{errors.text?.message}</p>
+          )}
+          <div className="additional-info-group">
+            <label htmlFor="inputAdditionalInfo">Additional info:</label>
+            <input
+              className={`input ${errors.components && "error"}`}
+              id="inputAdditionalInfo"
+              type="text"
+              placeholder="Your additional info..."
+              {...register("components", {
+                required: "Sorry, this is also required :(",
+              })}
+            />
+          </div>
+          {errors.components && (
+            <p className="error-message">{errors.components?.message}</p>
+          )}
+          <div className="age-group">
+            <label>Enter child's age: </label>
+            <AgeInput
+              className={`${
+                !ageState &&
+                isFieldTouchedInRedux("age_category", touchedFieldsRedux)
+                  ? "ageInput-container-error"
+                  : ""
+              }`}
+              {...register("age_category", {
+                required: "Please enter minimal child's age",
+              })}
+            ></AgeInput>
+            {ageState ? setValue("age_category", ageState) : null}
+          </div>
+          {!ageState &&
+            isFieldTouchedInRedux("age_category", touchedFieldsRedux) && (
+              <p className="error-message">Please enter minimal child's age</p>
+            )}
+          <div className="category-group">
+            <CategoryDropdown
+              className={`${
+                errors.main_category && !categoryState && categoryState !== 0
+                  ? "dropdown-error"
+                  : ""
+              }`}
+              {...register("main_category", {
+                value: setValue("main_category", categoryState),
+              })}
+            ></CategoryDropdown>
+          </div>
+          {errors.main_category && !categoryState && categoryState !== 0 && (
+            <p className="error-message">{errors.main_category?.message}</p>
+          )}
+          <div className="file-group">
+            <label
+              className={`button custom-file-input ${
+                errors.file && "file-error"
+              }`}
+              onClick={() => {
+                setFileAsTouched(true);
+              }}
+            >
+              <input
+                type="file"
+                {...register("file")}
+                accept="image/*, audio/*, video/*"
+              />
+              Choose file
+            </label>
+          </div>
+          {errors.file && (
+            <p className="error-message">{errors.file?.message}</p>
+          )}
         </div>
         <div className="formButtons">
           <input
-            disabled={!true}
+            disabled={!isValid}
             className="button submit"
             type="submit"
             value="submit post"
+            onClick={() => {
+              getValues("components")
+                ? setValue("components", [getValues("components")])
+                : "";
+            }}
           />
           <input type="reset" value="cancel" className="button cancel" />
         </div>

@@ -2,12 +2,12 @@ import Button from "../../UI/Button";
 import React from "react";
 import Head from "next/head";
 
-export default function Header() {
+export default function Header(props) {
   return (
-    // <title>{props.title}</title>
     <React.Fragment>
       <Head>
         <link rel="shortcut icon" href="/icons/sun.ico" />
+        <title>Playground</title>
       </Head>
       <header className="header">
         <div className="inner-container">
@@ -17,6 +17,8 @@ export default function Header() {
             alt="girls playing"
           />
           <div className="header__content">
+            {props.children && props.children}
+
             <div className="article">
               <div className="article__heading-container">
                 <h1 className="article__heading-container__heading">

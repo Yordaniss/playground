@@ -1,91 +1,81 @@
 import Dropdown from "../../UI/Dropdown";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchConfigActions } from "../../../store/index";
+import { main_categories } from "./SearchConstants";
 
-export default function FilterDropdown(props) {
+const dropdownList = {
+  key: Math.random(),
+  title: "Choose category:",
+  list: [
+    {
+      optionTitle: main_categories.ARTS_AND_CRAFTS.title,
+      filterBy: {
+        property: "main_category",
+        value: main_categories.ARTS_AND_CRAFTS.value,
+      },
+    },
+    {
+      optionTitle: main_categories.COOKING.title,
+      filterBy: {
+        property: "main_category",
+        value: main_categories.COOKING.value,
+      },
+    },
+    {
+      optionTitle: main_categories.FORAGING.title,
+      filterBy: {
+        property: "main_category",
+        value: main_categories.FORAGING.value,
+      },
+    },
+    {
+      optionTitle: main_categories.GAMES.title,
+      filterBy: {
+        property: "main_category",
+        value: main_categories.GAMES.value,
+      },
+    },
+    {
+      optionTitle: main_categories.SPORT.title,
+      filterBy: {
+        property: "main_category",
+        value: main_categories.SPORT.value,
+      },
+    },
+  ],
+};
+
+export default function FilterDropdown() {
   const dispatch = useDispatch();
-  const filtrationState = useSelector(
-    ({ searchConfig }) => searchConfig.filtration
-  );
+  const searchConfig = useSelector(({ searchConfig }) => searchConfig);
 
-  const addFilter = (propertyName, value) => {
-    dispatch(
-      searchConfigActions.addFilter({
-        property: propertyName,
-        value: value,
+  const filtrationHandler = (checkedItems) => {
+    const list = dropdownList.list;
+    const checkedItem = checkedItems
+      .map((state, index) => {
+        if (state) {
+          return list[index];
+        }
       })
-    );
-  };
-  const removeFilter = (propertyName, value) => {
-    const filters = filtrationState.filters;
-    const filtered = filters.filter(
-      (filterOPtion) =>
-        filterOPtion.property !== propertyName || filterOPtion.value !== value
-    );
-    dispatch(searchConfigActions.removeFilter(filtered));
-  };
-
-  const filtrationHandler = (el) => {
-    if (
-      !filtrationState.filters.some(
-        (filter) =>
-          filter.property === el.filterBy.property &&
-          filter.value === el.filterBy.value
-      )
-    ) {
-      addFilter(el.filterBy.property, el.filterBy.value);
-    } else {
-      removeFilter(el.filterBy.property, el.filterBy.value);
+      .filter(Boolean);
+    let filters = { ...searchConfig.filtration };
+    if (checkedItem[0].filterBy.property === "main_category") {
+      filters = {
+        ...searchConfig.filtration,
+        main_category: checkedItem[0].optionTitle,
+      };
     }
+
+    dispatch(searchConfigActions.setFilters(filters));
   };
 
   return (
     <Dropdown
       className="dropdown"
-      dropdownList={{
-        key: Math.random(),
-        title: "Choose category:",
-        list: [
-          {
-            optionTitle: "Arts & Crafts",
-            filterBy: {
-              property: "main_category",
-              value: 0,
-            },
-          },
-          {
-            optionTitle: "Cooking",
-            filterBy: {
-              property: "main_category",
-              value: 1,
-            },
-          },
-          {
-            optionTitle: "Foraging",
-            filterBy: {
-              property: "main_category",
-              value: 2,
-            },
-          },
-          {
-            optionTitle: "Games",
-            filterBy: {
-              property: "main_category",
-              value: 3,
-            },
-          },
-          {
-            optionTitle: "Sport",
-            filterBy: {
-              property: "main_category",
-              value: 4,
-            },
-          },
-        ],
-      }}
+      dropdownList={dropdownList}
       selectionModifier="FILTER"
-      onSelect={(el) => {
-        filtrationHandler(el);
+      onSelect={(checkedItems) => {
+        filtrationHandler(checkedItems);
       }}
     ></Dropdown>
   );

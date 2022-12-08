@@ -1,7 +1,8 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 const initialSearchConfigState = {
-  filtration: { filters: [] },
+  // filtration: { filters: [] },
+  filtration: { title: "", main_category: "", components: [] },
   sorting: { property: "default", direction: "default" },
 };
 
@@ -9,31 +10,33 @@ const searchConfigSlice = createSlice({
   name: "searchConfig",
   initialState: initialSearchConfigState,
   reducers: {
-    changeSorting(state, action) {
+    setSorting(state, action) {
       state.sorting = { ...action.payload };
     },
-    addFilter(state, action) {
-      state.filtration.filters = [
-        ...state.filtration.filters,
-        { ...action.payload },
-      ];
-    },
-    removeFilter(state, action) {
-      state.filtration.filters = [...action.payload];
+    setFilters(state, action) {
+      // state.filtration.filters = [...action.payload];
+      state.filtration = { ...action.payload };
     },
   },
 });
 
 const initialAddPostState = {
-  category: { value: null },
+  category: null,
+  age: { value: null },
+  touchedFields: [],
 };
 const addPostSlice = createSlice({
   name: "addPost",
   initialState: initialAddPostState,
   reducers: {
-    changeCategory(state, action) {
-      state.category = { ...action.payload };
-      console.log({ ...action.payload });
+    setCategory(state, action) {
+      state.category = action.payload;
+    },
+    changeAge(state, action) {
+      state.age = action.payload;
+    },
+    addTouchedField(state, action) {
+      state.touchedFields = [...state.touchedFields, action.payload];
     },
   },
 });

@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export default function Pagination(props) {
   const pageNumbers = [];
 
@@ -8,18 +6,25 @@ export default function Pagination(props) {
   }
 
   const goToPage = (pageNumber) => {
-    props.paginate(pageNumber);
     const elementOffset = document.getElementById("postsDashboard").offsetTop;
     window.scrollTo({ top: elementOffset, behavior: "smooth" });
+    props.paginate(pageNumber);
   };
 
   return (
     <nav>
       <ul className="pagination">
         {pageNumbers.map((pageNumber) => (
-          <li key={pageNumber} className="page-number-item">
+          <li
+            key={pageNumber}
+            className={`page-number-item ${
+              pageNumber === props.currentPage && "clicked-page-link"
+            }`}
+          >
             <a
-              onClick={() => goToPage(pageNumber)}
+              onClick={(e) => {
+                goToPage(pageNumber);
+              }}
               className="page-number-link"
             >
               {pageNumber}
