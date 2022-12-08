@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Button from "./Button";
 import Dropdown from "./Dropdown";
+import { getCookie, removeCookies } from "cookies-next";
 
 export default function Navbar() {
   let navItems = [
@@ -10,7 +11,7 @@ export default function Navbar() {
     { title: "add post", href: "/addPost" },
   ];
 
-  const dropdownList = {
+  const dropdownListNotLogged = {
     key: Math.random(),
     title: "Profile",
     list: [
@@ -21,6 +22,16 @@ export default function Navbar() {
       {
         optionTitle: "Sign up",
         href: "/sign_up",
+      },
+    ],
+  };
+  const dropdownListLogged = {
+    key: Math.random(),
+    title: "Profile",
+    list: [
+      {
+        optionTitle: "Sign out",
+        href: "/",
       },
     ],
   };
@@ -60,10 +71,22 @@ export default function Navbar() {
             );
           })}
           <li key={Math.random()} className="nav__list-item">
-            <Dropdown
-              selectionModifier="PROFILE"
-              dropdownList={dropdownList}
-            ></Dropdown>
+            {console.log(getCookie("token"))}
+            {!getCookie("token") && (
+              <Dropdown
+                selectionModifier="PROFILE__NOT__LOGGED"
+                dropdownList={dropdownListNotLogged}
+              ></Dropdown>
+            )}
+            {getCookie("token") && (
+              <Dropdown
+                selectionModifier="PROFILE__LOGGED"
+                dropdownList={dropdownListLogged}
+                onSignOut={() => {
+                  removeCookies("token");
+                }}
+              ></Dropdown>
+            )}
           </li>
         </ul>
       </nav>

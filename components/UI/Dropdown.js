@@ -16,7 +16,7 @@ export default function Dropdown(props) {
         return field === "main_category";
       }
     });
-    if (props.selectionModifier !== "PROFILE") {
+    if (!props.selectionModifier.includes("PROFILE")) {
       if (!isAlreadyTouched) {
         dispatch(addPostActions.addTouchedField("main_category"));
       }
@@ -31,20 +31,16 @@ export default function Dropdown(props) {
   );
 
   const handleChange = (position, optionTitle) => {
-    if (props.selectionModifier !== "PROFILE") {
-      let updatedCheckedState;
-      updatedCheckedState = new Array(props.dropdownList.list.length).fill(
-        false
-      );
-      updatedCheckedState[position] = true;
-      dropdownTitleRef.current.innerText = optionTitle;
-      setCheckedState(updatedCheckedState);
-      props.onSelect(updatedCheckedState);
-    }
+    let updatedCheckedState;
+    updatedCheckedState = new Array(props.dropdownList.list.length).fill(false);
+    updatedCheckedState[position] = true;
+    dropdownTitleRef.current.innerText = optionTitle;
+    setCheckedState(updatedCheckedState);
+    props.onSelect(updatedCheckedState);
   };
 
   let dropdownTitle;
-  if (props.selectionModifier !== "PROFILE") {
+  if (!props.selectionModifier.includes("PROFILE")) {
     dropdownTitle = props.dropdownList.title;
   } else {
     dropdownTitle = <img src="../icons/profile.png"></img>;
@@ -94,14 +90,23 @@ export default function Dropdown(props) {
                   type={inputType}
                   name={inputName}
                   onChange={() => {
-                    handleChange(index, el.optionTitle);
+                    if (!props.selectionModifier.includes("PROFILE")) {
+                      handleChange(index, el.optionTitle);
+                    }
                   }}
                 />
+                {console.log(props.dropdownList.list)}
 
                 <label htmlFor={innerInputID} className="itemLabel">
-                  {props.selectionModifier !== "PROFILE" && el.optionTitle}
-                  {props.selectionModifier === "PROFILE" && (
+                  {!props.selectionModifier.includes("PROFILE") &&
+                    el.optionTitle}
+                  {props.selectionModifier === "PROFILE__NOT__LOGGED" && (
                     <Link href={el.href}>{el.optionTitle}</Link>
+                  )}
+                  {props.selectionModifier === "PROFILE__LOGGED" && (
+                    <Link href={el.href} onClick={props.onSignOut}>
+                      {el.optionTitle}
+                    </Link>
                   )}
                 </label>
               </li>

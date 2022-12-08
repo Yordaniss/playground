@@ -48,7 +48,6 @@ const Register = () => {
               id="sign-up-username"
               className={`input ${errors.username && "error"}`}
               type="text"
-              required
               {...register("username", {
                 required: "Username is required :3",
               })}
@@ -61,7 +60,6 @@ const Register = () => {
               id="sign-up-email"
               className={`input ${errors.email && "error"}`}
               type="text"
-              required
               {...register("email", {
                 required: "Your email is also needed ^_^",
               })}

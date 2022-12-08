@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import CategoryDropdown from "./CategoryDropdown";
 import { useSelector } from "react-redux";
 import useHttpRequest from "../../../hooks/useHttpRequest";
-import { getCookie } from "cookies-next";
-import React, { useEffect, useState } from "react";
+import { getCookie, removeCookies } from "cookies-next";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import ModuleWindow from "../../../UI/ModuleWindow";
 
@@ -60,6 +60,12 @@ const validateFile = (e, fileIsTouched, setError, getValues, clearErrors) => {
 export default function AddPost({ action = `${server}/api/posts` }) {
   const router = useRouter();
 
+  useEffect(() => {
+    if (!getCookie("token")) {
+      router.push("/sign_up");
+    }
+  }, []);
+
   const {
     register,
     setValue,
@@ -109,19 +115,6 @@ export default function AddPost({ action = `${server}/api/posts` }) {
     ({ addPost }) => addPost.touchedFields
   );
   const [fileIsTouched, setFileAsTouched] = useState(false);
-  // const [showErrorModule, setShowErrorModule] = useState(false);
-  // const [showLoadingModule, setShowLoadingModule] = useState(false);
-
-  // useEffect(() => {
-  //   if (isLoading) {
-  //     setShowLoadingModule(true);
-  //   }
-  //   if (postError) {
-  //     setTimeout(() => {
-  //       setShowErrorModule(true);
-  //     }, 2000);
-  //   }
-  // }, [postError, isLoading]);
 
   return (
     <div className="outer-container">

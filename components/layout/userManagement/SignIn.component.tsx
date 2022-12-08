@@ -2,19 +2,29 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getCookies, setCookie } from "cookies-next";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
   const router = useRouter();
-  const [username, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    register,
+    getValues,
+    formState: { errors, isValid },
+  } = useForm({
+    mode: "onBlur",
+    reValidateMode: "onChange",
+    criteriaMode: "firstError",
+    shouldFocusError: false,
+  });
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    const data = getValues();
 
     fetch("/api/user/sign_in", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify(data),
     }).then(async (data) => {
       const responseData = await data.json();
       if (responseData.success) {
@@ -35,18 +45,22 @@ const Login = () => {
               className="input"
               type="text"
               id="sign-in-username"
-              onChange={(e) => setUserName(e.target.value)}
+              {...register("username", {
+                required: "Username is required :3",
+              })}
             />
             <label>Password</label>
             <input
               className="input"
               type="password"
-              onChange={(e) => setPassword(e.target.value)}
+              {...register("password", {
+                required: "Password is required ^_^",
+              })}
             />
           </div>
           <div className="formButtons">
             <input
-              disabled={false}
+              disabled={!isValid}
               className="button submit"
               type="submit"
               value="submit"
