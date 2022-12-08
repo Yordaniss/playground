@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Button from "./Button";
+import Dropdown from "./Dropdown";
 
 export default function Navbar() {
   let navItems = [
@@ -8,6 +9,21 @@ export default function Navbar() {
     { title: "about", href: "/about" },
     { title: "add post", href: "/addPost" },
   ];
+
+  const dropdownList = {
+    key: Math.random(),
+    title: "Profile",
+    list: [
+      {
+        optionTitle: "Sign in",
+        href: "/sign_in",
+      },
+      {
+        optionTitle: "Sign up",
+        href: "/sign_up",
+      },
+    ],
+  };
 
   const [isChecked, setIsChecked] = useState(false);
 
@@ -43,6 +59,12 @@ export default function Navbar() {
               </li>
             );
           })}
+          <li key={Math.random()} className="nav__list-item">
+            <Dropdown
+              selectionModifier="PROFILE"
+              dropdownList={dropdownList}
+            ></Dropdown>
+          </li>
         </ul>
       </nav>
     </React.Fragment>

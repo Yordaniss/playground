@@ -1,44 +1,45 @@
 import Dropdown from "../../../UI/Dropdown";
 import { useDispatch } from "react-redux";
 import { addPostActions } from "../../../../store/index";
+import { main_categories } from "../../searchManagement/SearchConstants";
 
 const dropdownList = {
   key: Math.random(),
   title: "Choose category:",
   list: [
     {
-      optionTitle: "Arts & Crafts",
-      option: {
+      optionTitle: main_categories.ARTS_AND_CRAFTS.title,
+      filterBy: {
         property: "main_category",
-        value: 0,
+        value: main_categories.ARTS_AND_CRAFTS.value,
       },
     },
     {
-      optionTitle: "Cooking",
-      option: {
+      optionTitle: main_categories.COOKING.title,
+      filterBy: {
         property: "main_category",
-        value: 1,
+        value: main_categories.COOKING.value,
       },
     },
     {
-      optionTitle: "Foraging",
-      option: {
+      optionTitle: main_categories.FORAGING.title,
+      filterBy: {
         property: "main_category",
-        value: 2,
+        value: main_categories.FORAGING.value,
       },
     },
     {
-      optionTitle: "Games",
-      option: {
+      optionTitle: main_categories.GAMES.title,
+      filterBy: {
         property: "main_category",
-        value: 3,
+        value: main_categories.GAMES.value,
       },
     },
     {
-      optionTitle: "Sport",
-      option: {
+      optionTitle: main_categories.SPORT.title,
+      filterBy: {
         property: "main_category",
-        value: 4,
+        value: main_categories.SPORT.value,
       },
     },
   ],

@@ -558,13 +558,87 @@ body {
   display: flex;
   column-gap: 2rem;
   width: 70%;
-  min-width: 50rem;
+  min-width: min-content;
   background-color: #e7babc;
   padding: 2rem;
   margin: 0 auto;
   border-radius: 50px;
 }
 
+@media screen and (max-width: 890px) {
+  .searchManagement {
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-content: space-evenly;
+    justify-items: center;
+    row-gap: 1rem;
+    column-gap: 5rem;
+    padding: 1.5rem;
+  }
+  .dropdown {
+    grid-row: 2;
+  }
+  .searchbar {
+    padding: 0.5rem;
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .searchbar__searchInput {
+    max-width: 9rem;
+  }
+  *:not(.ageInput__buttons > *, .itemLabel) {
+    font-size: clamp(1rem, 1.3vw, 1.2rem) !important;
+  }
+  .ageInput-container {
+    width: 4.5rem;
+  }
+  .ageInput-container .ageInput {
+    max-width: 1.5rem;
+  }
+  .ageInput-container .ageInput__buttons {
+    padding: 0.3rem 0.3rem 0.3rem 0;
+  }
+  .ageInput-container .ageInput__buttons > * {
+    font-size: clamp(1.2rem, 1.2vw, 1.5rem);
+  }
+}
+@media screen and (max-width: 470px) {
+  .searchManagement {
+    width: 97%;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 1fr 1fr;
+    justify-content: center;
+    justify-items: center;
+    row-gap: 1rem;
+    column-gap: 7vw;
+    padding: 5vw;
+  }
+  .searchbar {
+    max-width: 11rem;
+    padding: 0.5rem;
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .searchbar__searchInput {
+    max-width: 7rem;
+  }
+  .ageInput-container {
+    width: 4.5rem;
+  }
+  .ageInput-container .ageInput {
+    max-width: 1.5rem;
+  }
+  .ageInput-container .ageInput__buttons {
+    padding: 0.3rem 0.3rem 0.3rem 0;
+  }
+  .ageInput-container .ageInput__buttons > * {
+    font-size: clamp(1.2rem, 1.2vw, 1.5rem);
+  }
+}
 .post-container {
   background-color: #f7cac9;
   display: flex;
@@ -965,15 +1039,6 @@ body {
   opacity: 0;
   transition: all 0.4s cubic-bezier(0.93, 0.88, 0.1, 0.8);
 }
-.dropdown__options-container::before {
-  content: "";
-  background-color: #fff;
-  position: absolute;
-  bottom: 100%;
-  left: 40%;
-  height: 40px;
-  width: 20px;
-}
 .dropdown svg {
   width: 0;
   height: 0;
@@ -984,6 +1049,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-content: flex-end;
+  row-gap: 1rem;
   background-color: white;
   border-radius: 50px;
   top: 50%;
@@ -1003,9 +1069,6 @@ body {
 .dropdown__options li:hover > .itemLabel {
   color: #aa324a;
   cursor: pointer;
-}
-.dropdown__options li:not(li:first-child) {
-  margin-top: 15px;
 }
 .dropdown__options li .itemInput {
   width: 20px;
@@ -1051,60 +1114,29 @@ body {
   opacity: 1;
 }
 
-.innerDropdown {
-  position: relative;
-  display: inline;
+@media screen and (max-width: 890px) {
+  .dropdown {
+    height: 3rem;
+  }
+  .dropdown__top {
+    padding: 1rem;
+    min-width: 8rem;
+  }
+  .dropdown__options-container {
+    width: min-content;
+  }
+  .dropdown__options {
+    padding: 1.2rem;
+    row-gap: 0.5rem;
+  }
+  .dropdown__options .itemLabel {
+    font-size: clamp(0.8rem, 1vw, 1rem);
+  }
+  .dropdown__options .itemInput {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
 }
-.innerDropdown__top:hover {
-  color: #aa324a;
-  cursor: pointer;
-}
-.innerDropdown__options-container {
-  position: relative;
-  height: 0;
-  background-color: white;
-  transition: all 0.5s ease-in-out;
-}
-.innerDropdown__options-container .innerDropdown__options {
-  position: relative;
-  height: 0;
-  opacity: 0;
-  visibility: hidden;
-  padding: 0;
-  margin: 0;
-  font-weight: 300;
-  transition: all 0.7s ease-in-out;
-  transition: min-height 1s ease-in-out;
-}
-.innerDropdown__options-container .innerDropdown__options li {
-  color: rgb(66, 66, 66);
-}
-.innerDropdown__options-container .innerDropdown__options li:hover {
-  color: #000;
-  font-weight: 300;
-}
-.innerDropdown__input {
-  display: none;
-}
-.innerDropdown__input:checked ~ .innerDropdown__options-container {
-  min-height: min-content;
-  height: min-content;
-  margin-bottom: -15px;
-  padding: 2rem 0;
-}
-.innerDropdown__input:checked ~ .innerDropdown__options-container .innerDropdown__options {
-  min-height: min-content;
-  height: min-content;
-  visibility: visible;
-  opacity: 1;
-}
-.innerDropdown__input:checked ~ .svgFilter {
-  display: inline;
-}
-.innerDropdown .svgFilter {
-  display: none;
-}
-
 .error-div {
   position: absolute;
   border-radius: 10px;
@@ -1286,9 +1318,6 @@ body {
 
 .nav {
   position: absolute;
-  top: 8%;
-  right: 2%;
-  overflow: hidden;
   z-index: 1;
   width: min-content;
 }
@@ -1313,6 +1342,47 @@ body {
 .nav__list-item:hover {
   text-shadow: 0px 0px 5px white, 0px 0px 5px rgba(253, 201, 201, 0.7), 0px 0px 7px rgba(253, 201, 201, 0.7), 0px 0px 10px rgba(253, 201, 201, 0.7), 0px 0px 15px rgba(253, 201, 201, 0.7), 0px 0px 20px rgba(253, 201, 201, 0.7), 0px 0px 17px rgba(253, 201, 201, 0.7), 0px 0px 37px rgba(253, 201, 201, 0.7);
   cursor: pointer;
+}
+.nav .dropdown {
+  height: min-content;
+}
+.nav .dropdown .dropdown__top {
+  display: block;
+  padding: 0;
+  min-width: 0;
+  width: min-content;
+  height: min-content;
+}
+.nav .dropdown .dropdown__top img {
+  width: 2rem;
+  height: 2rem;
+  display: block;
+  margin: auto;
+}
+.nav .dropdown .dropdown__top:hover {
+  box-shadow: 0px 0px 5px rgb(255, 255, 255), 0px 0px 10px rgba(255, 196, 199, 0.7), 0px 0px 15px rgba(255, 196, 199, 0.7), 0px 0px 20px rgba(255, 196, 199, 0.7), 0px 0px 30px rgba(255, 196, 199, 0.7), 0px 0px 40px rgba(255, 196, 199, 0.7), 0px 0px 55px rgba(255, 196, 199, 0.7), 0px 0px 75px rgba(255, 196, 199, 0.7);
+}
+.nav .dropdown__options-container {
+  left: -50%;
+}
+.nav .dropdown__options {
+  padding: 1rem;
+}
+.nav .dropdown__options * {
+  font-family: "Babycakes";
+  color: #aa324a;
+  text-shadow: none;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+}
+.nav .dropdown__options * *:hover {
+  text-shadow: none;
+  color: #fdc9c9;
+}
+.nav .dropdown__options .itemInput {
+  display: none;
+}
+.nav .dropdown__options .itemInput:checked ~ .itemLabel {
+  color: #fdc9c9;
 }
 
 #menu-checkbox {

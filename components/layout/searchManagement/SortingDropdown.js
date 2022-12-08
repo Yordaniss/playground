@@ -7,14 +7,14 @@ const dropdownList = {
   title: "Sort by:",
   list: [
     {
-      optionTitle: "Alphabet ascending",
+      optionTitle: "Alphabet 👆",
       sortBy: {
         property: "title",
         direction: "asc",
       },
     },
     {
-      optionTitle: "Alphabet descending",
+      optionTitle: "Alphabet 👇",
       sortBy: {
         property: "title",
         direction: "desc",
@@ -35,14 +35,14 @@ const dropdownList = {
       },
     },
     {
-      optionTitle: "Age ascending",
+      optionTitle: "Age 👆",
       sortBy: {
         property: "age_category",
         direction: "asc",
       },
     },
     {
-      optionTitle: "Age descending",
+      optionTitle: "Age 👇",
       sortBy: {
         property: "age_category",
         direction: "desc",

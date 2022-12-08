@@ -4,14 +4,93 @@
   display: flex;
   column-gap: 2rem;
   width: 70%;
-  min-width: 50rem;
+  min-width: min-content;
   background-color: $bg-accent-dull-sakura;
   padding: 2rem;
   margin: 0 auto;
   border-radius: 50px;
+}
 
-  // @media screen and (max-width: $bp-big-screen) {
-  //   min-width: 0;
-  //   width: 90%;
-  // }
+@media screen and (max-width: $bp-medium-screen) {
+  .searchManagement {
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-content: space-evenly;
+    justify-items: center;
+    row-gap: 1rem;
+    column-gap: 5rem;
+    padding: 1.5rem;
+  }
+
+  .dropdown {
+    grid-row: 2;
+  }
+
+  .searchbar {
+    padding: 0.5rem;
+    grid-column: 1;
+    grid-row: 1;
+    &__searchInput {
+      max-width: 9rem;
+    }
+  }
+
+  *:not(.ageInput__buttons > *, .itemLabel) {
+    font-size: $fs-xs !important;
+  }
+
+  .ageInput-container {
+    width: 4.5rem;
+    .ageInput {
+      max-width: 1.5rem;
+
+      &__buttons {
+        padding: 0.3rem 0.3rem 0.3rem 0;
+        & > * {
+          font-size: $fs-s;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $bp-extra-small-screen) {
+  .searchManagement {
+    width: 97%;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 1fr 1fr;
+    justify-content: center;
+    justify-items: center;
+    row-gap: 1rem;
+    column-gap: 7vw;
+    padding: 5vw;
+  }
+
+  .searchbar {
+    max-width: 11rem;
+    padding: 0.5rem;
+    grid-column: 1;
+    grid-row: 1;
+    &__searchInput {
+      max-width: 7rem;
+    }
+  }
+
+  .ageInput-container {
+    width: 4.5rem;
+    .ageInput {
+      max-width: 1.5rem;
+
+      &__buttons {
+        padding: 0.3rem 0.3rem 0.3rem 0;
+        & > * {
+          font-size: $fs-s;
+        }
+      }
+    }
+  }
 }

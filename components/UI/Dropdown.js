@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Link from "next/link";
 import { addPostActions } from "../../store/index";
 
 export default function Dropdown(props) {
@@ -15,8 +16,10 @@ export default function Dropdown(props) {
         return field === "main_category";
       }
     });
-    if (!isAlreadyTouched) {
-      dispatch(addPostActions.addTouchedField("main_category"));
+    if (props.selectionModifier !== "PROFILE") {
+      if (!isAlreadyTouched) {
+        dispatch(addPostActions.addTouchedField("main_category"));
+      }
     }
   };
   const className = props.className;
@@ -28,23 +31,24 @@ export default function Dropdown(props) {
   );
 
   const handleChange = (position, optionTitle) => {
-    let updatedCheckedState;
-    // if (
-    //   props.selectionModifier === "SORT" ||
-    //   props.selectionModifier === "ADD_POST" ||
-    // ) {
-    updatedCheckedState = new Array(props.dropdownList.list.length).fill(false);
-    updatedCheckedState[position] = true;
-    dropdownTitleRef.current.innerText = optionTitle;
-    // } else {
-    //   updatedCheckedState = checkedState.map((item, index) =>
-    //     index === position ? !item : item
-    //   );
-    // }
-
-    setCheckedState(updatedCheckedState);
-    props.onSelect(updatedCheckedState);
+    if (props.selectionModifier !== "PROFILE") {
+      let updatedCheckedState;
+      updatedCheckedState = new Array(props.dropdownList.list.length).fill(
+        false
+      );
+      updatedCheckedState[position] = true;
+      dropdownTitleRef.current.innerText = optionTitle;
+      setCheckedState(updatedCheckedState);
+      props.onSelect(updatedCheckedState);
+    }
   };
+
+  let dropdownTitle;
+  if (props.selectionModifier !== "PROFILE") {
+    dropdownTitle = props.dropdownList.title;
+  } else {
+    dropdownTitle = <img src="../icons/profile.png"></img>;
+  }
 
   return (
     <div className={`dropdown ${className}`}>
@@ -75,16 +79,12 @@ export default function Dropdown(props) {
         className="dropdown__top"
         htmlFor={dropdownInputId}
       >
-        {props.dropdownList.title}
+        {dropdownTitle}
       </label>
       <div className="dropdown__options-container">
         <ul className="dropdown__options">
           {props.dropdownList.list.map((el, index) => {
             let inputType = "radio";
-            // props.selectionModifier === "SORT" ||
-            // props.selectionModifier === "ADD_POST"
-            //   ? (inputType = "radio")
-            //   : (inputType = "checkbox");
             const innerInputID = Math.ceil(Math.random() * 10000);
             return (
               <li key={index}>
@@ -99,7 +99,10 @@ export default function Dropdown(props) {
                 />
 
                 <label htmlFor={innerInputID} className="itemLabel">
-                  {el.optionTitle}
+                  {props.selectionModifier !== "PROFILE" && el.optionTitle}
+                  {props.selectionModifier === "PROFILE" && (
+                    <Link href={el.href}>{el.optionTitle}</Link>
+                  )}
                 </label>
               </li>
             );
