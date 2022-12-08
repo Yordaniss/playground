@@ -977,8 +977,9 @@ body {
   align-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
-  padding: 3rem;
+  height: 110vh;
+  min-height: min-content;
+  padding: 10% 3rem 3rem 3rem;
 }
 .sign-up-outer-container .sign-up {
   border-radius: 70px;
@@ -1538,6 +1539,23 @@ label[for=menu-checkbox] a {
 }
 
 @media screen and (min-width: 1200px) {
+  .nav {
+    background-color: #c4787c;
+    width: 70%;
+    left: 15%;
+    border-radius: 70px;
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: min-content;
+    margin: 2% 0;
+  }
+  .nav__list-item {
+    padding: 1.5rem;
+    color: rgb(252, 252, 228);
+  }
   .header__content {
     padding-top: 0;
     display: flex;

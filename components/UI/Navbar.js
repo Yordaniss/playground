@@ -7,7 +7,6 @@ import { getCookie, removeCookies } from "cookies-next";
 export default function Navbar() {
   let navItems = [
     { title: "home", href: "/" },
-    { title: "about", href: "/about" },
     { title: "add post", href: "/addPost" },
   ];
 

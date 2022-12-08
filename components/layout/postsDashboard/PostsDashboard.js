@@ -71,7 +71,7 @@ export default function PostsDashboard() {
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      if (rocketBtnRef) {
+      if (rocketBtnRef.current !== null) {
         if (window.pageYOffset > 200) {
           rocketBtnRef.current.style.display = "block";
         } else {
@@ -129,7 +129,7 @@ export default function PostsDashboard() {
         className="button scroll-to-top"
         value="🚀"
         onClick={() => {
-          if (rocketBtnRef) {
+          if (rocketBtnRef.current !== null) {
             rocketBtnRef.current.classList.add("rocket-animate");
             window.scrollTo({
               top: 0,

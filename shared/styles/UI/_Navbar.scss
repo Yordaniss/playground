@@ -120,6 +120,24 @@ label[for="menu-checkbox"] {
 }
 
 @media screen and (min-width: $bp-extra-big-screen) {
+  .nav {
+    background-color: $bg-primary-dull-rose;
+    width: 70%;
+    left: 15%;
+    border-radius: 70px;
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: min-content;
+    margin: 2% 0;
+    &__list-item {
+      padding: 1.5rem;
+      color: $clr-accent-light-wheat;
+    }
+  }
+
   .header__content {
     padding-top: 0;
     display: flex;
