@@ -3,6 +3,7 @@ import Head from "next/head";
 import Header from "./header/Header";
 import Navbar from "../UI/Navbar";
 import PostsDashboard from "./postsDashboard/PostsDashboard";
+import Footer from "./footer/Footer";
 
 export default function Layout({ children }) {
   return (
@@ -23,6 +24,7 @@ export default function Layout({ children }) {
           <React.Fragment>{children}</React.Fragment>
         </React.Fragment>
       )}
+      <Footer></Footer>
     </React.Fragment>
   );
 }

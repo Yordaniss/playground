@@ -1,0 +1,83 @@
+@use "../../abstracts/Variables" as *;
+
+.footer {
+  height: 10rem;
+  width: 100vw;
+  background-color: $bg-primary-dull-rose;
+  padding: 2rem 3rem;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  column-gap: 20%;
+
+  & * {
+    white-space: nowrap;
+  }
+
+  &-links {
+    font-size: 14px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+
+    &__navigation {
+      display: flex;
+      column-gap: 1rem;
+
+      & > * {
+        text-transform: lowercase;
+        font-family: $ff-text;
+        font-size: $fs-s;
+        text-decoration: none;
+        color: $clr-primary-light-pink;
+
+        &:hover {
+          text-shadow: $text-hightlight-primary;
+          color: $clr-accent-wheat;
+        }
+      }
+    }
+
+    &__github > * {
+      font-family: $ff-text;
+      font-size: $fs-s;
+      text-decoration: none;
+      color: $clr-primary-light-pink;
+
+      &:hover {
+        text-shadow: $text-hightlight-primary;
+        color: $clr-accent-wheat;
+      }
+    }
+
+    .project-name {
+      color: $clr-primary-dull-wine;
+      font-size: $fs-m;
+      font-family: $ff-headings;
+    }
+  }
+
+  &-illustration {
+    width: 10vw;
+    height: 10vw;
+  }
+}
+
+@media screen and (max-width: $bp-medium-screen) {
+  .footer {
+    flex-direction: column-reverse;
+    row-gap: 2rem;
+    justify-content: space-evenly;
+    height: 14rem;
+    &-links {
+      &__navigation * {
+        font-size: $fs-xs;
+      }
+      .project-name {
+        font-size: $fs-s;
+      }
+    }
+  }
+}
