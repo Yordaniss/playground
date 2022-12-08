@@ -518,7 +518,7 @@ body {
   color: #aa324a;
 }
 
-.searchbar {
+.searchBar {
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -532,17 +532,17 @@ body {
   font-family: "Babycakes";
   height: min-content;
 }
-.searchbar__searchInput {
+.searchBar__searchInput {
   border: none;
   font-family: "Babycakes";
   font-size: clamp(1.4rem, 2vw, 1.6rem);
   color: #562a35;
   width: 10rem;
 }
-.searchbar__searchInput:focus {
+.searchBar__searchInput:focus {
   outline: none;
 }
-.searchbar__searchButton {
+.searchBar__searchButton {
   padding: 0.2rem 0;
   width: 2rem;
   height: 2rem;
@@ -550,7 +550,7 @@ body {
   border: none;
   font-size: clamp(1.4rem, 2vw, 1.6rem);
 }
-.searchbar__searchButton:hover {
+.searchBar__searchButton:hover {
   cursor: pointer;
 }
 
@@ -580,12 +580,12 @@ body {
   .dropdown {
     grid-row: 2;
   }
-  .searchbar {
+  .searchBar {
     padding: 0.5rem;
     grid-column: 1;
     grid-row: 1;
   }
-  .searchbar__searchInput {
+  .searchBar__searchInput {
     max-width: 9rem;
   }
   *:not(.ageInput__buttons > *, .itemLabel) {
@@ -617,13 +617,13 @@ body {
     column-gap: 7vw;
     padding: 5vw;
   }
-  .searchbar {
+  .searchBar {
     max-width: 11rem;
     padding: 0.5rem;
     grid-column: 1;
     grid-row: 1;
   }
-  .searchbar__searchInput {
+  .searchBar__searchInput {
     max-width: 7rem;
   }
   .ageInput-container {

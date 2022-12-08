@@ -1,8 +1,8 @@
-import Searchbar from "../../UI/Searchbar";
+import SearchBar from "../../UI/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import { searchConfigActions } from "../../../store/index";
 
-export default function PostsSearchbar() {
+export default function PostsSearchBar() {
   const dispatch = useDispatch();
   const searchConfig = useSelector(({ searchConfig }) => searchConfig);
 
@@ -11,5 +11,5 @@ export default function PostsSearchbar() {
     dispatch(searchConfigActions.setFilters({ ...filters, title: title }));
   };
 
-  return <Searchbar onSearch={(title) => setTitleFilter(title)}></Searchbar>;
+  return <SearchBar onSearch={(title) => setTitleFilter(title)}></SearchBar>;
 }
