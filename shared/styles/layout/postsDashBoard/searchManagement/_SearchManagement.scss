@@ -22,73 +22,73 @@
     row-gap: 1rem;
     column-gap: 5rem;
     padding: 1.5rem;
-  }
 
-  .dropdown {
-    grid-row: 2;
-  }
-
-  .searchBar {
-    padding: 0.5rem;
-    grid-column: 1;
-    grid-row: 1;
-    &__searchInput {
-      max-width: 9rem;
+    & *:not(.ageInput__buttons > *, .itemLabel) {
+      font-size: $fs-xs !important;
     }
-  }
 
-  *:not(.ageInput__buttons > *, .itemLabel) {
-    font-size: $fs-xs !important;
-  }
+    .dropdown {
+      grid-row: 2;
+    }
 
-  .ageInput-container {
-    width: 4.5rem;
-    .ageInput {
-      max-width: 1.5rem;
+    .searchBar {
+      padding: 0.5rem;
+      grid-column: 1;
+      grid-row: 1;
+      &__searchInput {
+        max-width: 9rem;
+      }
+    }
 
-      &__buttons {
-        padding: 0.3rem 0.3rem 0.3rem 0;
-        & > * {
-          font-size: $fs-s;
+    .ageInput-container {
+      width: 4.5rem;
+      .ageInput {
+        max-width: 1.5rem;
+
+        &__buttons {
+          padding: 0.3rem 0.3rem 0.3rem 0;
+          & > * {
+            font-size: $fs-s;
+          }
         }
       }
     }
   }
-}
 
-@media screen and (max-width: $bp-extra-small-screen) {
-  .searchManagement {
-    width: 97%;
-    min-width: 0;
-    display: grid;
-    grid-template-columns: 60% 40%;
-    grid-template-rows: 1fr 1fr;
-    justify-content: center;
-    justify-items: center;
-    row-gap: 1rem;
-    column-gap: 7vw;
-    padding: 5vw;
-  }
-
-  .searchBar {
-    max-width: 11rem;
-    padding: 0.5rem;
-    grid-column: 1;
-    grid-row: 1;
-    &__searchInput {
-      max-width: 7rem;
+  @media screen and (max-width: $bp-extra-small-screen) {
+    .searchManagement {
+      width: 97%;
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 60% 40%;
+      grid-template-rows: 1fr 1fr;
+      justify-content: center;
+      justify-items: center;
+      row-gap: 1rem;
+      column-gap: 7vw;
+      padding: 5vw;
     }
-  }
 
-  .ageInput-container {
-    width: 4.5rem;
-    .ageInput {
-      max-width: 1.5rem;
+    .searchBar {
+      max-width: 11rem;
+      padding: 0.5rem;
+      grid-column: 1;
+      grid-row: 1;
+      &__searchInput {
+        max-width: 7rem;
+      }
+    }
 
-      &__buttons {
-        padding: 0.3rem 0.3rem 0.3rem 0;
-        & > * {
-          font-size: $fs-s;
+    .ageInput-container {
+      width: 4.5rem;
+      .ageInput {
+        max-width: 1.5rem;
+
+        &__buttons {
+          padding: 0.3rem 0.3rem 0.3rem 0;
+          & > * {
+            font-size: $fs-s;
+          }
         }
       }
     }

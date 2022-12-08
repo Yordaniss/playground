@@ -613,34 +613,34 @@ body {
     column-gap: 5rem;
     padding: 1.5rem;
   }
-  .dropdown {
+  .searchManagement *:not(.ageInput__buttons > *, .itemLabel) {
+    font-size: clamp(1rem, 1.3vw, 1.2rem) !important;
+  }
+  .searchManagement .dropdown {
     grid-row: 2;
   }
-  .searchBar {
+  .searchManagement .searchBar {
     padding: 0.5rem;
     grid-column: 1;
     grid-row: 1;
   }
-  .searchBar__searchInput {
+  .searchManagement .searchBar__searchInput {
     max-width: 9rem;
   }
-  *:not(.ageInput__buttons > *, .itemLabel) {
-    font-size: clamp(1rem, 1.3vw, 1.2rem) !important;
-  }
-  .ageInput-container {
+  .searchManagement .ageInput-container {
     width: 4.5rem;
   }
-  .ageInput-container .ageInput {
+  .searchManagement .ageInput-container .ageInput {
     max-width: 1.5rem;
   }
-  .ageInput-container .ageInput__buttons {
+  .searchManagement .ageInput-container .ageInput__buttons {
     padding: 0.3rem 0.3rem 0.3rem 0;
   }
-  .ageInput-container .ageInput__buttons > * {
+  .searchManagement .ageInput-container .ageInput__buttons > * {
     font-size: clamp(1.2rem, 1.2vw, 1.5rem);
   }
 }
-@media screen and (max-width: 470px) {
+@media screen and (max-width: 890px) and (max-width: 470px) {
   .searchManagement {
     width: 97%;
     min-width: 0;
@@ -1363,8 +1363,8 @@ body {
 
 .nav {
   position: absolute;
-  z-index: 1;
   width: min-content;
+  z-index: 99;
 }
 .nav__list {
   display: flex;
@@ -1388,54 +1388,50 @@ body {
   text-shadow: 0px 0px 5px white, 0px 0px 5px rgba(253, 201, 201, 0.7), 0px 0px 7px rgba(253, 201, 201, 0.7), 0px 0px 10px rgba(253, 201, 201, 0.7), 0px 0px 15px rgba(253, 201, 201, 0.7), 0px 0px 20px rgba(253, 201, 201, 0.7), 0px 0px 17px rgba(253, 201, 201, 0.7), 0px 0px 37px rgba(253, 201, 201, 0.7);
   cursor: pointer;
 }
-.nav .dropdown {
+.nav__list-item .dropdown {
   height: min-content;
 }
-.nav .dropdown .dropdown__top {
+.nav__list-item .dropdown .dropdown__top {
   display: block;
   padding: 0;
   min-width: 0;
   width: min-content;
   height: min-content;
 }
-.nav .dropdown .dropdown__top img {
+.nav__list-item .dropdown .dropdown__top img {
   width: 2rem;
   height: 2rem;
   display: block;
   margin: auto;
 }
-.nav .dropdown .dropdown__top:hover {
-  box-shadow: 0px 0px 5px rgb(255, 255, 255), 0px 0px 10px rgba(255, 196, 199, 0.7), 0px 0px 15px rgba(255, 196, 199, 0.7), 0px 0px 20px rgba(255, 196, 199, 0.7), 0px 0px 30px rgba(255, 196, 199, 0.7), 0px 0px 40px rgba(255, 196, 199, 0.7), 0px 0px 55px rgba(255, 196, 199, 0.7), 0px 0px 75px rgba(255, 196, 199, 0.7);
+.nav__list-item .dropdown .dropdown__top:hover {
+  box-shadow: 0px 0px 5px rgb(255, 255, 255), 0px 0px 10px rgba(255, 196, 199, 0.5), 0px 0px 15px rgba(255, 196, 199, 0.4), 0px 0px 20px rgba(255, 196, 199, 0.3), 0px 0px 30px rgba(255, 196, 199, 0.1);
 }
-.nav .dropdown__options-container {
+.nav__list-item .dropdown__options-container {
   left: -50%;
 }
-.nav .dropdown__options {
+.nav__list-item .dropdown__options {
   padding: 1rem;
 }
-.nav .dropdown__options * {
+.nav__list-item .dropdown__options * {
   font-family: "Babycakes";
   color: #aa324a;
   text-shadow: none;
   font-size: clamp(1rem, 1.3vw, 1.2rem);
 }
-.nav .dropdown__options * *:hover {
+.nav__list-item .dropdown__options * *:hover {
   text-shadow: none;
   color: #fdc9c9;
 }
-.nav .dropdown__options .itemInput {
+.nav__list-item .dropdown__options .itemInput {
   display: none;
 }
-.nav .dropdown__options .itemInput:checked ~ .itemLabel {
+.nav__list-item .dropdown__options .itemInput:checked ~ .itemLabel {
   color: #fdc9c9;
 }
 
 #menu-checkbox {
   display: none;
-}
-
-#menu-checkbox:checked ~ .nav {
-  display: flex;
 }
 
 label[for=menu-checkbox] {
@@ -1445,7 +1441,7 @@ label[for=menu-checkbox] {
   right: 6%;
   box-shadow: 0px 0px 5px rgb(255, 255, 255), 0px 0px 10px rgba(255, 196, 199, 0.7), 0px 0px 15px rgba(255, 196, 199, 0.7), 0px 0px 20px rgba(255, 196, 199, 0.7), 0px 0px 30px rgba(255, 196, 199, 0.7), 0px 0px 40px rgba(255, 196, 199, 0.7), 0px 0px 55px rgba(255, 196, 199, 0.7), 0px 0px 75px rgba(255, 196, 199, 0.7);
   border-radius: 50%;
-  z-index: 2;
+  z-index: 100;
   backdrop-filter: blur(5px);
 }
 label[for=menu-checkbox] a {
@@ -1466,17 +1462,26 @@ label[for=menu-checkbox] a {
 }
 
 @media screen and (min-width: 1200px) {
-  .nav {
+  .header__content {
+    padding-top: 0;
     display: flex;
-    justify-content: center;
-    width: 30%;
-    height: min-content;
-    top: 10%;
-    right: 7%;
-    background-color: transparent;
+    flex-direction: column;
   }
-  .nav__list-item {
-    padding: 2rem;
+  .header__content .nav {
+    display: flex;
+    position: relative;
+    margin: 0 auto;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: min-content;
+    background-color: transparent;
+    top: 0;
+    left: 0;
+    margin: 0 auto 3rem auto;
+  }
+  .header__content .nav__list-item {
+    padding: 1.5rem;
     color: rgb(252, 252, 228);
   }
   label[for=menu-checkbox] {
@@ -1486,11 +1491,11 @@ label[for=menu-checkbox] a {
 @media screen and (max-width: 1200px) {
   .nav {
     display: none;
-    position: fixed;
     justify-content: center;
-    width: 84%;
+    width: 85%;
     height: min-content;
-    right: 8%;
+    right: 7.5%;
+    top: 3%;
     background-color: #964555;
     border-radius: 50px;
   }
@@ -1498,73 +1503,67 @@ label[for=menu-checkbox] a {
     padding: 1.5rem;
     color: rgb(252, 252, 228);
   }
+  .nav__list-item {
+    padding: 1rem 2.5rem;
+  }
+  .nav__list-item * {
+    font-size: clamp(1.4rem, 2vw, 1.6rem);
+  }
   label[for=menu-checkbox] {
     display: block;
-    right: 8%;
+    right: 7.5%;
+    top: 2.7%;
+  }
+  label[for=menu-checkbox] a {
+    padding: 1.5rem;
+    font-size: clamp(1.4rem, 2vw, 1.6rem);
+  }
+  #menu-checkbox:checked ~ .nav {
+    display: flex;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .nav__list-item {
+    padding: 1rem 1.5rem;
   }
 }
 @media screen and (max-width: 768px) {
   .nav {
-    width: 80%;
-    top: 8%;
-    right: 10%;
+    width: 90%;
+    right: 5%;
   }
   .nav__list-item {
-    font-size: 1.3rem;
+    padding: 1rem 1.2rem;
   }
   label[for=menu-checkbox] {
-    display: block;
-    top: 8.2%;
-    right: 10%;
+    right: 6%;
+    top: 3.5%;
   }
   label[for=menu-checkbox] a {
-    padding: 1.3rem;
-  }
-  .button {
     padding: 1.3rem;
   }
 }
 @media screen and (max-width: 500px) {
   .nav {
-    width: 90%;
-    top: 2%;
-    right: 5%;
+    width: 96%;
+    right: 2%;
   }
-  label[for=menu-checkbox] {
-    display: block;
-    top: 3%;
-    right: 5%;
+  .nav__list-item {
+    padding: 1rem 1rem;
   }
-  label[for=menu-checkbox] a {
-    padding: 1rem;
-  }
-  .button {
-    padding: 2rem;
+  .nav__list-item * {
+    font-size: clamp(1.2rem, 1.2vw, 1.5rem);
   }
 }
 @media screen and (max-width: 470px) {
-  .nav {
-    width: 90%;
-    top: 2%;
-    right: 5%;
-    justify-content: left;
-  }
-  .nav__list {
-    justify-content: left;
-  }
   .nav__list-item {
     padding: 1rem 0.7rem;
   }
-  label[for=menu-checkbox] {
-    display: block;
-    top: 1.8%;
-    right: 5%;
+  .nav__list-item * {
+    font-size: clamp(1rem, 1.3vw, 1.2rem);
   }
   label[for=menu-checkbox] a {
-    padding: 1rem;
-  }
-  .button {
-    padding: 1.3rem;
+    font-size: clamp(1rem, 1.3vw, 1.2rem);
   }
 }
 .pagination {

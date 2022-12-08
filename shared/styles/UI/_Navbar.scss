@@ -2,8 +2,8 @@
 
 .nav {
   position: absolute;
-  z-index: 1;
   width: min-content;
+  z-index: 99;
 
   &__list {
     display: flex;
@@ -35,49 +35,53 @@
           0px 0px 37px rgba($clr-primary-light-pink, 0.7);
         cursor: pointer;
       }
-    }
-  }
 
-  .dropdown {
-    height: min-content;
+      .dropdown {
+        height: min-content;
 
-    .dropdown__top {
-      display: block;
-      padding: 0;
-      min-width: 0;
-      width: min-content;
-      height: min-content;
-      img {
-        width: 2rem;
-        height: 2rem;
-        display: block;
-        margin: auto;
-      }
-      &:hover {
-        box-shadow: $box-sh-button;
-      }
-    }
-    &__options-container {
-      left: -50%;
-    }
-
-    &__options {
-      padding: 1rem;
-      * {
-        font-family: $ff-tiny-utilities;
-        color: $clr-primary-dull-rose;
-        text-shadow: none;
-        font-size: $fs-xs;
-        *:hover {
-          text-shadow: none;
-          color: $clr-primary-light-pink;
+        .dropdown__top {
+          display: block;
+          padding: 0;
+          min-width: 0;
+          width: min-content;
+          height: min-content;
+          img {
+            width: 2rem;
+            height: 2rem;
+            display: block;
+            margin: auto;
+          }
+          &:hover {
+            box-shadow: 0px 0px 5px rgba(255, 255, 255, 1),
+              0px 0px 10px rgba(255, 196, 199, 0.5),
+              0px 0px 15px rgba(255, 196, 199, 0.4),
+              0px 0px 20px rgba(255, 196, 199, 0.3),
+              0px 0px 30px rgba(255, 196, 199, 0.1);
+          }
         }
-      }
-      .itemInput {
-        display: none;
-      }
-      .itemInput:checked ~ .itemLabel {
-        color: $clr-primary-light-pink;
+        &__options-container {
+          left: -50%;
+        }
+
+        &__options {
+          padding: 1rem;
+          * {
+            font-family: $ff-tiny-utilities;
+            color: $clr-primary-dull-rose;
+            text-shadow: none;
+            font-size: $fs-xs;
+            *:hover {
+              text-shadow: none;
+              color: $clr-primary-light-pink;
+            }
+          }
+          .itemInput {
+            display: none;
+          }
+          .itemInput:checked ~ .itemLabel {
+            color: $clr-primary-light-pink;
+          }
+        }
       }
     }
   }
@@ -87,10 +91,6 @@
   display: none;
 }
 
-#menu-checkbox:checked ~ .nav {
-  display: flex;
-}
-
 label[for="menu-checkbox"] {
   display: none;
   position: fixed;
@@ -98,7 +98,7 @@ label[for="menu-checkbox"] {
   right: 6%;
   box-shadow: $box-sh-button;
   border-radius: 50%;
-  z-index: 2;
+  z-index: 100;
   backdrop-filter: blur(5px);
 
   & a {
@@ -120,32 +120,41 @@ label[for="menu-checkbox"] {
 }
 
 @media screen and (min-width: $bp-extra-big-screen) {
-  .nav {
+  .header__content {
+    padding-top: 0;
     display: flex;
-    justify-content: center;
-    width: 30%;
-    height: min-content;
-    top: 10%;
-    right: 7%;
-    background-color: transparent;
-
-    &__list-item {
-      padding: 2rem;
-      color: $clr-accent-light-wheat;
+    flex-direction: column;
+    .nav {
+      display: flex;
+      position: relative;
+      margin: 0 auto;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      height: min-content;
+      background-color: transparent;
+      top: 0;
+      left: 0;
+      margin: 0 auto 3rem auto;
+      &__list-item {
+        padding: 1.5rem;
+        color: $clr-accent-light-wheat;
+      }
     }
   }
   label[for="menu-checkbox"] {
     display: none;
   }
 }
+
 @media screen and (max-width: $bp-extra-big-screen) {
   .nav {
     display: none;
-    position: fixed;
     justify-content: center;
-    width: 84%;
+    width: 85%;
     height: min-content;
-    right: 8%;
+    right: 7.5%;
+    top: 3%;
     background-color: $bg-primary-dull-rose-nav;
     border-radius: 50px;
 
@@ -154,81 +163,87 @@ label[for="menu-checkbox"] {
       color: $clr-accent-light-wheat;
     }
   }
+  .nav {
+    &__list {
+      &-item {
+        padding: 1rem 2.5rem;
+        & * {
+          font-size: $fs-m;
+        }
+      }
+    }
+  }
   label[for="menu-checkbox"] {
     display: block;
-    right: 8%;
+    right: 7.5%;
+    top: 2.7%;
+    & a {
+      padding: 1.5rem;
+      font-size: $fs-m;
+    }
+  }
+  #menu-checkbox:checked ~ .nav {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: $bp-big-screen) {
+  .nav {
+    &__list-item {
+      padding: 1rem 1.5rem;
+    }
   }
 }
 
 @media screen and (max-width: $bp-small-screen) {
   .nav {
-    width: 80%;
-    top: 8%;
-    right: 10%;
+    width: 90%;
+    right: 5%;
     &__list {
       &-item {
-        font-size: 1.3rem;
+        padding: 1rem 1.2rem;
       }
     }
   }
   label[for="menu-checkbox"] {
-    display: block;
-    top: 8.2%;
-    right: 10%;
-
+    right: 6%;
+    top: 3.5%;
     & a {
       padding: 1.3rem;
     }
-  }
-  .button {
-    padding: 1.3rem;
   }
 }
 
 @media screen and (max-width: $bp-very-small-screen) {
   .nav {
-    width: 90%;
-    top: 2%;
-    right: 5%;
-  }
-  label[for="menu-checkbox"] {
-    display: block;
-    top: 3%;
-    right: 5%;
+    width: 96%;
+    right: 2%;
 
-    & a {
-      padding: 1rem;
+    &__list {
+      &-item {
+        padding: 1rem 1rem;
+        & * {
+          font-size: $fs-s;
+        }
+      }
     }
-  }
-  .button {
-    padding: 2rem;
   }
 }
 
 @media screen and (max-width: $bp-extra-small-screen) {
   .nav {
-    width: 90%;
-    top: 2%;
-    right: 5%;
-    justify-content: left;
-
     &__list {
-      justify-content: left;
       &-item {
         padding: 1rem 0.7rem;
+        & * {
+          font-size: $fs-xs;
+        }
       }
     }
   }
   label[for="menu-checkbox"] {
-    display: block;
-    top: 1.8%;
-    right: 5%;
-
     & a {
-      padding: 1rem;
+      font-size: $fs-xs;
     }
-  }
-  .button {
-    padding: 1.3rem;
   }
 }
