@@ -1,7 +1,7 @@
 @use "../../../shared/styles/abstracts/Variables" as *;
 
 .nav {
-  position: absolute;
+  position: fixed;
   width: min-content;
   z-index: 99;
 
@@ -221,11 +221,15 @@ label[for="menu-checkbox"] {
 
     &__list {
       &-item {
-        padding: 1rem 1rem;
+        padding: 1rem 0.7rem;
         & * {
           font-size: $fs-s;
         }
       }
+    }
+
+    label[for="menu-checkbox"] {
+      right: 3%;
     }
   }
 }
@@ -234,7 +238,7 @@ label[for="menu-checkbox"] {
   .nav {
     &__list {
       &-item {
-        padding: 1rem 0.7rem;
+        padding: 1rem 5%;
         & * {
           font-size: $fs-xs;
         }
@@ -242,6 +246,7 @@ label[for="menu-checkbox"] {
     }
   }
   label[for="menu-checkbox"] {
+    right: 1%;
     & a {
       font-size: $fs-xs;
     }

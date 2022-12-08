@@ -36,51 +36,49 @@ const Login = () => {
   };
 
   return (
-    <div className="outer-container">
-      <div className="sign-in-outer-container">
-        <form className="sign-in" onSubmit={handleSubmit}>
-          <div className="sign-in__inner-container">
-            <label htmlFor="sign-in-username">Username</label>
-            <input
-              className="input"
-              type="text"
-              id="sign-in-username"
-              {...register("username", {
-                required: "Username is required :3",
-              })}
-            />
-            <label>Password</label>
-            <input
-              className="input"
-              type="password"
-              {...register("password", {
-                required: "Password is required ^_^",
-              })}
-            />
-          </div>
-          <div className="formButtons">
-            <input
-              disabled={!isValid}
-              className="button submit"
-              type="submit"
-              value="submit"
-            />
-            <input className="button cancel" type="reset" value="cancel" />
-          </div>
-        </form>
-
-        <div className="no-account">
-          <p>
-            No account yet?
-            <br />
-            You can register here...
-            <br />
-            <br />
-          </p>
-          <Link className="link-register" href="/user/sign_up">
-            Register
-          </Link>
+    <div className="sign-in-outer-container">
+      <form className="sign-in" onSubmit={handleSubmit}>
+        <div className="sign-in__inner-container">
+          <label htmlFor="sign-in-username">Username</label>
+          <input
+            className="input"
+            type="text"
+            id="sign-in-username"
+            {...register("username", {
+              required: "Username is required :3",
+            })}
+          />
+          <label>Password</label>
+          <input
+            className="input"
+            type="password"
+            {...register("password", {
+              required: "Password is required ^_^",
+            })}
+          />
         </div>
+        <div className="formButtons">
+          <input
+            disabled={!isValid}
+            className="button submit"
+            type="submit"
+            value="submit"
+          />
+          <input className="button cancel" type="reset" value="cancel" />
+        </div>
+      </form>
+
+      <div className="no-account">
+        <p>
+          No account yet?
+          <br />
+          You can register here...
+          <br />
+          <br />
+        </p>
+        <Link className="link-register" href="/user/sign_up">
+          Register
+        </Link>
       </div>
     </div>
   );

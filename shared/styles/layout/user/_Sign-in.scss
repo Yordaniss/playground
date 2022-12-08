@@ -5,10 +5,9 @@
   justify-content: space-between;
   align-content: center;
   align-items: center;
-  width: 60%;
-  min-width: min-content;
-  height: 40%;
-  border-radius: 70px;
+  width: 100vw;
+  height: 100vh;
+  background-color: $bg-primary-light-pink;
 
   .no-account {
     padding: 4rem;
@@ -88,8 +87,52 @@
   }
 }
 
-@media screen and (max-width: $bp-medium-screen) {
-  .sign-in {
-    width: 80%;
+@media screen and (min-width: $bp-small-screen) {
+  .sign-in-outer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 5%;
+    width: 100%;
+
+    .sign-in {
+      width: 40%;
+      min-width: 25rem;
+      & * {
+        font-size: $fs-s;
+      }
+    }
+
+    .no-account {
+      padding: 1rem;
+      font-size: $fs-s;
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: $bp-small-screen) {
+  .sign-in-outer-container {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    row-gap: 1rem;
+
+    .sign-in {
+      width: 100%;
+      max-width: 30rem;
+      padding: 1.5rem;
+      & * {
+        font-size: $fs-xs;
+      }
+    }
+
+    .no-account {
+      padding: 1rem;
+      font-size: $fs-s;
+      text-align: center;
+    }
   }
 }

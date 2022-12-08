@@ -853,10 +853,9 @@ body {
   justify-content: space-between;
   align-content: center;
   align-items: center;
-  width: 60%;
-  min-width: min-content;
-  height: 40%;
-  border-radius: 70px;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f7cac9;
 }
 .sign-in-outer-container .no-account {
   padding: 4rem;
@@ -927,20 +926,108 @@ body {
   color: white;
 }
 
-@media screen and (max-width: 890px) {
-  .sign-in {
-    width: 80%;
+@media screen and (min-width: 768px) {
+  .sign-in-outer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 5%;
+    width: 100%;
+  }
+  .sign-in-outer-container .sign-in {
+    width: 40%;
+    min-width: 25rem;
+  }
+  .sign-in-outer-container .sign-in * {
+    font-size: clamp(1.2rem, 1.2vw, 1.5rem);
+  }
+  .sign-in-outer-container .no-account {
+    padding: 1rem;
+    font-size: clamp(1.2rem, 1.2vw, 1.5rem);
+    text-align: center;
+  }
+}
+@media screen and (max-width: 768px) {
+  .sign-in-outer-container {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    row-gap: 1rem;
+  }
+  .sign-in-outer-container .sign-in {
+    width: 100%;
+    max-width: 30rem;
+    padding: 1.5rem;
+  }
+  .sign-in-outer-container .sign-in * {
+    font-size: clamp(1rem, 1.3vw, 1.2rem);
+  }
+  .sign-in-outer-container .no-account {
+    padding: 1rem;
+    font-size: clamp(1.2rem, 1.2vw, 1.5rem);
+    text-align: center;
   }
 }
 .sign-up-outer-container {
   display: flex;
   justify-content: space-between;
+  background-color: #f7cac9;
   align-content: center;
   align-items: center;
-  width: 60%;
-  min-width: min-content;
-  height: 40%;
+  width: 100vw;
+  height: 100vh;
+  padding: 3rem;
+}
+.sign-up-outer-container .sign-up {
   border-radius: 70px;
+  padding: 4rem;
+  background-color: #e7babc;
+}
+.sign-up-outer-container .sign-up__inner-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+.sign-up-outer-container .sign-up__inner-container label {
+  font-weight: 600;
+  font-family: "Josefin Sans";
+  border: none;
+  font-size: clamp(1.2rem, 1.2vw, 1.5rem);
+  color: #a74c59;
+  user-select: none;
+  white-space: nowrap;
+  text-align: center;
+}
+.sign-up-outer-container .sign-up__inner-container input {
+  font-family: "Josefin Sans";
+  border: none;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 350;
+}
+.sign-up-outer-container .sign-up .formButtons {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  column-gap: 2rem;
+  margin-top: 3rem;
+}
+.sign-up-outer-container .sign-up .formButtons .submit {
+  background-color: #c4787c;
+  color: white;
+}
+.sign-up-outer-container .sign-up .formButtons .submit:disabled, .sign-up-outer-container .sign-up .formButtons .submit:disabled:hover, .sign-up-outer-container .sign-up .formButtons .submit:disabled:active {
+  background-color: #c39ea0;
+  color: #846c6d;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.sign-up-outer-container .sign-up .formButtons .cancel {
+  background-color: #c4787c;
+  color: white;
 }
 .sign-up-outer-container .have-account {
   padding: 4rem;
@@ -961,59 +1048,48 @@ body {
   text-shadow: 0px 0px 5px white, 0px 0px 5px rgba(253, 201, 201, 0.7), 0px 0px 7px rgba(253, 201, 201, 0.7), 0px 0px 10px rgba(253, 201, 201, 0.7), 0px 0px 15px rgba(253, 201, 201, 0.7), 0px 0px 20px rgba(253, 201, 201, 0.7), 0px 0px 17px rgba(253, 201, 201, 0.7), 0px 0px 37px rgba(253, 201, 201, 0.7);
 }
 
-.sign-up {
-  border-radius: 70px;
-  padding: 4rem;
-  background-color: #e7babc;
+@media screen and (min-width: 768px) {
+  .sign-up-outer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 5%;
+    width: 100%;
+  }
+  .sign-up-outer-container .sign-up {
+    width: 40%;
+    min-width: 25rem;
+  }
+  .sign-up-outer-container .sign-up * {
+    font-size: clamp(1.2rem, 1.2vw, 1.5rem);
+  }
+  .sign-up-outer-container .have-account {
+    padding: 1rem;
+    font-size: clamp(1.2rem, 1.2vw, 1.5rem);
+    text-align: center;
+  }
 }
-.sign-up__inner-container {
-  display: flex;
-  flex-direction: column;
-  row-gap: 1.5rem;
-}
-.sign-up__inner-container label {
-  font-weight: 600;
-  font-family: "Josefin Sans";
-  border: none;
-  font-size: clamp(1.2rem, 1.2vw, 1.5rem);
-  color: #a74c59;
-  user-select: none;
-  white-space: nowrap;
-  text-align: center;
-}
-.sign-up__inner-container input {
-  font-family: "Josefin Sans";
-  border: none;
-  font-size: clamp(1rem, 1.3vw, 1.2rem);
-  color: rgba(0, 0, 0, 0.8);
-  font-weight: 350;
-}
-.sign-up .formButtons {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  column-gap: 2rem;
-  margin-top: 3rem;
-}
-.sign-up .formButtons .submit {
-  background-color: #c4787c;
-  color: white;
-}
-.sign-up .formButtons .submit:disabled, .sign-up .formButtons .submit:disabled:hover, .sign-up .formButtons .submit:disabled:active {
-  background-color: #c39ea0;
-  color: #846c6d;
-  box-shadow: none;
-  cursor: not-allowed;
-}
-.sign-up .formButtons .cancel {
-  background-color: #c4787c;
-  color: white;
-}
-
-@media screen and (max-width: 890px) {
-  .sign-up {
-    width: 80%;
+@media screen and (max-width: 768px) {
+  .sign-up-outer-container {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    row-gap: 1rem;
+  }
+  .sign-up-outer-container .sign-up {
+    width: 100%;
+    max-width: 30rem;
+    padding: 1.5rem;
+  }
+  .sign-up-outer-container .sign-up * {
+    font-size: clamp(1rem, 1.3vw, 1.2rem);
+  }
+  .sign-up-outer-container .have-account {
+    padding: 1rem;
+    font-size: clamp(1.2rem, 1.2vw, 1.5rem);
+    text-align: center;
   }
 }
 .button {
@@ -1362,7 +1438,7 @@ body {
 }
 
 .nav {
-  position: absolute;
+  position: fixed;
   width: min-content;
   z-index: 99;
 }
@@ -1549,18 +1625,24 @@ label[for=menu-checkbox] a {
     right: 2%;
   }
   .nav__list-item {
-    padding: 1rem 1rem;
+    padding: 1rem 0.7rem;
   }
   .nav__list-item * {
     font-size: clamp(1.2rem, 1.2vw, 1.5rem);
   }
+  .nav label[for=menu-checkbox] {
+    right: 3%;
+  }
 }
 @media screen and (max-width: 470px) {
   .nav__list-item {
-    padding: 1rem 0.7rem;
+    padding: 1rem 5%;
   }
   .nav__list-item * {
     font-size: clamp(1rem, 1.3vw, 1.2rem);
+  }
+  label[for=menu-checkbox] {
+    right: 1%;
   }
   label[for=menu-checkbox] a {
     font-size: clamp(1rem, 1.3vw, 1.2rem);

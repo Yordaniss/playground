@@ -39,69 +39,67 @@ const Register = () => {
   };
 
   return (
-    <div className="outer-container">
-      <div className="sign-up-outer-container">
-        <form className="sign-up" onSubmit={sumbitForm}>
-          <div className="sign-up__inner-container">
-            <label htmlFor="sign-up-username">Username</label>
-            <input
-              id="sign-up-username"
-              className={`input ${errors.username && "error"}`}
-              type="text"
-              {...register("username", {
-                required: "Username is required :3",
-              })}
-            />
-            {errors.username && (
-              <p className="error-message">{errors.username?.message}</p>
-            )}
-            <label htmlFor="sign-up-email">Email</label>
-            <input
-              id="sign-up-email"
-              className={`input ${errors.email && "error"}`}
-              type="text"
-              {...register("email", {
-                required: "Your email is also needed ^_^",
-              })}
-            />
-            {errors.email && (
-              <p className="error-message">{errors.email?.message}</p>
-            )}
-            <label htmlFor="sign-up-password">Password</label>
-            <input
-              id="sign-up-password"
-              className={`input ${errors.password && "error"}`}
-              type="password"
-              required
-              {...register("password", {
-                required: "Password is required for your safety",
-              })}
-            />
-            {errors.password && (
-              <p className="error-message">{errors.password?.message}</p>
-            )}
-          </div>
-          <div className="formButtons">
-            <input
-              disabled={!isValid}
-              className="button submit"
-              type="submit"
-              value="submit"
-            />
-            <input className="button cancel" type="reset" value="cancel" />
-          </div>
-        </form>
-
-        <div className="have-account">
-          <p>
-            Already have an account?
-            <br />
-            <br />
-          </p>
-          <Link className="link-login" href={"/user/sign_in"}>
-            Login
-          </Link>
+    <div className="sign-up-outer-container">
+      <form className="sign-up" onSubmit={sumbitForm}>
+        <div className="sign-up__inner-container">
+          <label htmlFor="sign-up-username">Username</label>
+          <input
+            id="sign-up-username"
+            className={`input ${errors.username && "error"}`}
+            type="text"
+            {...register("username", {
+              required: "Username is required :3",
+            })}
+          />
+          {errors.username && (
+            <p className="error-message">{errors.username?.message}</p>
+          )}
+          <label htmlFor="sign-up-email">Email</label>
+          <input
+            id="sign-up-email"
+            className={`input ${errors.email && "error"}`}
+            type="text"
+            {...register("email", {
+              required: "Your email is also needed ^_^",
+            })}
+          />
+          {errors.email && (
+            <p className="error-message">{errors.email?.message}</p>
+          )}
+          <label htmlFor="sign-up-password">Password</label>
+          <input
+            id="sign-up-password"
+            className={`input ${errors.password && "error"}`}
+            type="password"
+            required
+            {...register("password", {
+              required: "Password is required for your safety",
+            })}
+          />
+          {errors.password && (
+            <p className="error-message">{errors.password?.message}</p>
+          )}
         </div>
+        <div className="formButtons">
+          <input
+            disabled={!isValid}
+            className="button submit"
+            type="submit"
+            value="submit"
+          />
+          <input className="button cancel" type="reset" value="cancel" />
+        </div>
+      </form>
+
+      <div className="have-account">
+        <p>
+          Already have an account?
+          <br />
+          <br />
+        </p>
+        <Link className="link-login" href={"/user/sign_in"}>
+          Login
+        </Link>
       </div>
     </div>
   );

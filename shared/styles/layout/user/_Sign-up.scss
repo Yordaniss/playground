@@ -3,12 +3,68 @@
 .sign-up-outer-container {
   display: flex;
   justify-content: space-between;
+  background-color: $bg-primary-light-pink;
   align-content: center;
   align-items: center;
-  width: 60%;
-  min-width: min-content;
-  height: 40%;
-  border-radius: 70px;
+  width: 100vw;
+  height: 100vh;
+  padding: 3rem;
+
+  .sign-up {
+    border-radius: 70px;
+    padding: 4rem;
+    background-color: $bg-accent-dull-sakura;
+    &__inner-container {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1.5rem;
+
+      label {
+        font-weight: 600;
+        font-family: $ff-text;
+        border: none;
+        font-size: $fs-s;
+        color: $clr-accent-dusty-wine;
+        user-select: none;
+        white-space: nowrap;
+        text-align: center;
+      }
+      input {
+        font-family: $ff-text;
+        border: none;
+        font-size: $fs-xs;
+        color: rgb(black, 0.8);
+        font-weight: 350;
+      }
+    }
+
+    .formButtons {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      column-gap: 2rem;
+      margin-top: 3rem;
+
+      .submit {
+        background-color: $bg-primary-dull-rose;
+        color: $clr-primary-white;
+
+        &:disabled,
+        &:disabled:hover,
+        &:disabled:active {
+          background-color: #c39ea0;
+          color: #846c6d;
+          box-shadow: none;
+          cursor: not-allowed;
+        }
+      }
+      .cancel {
+        background-color: $bg-primary-dull-rose;
+        color: $clr-primary-white;
+      }
+    }
+  }
 
   .have-account {
     padding: 4rem;
@@ -32,64 +88,52 @@
   }
 }
 
-.sign-up {
-  border-radius: 70px;
-  padding: 4rem;
-  background-color: $bg-accent-dull-sakura;
-  &__inner-container {
+@media screen and (min-width: $bp-small-screen) {
+  .sign-up-outer-container {
     display: flex;
-    flex-direction: column;
-    row-gap: 1.5rem;
-
-    label {
-      font-weight: 600;
-      font-family: $ff-text;
-      border: none;
-      font-size: $fs-s;
-      color: $clr-accent-dusty-wine;
-      user-select: none;
-      white-space: nowrap;
-      text-align: center;
-    }
-    input {
-      font-family: $ff-text;
-      border: none;
-      font-size: $fs-xs;
-      color: rgb(black, 0.8);
-      font-weight: 350;
-    }
-  }
-
-  .formButtons {
-    display: flex;
+    flex-direction: row;
     justify-content: center;
-    align-content: center;
-    align-items: center;
-    column-gap: 2rem;
-    margin-top: 3rem;
+    column-gap: 5%;
+    width: 100%;
 
-    .submit {
-      background-color: $bg-primary-dull-rose;
-      color: $clr-primary-white;
-
-      &:disabled,
-      &:disabled:hover,
-      &:disabled:active {
-        background-color: #c39ea0;
-        color: #846c6d;
-        box-shadow: none;
-        cursor: not-allowed;
+    .sign-up {
+      width: 40%;
+      min-width: 25rem;
+      & * {
+        font-size: $fs-s;
       }
     }
-    .cancel {
-      background-color: $bg-primary-dull-rose;
-      color: $clr-primary-white;
+
+    .have-account {
+      padding: 1rem;
+      font-size: $fs-s;
+      text-align: center;
     }
   }
 }
 
-@media screen and (max-width: $bp-medium-screen) {
-  .sign-up {
-    width: 80%;
+@media screen and (max-width: $bp-small-screen) {
+  .sign-up-outer-container {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    row-gap: 1rem;
+
+    .sign-up {
+      width: 100%;
+      max-width: 30rem;
+      padding: 1.5rem;
+      & * {
+        font-size: $fs-xs;
+      }
+    }
+
+    .have-account {
+      padding: 1rem;
+      font-size: $fs-s;
+      text-align: center;
+    }
   }
 }

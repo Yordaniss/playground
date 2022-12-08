@@ -71,13 +71,15 @@ export default function PostsDashboard() {
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      if (window.pageYOffset > 200) {
-        rocketBtnRef.current.style.display = "block";
-      } else {
-        rocketBtnRef.current.style.display = "none";
+      if (rocketBtnRef) {
+        if (window.pageYOffset > 200) {
+          rocketBtnRef.current.style.display = "block";
+        } else {
+          rocketBtnRef.current.style.display = "none";
+        }
       }
     });
-  }, []);
+  }, [rocketBtnRef]);
 
   return (
     <section className="postsDashboard" id="postsDashboard">
@@ -127,14 +129,16 @@ export default function PostsDashboard() {
         className="button scroll-to-top"
         value="🚀"
         onClick={() => {
-          rocketBtnRef.current.classList.add("rocket-animate");
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
-          setTimeout(() => {
-            rocketBtnRef.current.classList.remove("rocket-animate");
-          }, 1000);
+          if (rocketBtnRef) {
+            rocketBtnRef.current.classList.add("rocket-animate");
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+            setTimeout(() => {
+              rocketBtnRef.current.classList.remove("rocket-animate");
+            }, 1000);
+          }
         }}
       />
     </section>
