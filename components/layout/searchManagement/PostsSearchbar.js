@@ -1,4 +1,4 @@
-import Searchbar from "../../UI/SearchBar";
+import Searchbar from "../../UI/Searchbar";
 import { useSelector, useDispatch } from "react-redux";
 import { searchConfigActions } from "../../../store/index";
 

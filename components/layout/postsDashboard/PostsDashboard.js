@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import useHttpRequest from "../../hooks/useHttpRequest";
 import SearchManagement from "../searchManagement/SearchManagement";
 import Post from "./Post";
@@ -11,6 +11,8 @@ export default function PostsDashboard() {
   const searchConfig = useSelector(({ searchConfig }) => searchConfig);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 5;
+  const rocketBtnRef = useRef(null);
+  const dashboardRef = useRef(null);
 
   const {
     isLoading,
@@ -67,10 +69,20 @@ export default function PostsDashboard() {
     postsForPage = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
   }
 
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 200) {
+        rocketBtnRef.current.style.display = "block";
+      } else {
+        rocketBtnRef.current.style.display = "none";
+      }
+    });
+  }, []);
+
   return (
     <section className="postsDashboard" id="postsDashboard">
       <SearchManagement></SearchManagement>
-      <div className="dashboard">
+      <div className="dashboard" ref={dashboardRef}>
         {isLoading && (
           <ModuleWindow
             type="INFO"
@@ -109,6 +121,22 @@ export default function PostsDashboard() {
           ></Pagination>
         )}
       </div>
+      <input
+        ref={rocketBtnRef}
+        type="button"
+        className="button scroll-to-top"
+        value="🚀"
+        onClick={() => {
+          rocketBtnRef.current.classList.add("rocket-animate");
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+          setTimeout(() => {
+            rocketBtnRef.current.classList.remove("rocket-animate");
+          }, 1000);
+        }}
+      />
     </section>
   );
 }

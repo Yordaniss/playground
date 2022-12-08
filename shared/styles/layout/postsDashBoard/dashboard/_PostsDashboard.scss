@@ -23,14 +23,47 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    // top: 0;
     left: 0;
-    // bottom: 0;
-    // right: 0;
     overflow: auto;
   }
 
   .postsDashboard-loading {
     margin-left: 15%;
+  }
+}
+
+.scroll-to-top.button {
+  position: fixed;
+  right: 7%;
+  bottom: 7%;
+  width: min-content;
+  padding: 1rem;
+  background-color: transparent;
+  box-shadow: $box-sh-button;
+  border-radius: 50%;
+  z-index: 99;
+  backdrop-filter: blur(5px);
+  background-color: rgba($bg-primary-dull-rose, 0.3);
+  font-family: $ff-tiny-utilities;
+  font-weight: 900;
+  color: $clr-primary-white;
+  font-size: $fs-m;
+}
+.rocket-animate:focus {
+  animation: rotate-rocket 3s ease-in-out both;
+
+  @keyframes rotate-rocket {
+    0% {
+      transform: rotate(0);
+    }
+    20% {
+      transform: rotate(-45deg);
+    }
+    98% {
+      transform: rotate(-45deg);
+    }
+    100% {
+      transform: rotate(0);
+    }
   }
 }
