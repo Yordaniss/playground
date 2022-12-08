@@ -47,6 +47,29 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", scrollHandler);
   }, []);
 
+  const [dropdown, setDropdown] = useState(null);
+  useEffect(() => {
+    console.log(getCookie("token"));
+    const onSignOut = () => removeCookies("token");
+    let selectionModifier;
+    let dropdownList;
+    if (getCookie("token")) {
+      selectionModifier = "PROFILE__LOGGED";
+      dropdownList = dropdownListLogged;
+    } else {
+      selectionModifier = "PROFILE__NOT__LOGGED";
+      dropdownList = dropdownListNotLogged;
+    }
+
+    setDropdown(
+      <Dropdown
+        selectionModifier={selectionModifier}
+        dropdownList={dropdownList}
+        onSignOut={onSignOut}
+      ></Dropdown>
+    );
+  }, [getCookie("token")]);
+
   return (
     <React.Fragment>
       <input
@@ -71,22 +94,7 @@ export default function Navbar() {
             );
           })}
           <li key={Math.random()} className="nav__list-item">
-            {console.log(getCookie("token"))}
-            {!getCookie("token") && (
-              <Dropdown
-                selectionModifier="PROFILE__NOT__LOGGED"
-                dropdownList={dropdownListNotLogged}
-              ></Dropdown>
-            )}
-            {getCookie("token") && (
-              <Dropdown
-                selectionModifier="PROFILE__LOGGED"
-                dropdownList={dropdownListLogged}
-                onSignOut={() => {
-                  removeCookies("token");
-                }}
-              ></Dropdown>
-            )}
+            {dropdown && dropdown}
           </li>
         </ul>
       </nav>

@@ -95,8 +95,6 @@ export default function Dropdown(props) {
                     }
                   }}
                 />
-                {console.log(props.dropdownList.list)}
-
                 <label htmlFor={innerInputID} className="itemLabel">
                   {!props.selectionModifier.includes("PROFILE") &&
                     el.optionTitle}
