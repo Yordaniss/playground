@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-export default function Searchbar(props) {
+export default function SearchBar(props) {
   const searchbarRef = useRef(null);
 
   const handleClick = () => {

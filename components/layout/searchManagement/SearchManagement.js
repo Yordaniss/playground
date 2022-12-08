@@ -1,7 +1,7 @@
 import FilterDropdown from "./FilterDropdown";
 import AgeInput from "./AgeInput";
 import SortingDropdown from "./SortingDropdown";
-import PostsSearchbar from "./PostsSearchbar";
+import PostsSearchBar from "./PostsSearchBar";
 
 export default function SearchManagement(props) {
   return (
@@ -9,7 +9,7 @@ export default function SearchManagement(props) {
       <FilterDropdown />
       <AgeInput />
       <SortingDropdown />
-      <PostsSearchbar />
+      <PostsSearchBar />
     </div>
   );
 }
