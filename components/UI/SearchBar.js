@@ -1,21 +1,21 @@
 import { useRef } from "react";
 
 export default function SearchBar(props) {
-  const searchbarRef = useRef(null);
+  const searchBarRef = useRef(null);
 
   const handleClick = () => {
-    props.onSearch(searchbarRef.current.value.trim());
+    props.onSearch(searchBarRef.current.value.trim());
   };
 
   return (
-    <div className="searchbar">
+    <div className="searchBar">
       <input
-        className="searchbar__searchInput"
+        className="searchBar__searchInput"
         type="text"
         placeholder="Search..."
-        ref={searchbarRef}
+        ref={searchBarRef}
       />
-      <button className="searchbar__searchButton" onClick={handleClick}>
+      <button className="searchBar__searchButton" onClick={handleClick}>
         🔍
       </button>
     </div>
