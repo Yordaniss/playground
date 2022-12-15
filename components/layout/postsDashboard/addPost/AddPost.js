@@ -23,20 +23,17 @@ const validateCategory = (
   clearErrors
 ) => {
   if (!e.target.className.includes("dropdown")) {
-    const dropDownInput = document.querySelector(".dropdown__input");
     if (
       isFieldTouchedInRedux("main_category", touchedFieldsRedux) &&
       !categoryState &&
       categoryState !== 0
     ) {
-      dropDownInput.checked = false;
       setError("main_category", {
         type: "custom",
         message: "Please, choose category",
       });
     } else if (categoryState || categoryState === 0) {
       clearErrors("main_category");
-      dropDownInput.checked = false;
     }
   }
 };
@@ -231,6 +228,7 @@ export default function AddPost({ action = `${server}/api/posts` }) {
               {...register("main_category", {
                 value: setValue("main_category", categoryState),
               })}
+              dropdownInputRef={null}
             ></CategoryDropdown>
           </div>
           {errors.main_category && !categoryState && categoryState !== 0 && (
