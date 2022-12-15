@@ -35,9 +35,7 @@ export default function PostsDashboard() {
         },
         body: filtersJSON,
       },
-      (posts) => {
-        console.log(posts);
-      }
+      () => {}
     );
   }, [searchConfig]);
 
@@ -72,14 +70,14 @@ export default function PostsDashboard() {
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (rocketBtnRef.current !== null) {
-        if (window.pageYOffset > 200) {
-          rocketBtnRef.current.style.display = "block";
-        } else {
+        if (window.pageYOffset <= 100) {
           rocketBtnRef.current.style.display = "none";
+        } else {
+          rocketBtnRef.current.style.display = "block";
         }
       }
     });
-  }, [rocketBtnRef]);
+  }, []);
 
   return (
     <section className="postsDashboard" id="postsDashboard">

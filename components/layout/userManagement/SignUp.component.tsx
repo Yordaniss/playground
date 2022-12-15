@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { getCookie, setCookie } from "cookies-next";
+import { setCookie } from "cookies-next";
 import { useForm } from "react-hook-form";
+import useHttpRequest from "../../hooks/useHttpRequest";
+import ModuleWindow from "../../UI/ModuleWindow";
 
 const Register = () => {
   const router = useRouter();
@@ -18,29 +20,68 @@ const Register = () => {
     shouldFocusError: false,
   });
 
-  const sumbitForm = async (e: { preventDefault: () => void }) => {
+  const {
+    isLoading,
+    error: fetchError,
+    sendRequest: signUp,
+  } = useHttpRequest();
+  const [signUpError, setsignUpError] = useState("");
+
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const data = getValues();
+    setsignUpError("");
 
-    fetch("/api/user/sign_up", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...data,
-      }),
-    }).then(async (data) => {
-      const responseData = await data.json();
-      if (responseData.success) {
-        setCookie("token", responseData.token);
-
-        router.push("/");
+    signUp(
+      {
+        url: "/api/user/sign_up",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      },
+      (responseData: any) => {
+        if (responseData.success) {
+          setCookie("token", responseData.token);
+          router.push("/");
+        } else if (!responseData.success) {
+          setsignUpError(responseData.data);
+          router.push("/sign_up");
+        }
       }
-    });
+    );
+
+    if (fetchError) {
+      router.push("/sign_up");
+    } else if (signUpError === "") router.push("/");
   };
 
   return (
     <div className="sign-up-outer-container">
-      <form className="sign-up" onSubmit={sumbitForm}>
+      {fetchError && (
+        <ModuleWindow
+          type="ERROR"
+          message={`Something went wrong... :(\n\n${
+            signUpError ? signUpError : fetchError
+          }`}
+          image={{
+            src: "/images/sad-unicorn.svg",
+            className: "sending-post-animation",
+          }}
+          blur="addPost-blur"
+        ></ModuleWindow>
+      )}
+      {isLoading && (
+        <ModuleWindow
+          type="INFO"
+          message="Signing you up..."
+          image={{
+            src: "/images/post-office.svg",
+            className: "sending-post-animation",
+          }}
+          blur="addPost-blur"
+        ></ModuleWindow>
+      )}
+      <form className="sign-up" onSubmit={handleSubmit}>
         <div className="sign-up__inner-container">
           <label htmlFor="sign-up-username">Username</label>
           <input

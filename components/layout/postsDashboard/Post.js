@@ -17,7 +17,6 @@ export default function Post(props) {
           <Link href={`/${props.post.main_category}`} className="category">
             from {props.post.age_category} y.o.
           </Link>
-          {console.log(props.post)}
         </p>
       </div>
 

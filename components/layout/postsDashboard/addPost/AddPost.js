@@ -83,7 +83,6 @@ export default function AddPost({ action = `${server}/api/posts` }) {
     sendRequest: postForm,
   } = useHttpRequest();
 
-  const url = `${server}/ai/posts`;
   const onSubmit = (data) => {
     const formData = new FormData();
     for (let key in data) {
@@ -95,7 +94,7 @@ export default function AddPost({ action = `${server}/api/posts` }) {
 
     postForm(
       {
-        url: url,
+        url: "/api/posts",
         method: "POST",
         headers: { ...authorization },
         body: formData,

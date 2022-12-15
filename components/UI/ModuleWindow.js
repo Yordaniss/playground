@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useRef } from "react";
 
 export default function ModuleWindow(props) {
+  const moduleWindowRef = useRef(null);
+  const moduleWindowBlurRef = useRef(null);
   return (
     <React.Fragment>
-      <div className={`module-window-blur ${props.blur && props.blur}`}></div>
       <div
+        ref={moduleWindowBlurRef}
+        className={`module-window-blur ${props.blur && props.blur}`}
+      ></div>
+      <div
+        ref={moduleWindowRef}
         className={`module-window ${props.className && props.className} ${
           props.className ? props.className : ""
         }`}
@@ -13,9 +19,8 @@ export default function ModuleWindow(props) {
           <div
             className="module-window__close-icon-container"
             onClick={() => {
-              document.querySelector(".module-window").style.display = "none";
-              document.querySelector(".module-window-blur").style.display =
-                "none";
+              moduleWindowRef.current.style.display = "none";
+              moduleWindowBlurRef.current.style.display = "none";
             }}
           >
             <svg viewBox="0 0 16 16">

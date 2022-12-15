@@ -16,13 +16,14 @@ export default function useHttpRequest() {
       });
       if (!response.ok) {
         setError("HTTP error: " + response.status);
-        throw new Error("HTTP error: " + response.status);
+        console.error("HTTP error: " + response.status);
       }
       const data = await response.json();
       setData(data);
       fetchCallback(data);
     } catch (error) {
-      setError("Couldn't get data :( Error: " + error);
+      setError(error);
+      console.error(error);
     }
     setIsLoading(false);
   };
