@@ -24,22 +24,38 @@ export default function PostsDashboard() {
   useEffect(() => {
     const filterObj = searchConfig.filtration;
     const filtersJSON = JSON.stringify(filterObj);
-    console.log(filtersJSON);
 
-    fetchPosts(
-      {
-        url: `/api/search`,
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+    if (
+      filterObj.title === "" &&
+      filterObj.main_category === "" &&
+      filterObj.components.length === 0
+    ) {
+      fetchPosts(
+        {
+          url: `/api/posts`,
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
-        body: filtersJSON,
-      },
-      (posts) => {
-        console.log(posts);
-      }
-    );
-  }, [searchConfig]);
+        (posts) => {
+          console.log(posts);
+        }
+      );
+    } else {
+      fetchPosts(
+        {
+          url: `/api/search`,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: filtersJSON,
+        },
+        () => {}
+      );
+    }
+  }, [searchConfig.filtration, searchConfig.sorting]);
 
   const sort = () => {
     if (searchConfig.sorting.property === "default") {
@@ -49,6 +65,18 @@ export default function PostsDashboard() {
       searchConfig.sorting.direction === "desc"
         ? posts.data.reverse()
         : posts.data;
+    }
+    if (searchConfig.sorting.property === "title") {
+      return orderBy(
+        posts.data,
+        [
+          (dataUnit) => {
+            const propertyName = searchConfig.sorting.property.toLowerCase();
+            return dataUnit[propertyName].toLowerCase();
+          },
+        ],
+        [searchConfig.sorting.direction]
+      );
     }
     return orderBy(
       posts.data,
@@ -72,14 +100,14 @@ export default function PostsDashboard() {
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (rocketBtnRef.current !== null) {
-        if (window.pageYOffset > 200) {
-          rocketBtnRef.current.style.display = "block";
-        } else {
+        if (window.pageYOffset <= 100) {
           rocketBtnRef.current.style.display = "none";
+        } else {
+          rocketBtnRef.current.style.display = "block";
         }
       }
     });
-  }, [rocketBtnRef]);
+  }, []);
 
   return (
     <section className="postsDashboard" id="postsDashboard">

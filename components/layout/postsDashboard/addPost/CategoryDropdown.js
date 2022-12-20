@@ -56,7 +56,7 @@ export default function CategoryDropdown(props) {
         }
       })
       .filter(Boolean);
-    dispatch(addPostActions.setCategory(categories[0].option.value));
+    dispatch(addPostActions.setCategory(categories[0].filterBy.value));
   };
 
   return (

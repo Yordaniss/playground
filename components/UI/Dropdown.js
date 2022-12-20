@@ -56,20 +56,6 @@ export default function Dropdown(props) {
           setAsTouched();
         }}
       ></input>
-
-      <svg className="svgFilter">
-        <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-          <feColorMatrix
-            in="blur"
-            type="matrix"
-            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
-            result="goo"
-          />
-          <feComposite in="goo" result="composite" operator="atop" />
-          <feBlend in="SourceGraphic" in2="composite" />
-        </filter>
-      </svg>
       <label
         ref={dropdownTitleRef}
         className="dropdown__top"

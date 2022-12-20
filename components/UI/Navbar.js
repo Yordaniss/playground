@@ -48,7 +48,6 @@ export default function Navbar() {
 
   const [dropdown, setDropdown] = useState(null);
   useEffect(() => {
-    console.log(getCookie("token"));
     const onSignOut = () => removeCookies("token");
     let selectionModifier;
     let dropdownList;
