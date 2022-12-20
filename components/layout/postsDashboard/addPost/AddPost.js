@@ -103,7 +103,9 @@ export default function AddPost({ action = `${server}/api/posts` }) {
         headers: { ...authorization },
         body: formData,
       },
-      () => {}
+      () => {
+        router.push("/");
+      }
     );
   };
 
