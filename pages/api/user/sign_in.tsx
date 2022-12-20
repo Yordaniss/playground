@@ -14,12 +14,10 @@ export default async function handler(req: any, res: any) {
     if (!user) {
       return res.status(400).json({ data: "User does not exist" });
     }
-    // console.log(user);
     const isPasswordRight = await bcrypt.compare(password, user.password);
     if (!isPasswordRight) {
       return res.status(400).json({ message: "Credentials are not valid" });
     }
-    console.log(isPasswordRight);
 
     const token = await generateAccessToken(req.body.username);
     res.status(201).json({ success: true, token });

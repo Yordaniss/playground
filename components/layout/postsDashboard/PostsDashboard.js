@@ -38,9 +38,7 @@ export default function PostsDashboard() {
             "Content-Type": "application/json",
           },
         },
-        (posts) => {
-          console.log(posts);
-        }
+        () => {}
       );
     } else {
       fetchPosts(
@@ -62,9 +60,9 @@ export default function PostsDashboard() {
       return posts.data.reverse();
     }
     if (searchConfig.sorting.property === "date") {
-      searchConfig.sorting.direction === "desc"
-        ? posts.data.reverse()
-        : posts.data;
+      if (searchConfig.sorting.direction === "desc") {
+        return posts.data.reverse();
+      } else return posts.data;
     }
     if (searchConfig.sorting.property === "title") {
       return orderBy(
@@ -85,17 +83,22 @@ export default function PostsDashboard() {
     );
   };
 
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  let currentPosts;
+  if (posts) {
+    const sortedPosts = sort();
+    if (currentPage === Math.ceil(posts.data.length / postsPerPage)) {
+      const remainingPosts = posts.data.length % postsPerPage;
+      currentPosts = sortedPosts.slice(0, remainingPosts);
+    } else {
+      currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
+    }
+  }
+
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  let postsForPage;
-  if (posts) {
-    const sortedPosts = sort();
-    postsForPage = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
-  }
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -138,8 +141,8 @@ export default function PostsDashboard() {
             blur="postsDashboard-blur"
           ></ModuleWindow>
         )}
-        {postsForPage &&
-          postsForPage.map((post) => {
+        {currentPosts &&
+          currentPosts.map((post) => {
             return (
               <Post
                 viewModifier="POST_CARD"
@@ -148,7 +151,7 @@ export default function PostsDashboard() {
               ></Post>
             );
           })}
-        {postsForPage && (
+        {currentPosts && (
           <Pagination
             postsPerPage={postsPerPage}
             totalPosts={posts.data.length}

@@ -863,6 +863,7 @@ body {
 }
 .footer * {
   white-space: nowrap;
+  user-select: none;
 }
 .footer-links {
   font-size: 14px;

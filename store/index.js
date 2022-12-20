@@ -14,7 +14,6 @@ const searchConfigSlice = createSlice({
       state.sorting = { ...action.payload };
     },
     setFilters(state, action) {
-      // state.filtration.filters = [...action.payload];
       state.filtration = { ...action.payload };
     },
   },
