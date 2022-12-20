@@ -1,8 +1,21 @@
 import Card from "../../UI/Card";
 import Link from "next/link";
+import { main_categories } from "../searchManagement/SearchConstants";
 
 export default function Post(props) {
-  // console.log(props);
+  const getCategory = () => {
+    const chosenCategoryIndex = props.post.main_category;
+    let chosenCategory;
+    for (let [categoryConstant, categoryObj] of Object.entries(
+      main_categories
+    )) {
+      if (categoryObj.value === chosenCategoryIndex) {
+        chosenCategory = categoryObj.title;
+      }
+    }
+    return chosenCategory;
+  };
+
   return (
     <Card className="post">
       <div className="post__header">
@@ -13,10 +26,10 @@ export default function Post(props) {
         <h1 className="title">{props.post.title}</h1>
         <p className="category-container">
           <Link href={`/${props.post.main_category}`} className="category">
-            #{props.post.main_category}
+            #{getCategory()}
           </Link>
           <br />
-          <Link href={`/${props.post.main_category}`} className="category">
+          <Link href={`/${props.post.age_category}`} className="category">
             from {props.post.age_category} y.o.
           </Link>
         </p>

@@ -2,13 +2,13 @@ import AgeInput from "../../searchManagement/AgeInput";
 import { server } from "../../../../config/index";
 import { useForm } from "react-hook-form";
 import CategoryDropdown from "./CategoryDropdown";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addPostActions } from "../../../../store/index";
 import useHttpRequest from "../../../hooks/useHttpRequest";
 import { getCookie } from "cookies-next";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import ModuleWindow from "../../../UI/ModuleWindow";
-import { main_categories } from "../../searchManagement/SearchConstants";
 
 const isFieldTouchedInRedux = (fieldsName, fieldsInRedux) => {
   return fieldsInRedux.some((field) => {
@@ -59,6 +59,7 @@ const validateFile = (e, fileIsTouched, setError, getValues, clearErrors) => {
 
 export default function AddPost({ action = `${server}/api/posts` }) {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!getCookie("token")) {
@@ -94,8 +95,8 @@ export default function AddPost({ action = `${server}/api/posts` }) {
     formData.append("file", data.file[0]);
     const token = getCookie("token");
     const authorization = { authorization: `Bearer ${token}` };
+    dispatch(addPostActions.setCategory(null));
 
-    console.log(formData);
     postForm(
       {
         url: "/api/posts",
@@ -225,7 +226,7 @@ export default function AddPost({ action = `${server}/api/posts` }) {
           <div className="category-group">
             <CategoryDropdown
               className={`${
-                errors.main_category && categoryState.length === 0
+                errors.main_category && !categoryState && categoryState !== 0
                   ? "dropdown-error"
                   : ""
               }`}
@@ -234,7 +235,7 @@ export default function AddPost({ action = `${server}/api/posts` }) {
               })}
             ></CategoryDropdown>
           </div>
-          {errors.main_category && categoryState.length === 0 && (
+          {errors.main_category && !categoryState && categoryState !== 0 && (
             <p className="error-message">{errors.main_category?.message}</p>
           )}
           <div className="file-group">

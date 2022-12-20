@@ -1,12 +1,11 @@
-import clientPromise from '../lib/mongodb'
-import { InferGetServerSidePropsType } from 'next'
-import App from './_app';
+import clientPromise from "../lib/mongodb";
+import { InferGetServerSidePropsType } from "next";
+import App from "./_app";
 import React from "react";
 
-
-export async function getServerSideProps(context:any) {
+export async function getServerSideProps(context: any) {
   try {
-    await clientPromise
+    await clientPromise;
     // `await clientPromise` will use the default database passed in the MONGODB_URI
     // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
     //
@@ -22,17 +21,18 @@ export async function getServerSideProps(context:any) {
 
     return {
       props: { isConnected: true },
-    }
+    };
   } catch (e) {
-    console.error(e)
+    console.error(e);
     return {
       props: { isConnected: false },
-    }
+    };
   }
 }
 
-export default function Home({
-  isConnected,
-}: InferGetServerSidePropsType<typeof getServerSideProps>, props: any) {
-  return <App {...props}/>
+export default function Home(
+  { isConnected }: InferGetServerSidePropsType<typeof getServerSideProps>,
+  props: any
+) {
+  return <App {...props} />;
 }

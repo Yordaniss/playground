@@ -17,8 +17,6 @@ export async function getStaticProps({ params }) {
   const res = await fetch(`${server}/api/${params.postID}`);
 
   const post = await res.json();
-  console.log(post);
-
   if (!post) {
     return {
       notFound: true,
