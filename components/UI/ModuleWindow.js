@@ -33,7 +33,7 @@ export default function ModuleWindow(props) {
             className={`illustration ${
               props.image?.className && props.image.className
             }`}
-            src={props.image?.src}
+            src={"../" + props.image?.src}
           ></img>
         </div>
         <p className="module-window__message">{props.message}</p>

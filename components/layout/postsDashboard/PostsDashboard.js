@@ -88,7 +88,10 @@ export default function PostsDashboard() {
   let currentPosts;
   if (posts) {
     const sortedPosts = sort();
-    if (currentPage === Math.ceil(posts.data.length / postsPerPage)) {
+    if (
+      currentPage === Math.ceil(posts.data.length / postsPerPage) &&
+      searchConfig.sorting.property === "default"
+    ) {
       const remainingPosts = posts.data.length % postsPerPage;
       currentPosts = sortedPosts.slice(0, remainingPosts);
     } else {
