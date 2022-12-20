@@ -4,10 +4,11 @@ import { useForm } from "react-hook-form";
 import CategoryDropdown from "./CategoryDropdown";
 import { useSelector } from "react-redux";
 import useHttpRequest from "../../../hooks/useHttpRequest";
-import { getCookie, removeCookies } from "cookies-next";
+import { getCookie } from "cookies-next";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import ModuleWindow from "../../../UI/ModuleWindow";
+import { main_categories } from "../../searchManagement/SearchConstants";
 
 const isFieldTouchedInRedux = (fieldsName, fieldsInRedux) => {
   return fieldsInRedux.some((field) => {
@@ -22,18 +23,20 @@ const validateCategory = (
   setError,
   clearErrors
 ) => {
-  if (!e.target.className.includes("dropdown")) {
-    if (
-      isFieldTouchedInRedux("main_category", touchedFieldsRedux) &&
-      !categoryState &&
-      categoryState !== 0
-    ) {
-      setError("main_category", {
-        type: "custom",
-        message: "Please, choose category",
-      });
-    } else if (categoryState || categoryState === 0) {
-      clearErrors("main_category");
+  if (categoryState) {
+    if (!e.target.className.includes("dropdown")) {
+      if (
+        isFieldTouchedInRedux("main_category", touchedFieldsRedux) &&
+        !categoryState &&
+        categoryState.trim() === ""
+      ) {
+        setError("main_category", {
+          type: "custom",
+          message: "Please, choose category",
+        });
+      } else if (categoryState || categoryState.trim() !== "") {
+        clearErrors("main_category");
+      }
     }
   }
 };
@@ -70,7 +73,7 @@ export default function AddPost({ action = `${server}/api/posts` }) {
     handleSubmit,
     setError,
     clearErrors,
-    formState: { errors, isValid, isDirty, touchedFields },
+    formState: { errors, isValid },
   } = useForm({
     mode: "onBlur",
     reValidateMode: "onChange",
@@ -92,6 +95,7 @@ export default function AddPost({ action = `${server}/api/posts` }) {
     const token = getCookie("token");
     const authorization = { authorization: `Bearer ${token}` };
 
+    console.log(formData);
     postForm(
       {
         url: "/api/posts",
@@ -99,9 +103,7 @@ export default function AddPost({ action = `${server}/api/posts` }) {
         headers: { ...authorization },
         body: formData,
       },
-      () => {
-        router.push("/");
-      }
+      () => {}
     );
   };
 
@@ -110,6 +112,7 @@ export default function AddPost({ action = `${server}/api/posts` }) {
   const touchedFieldsRedux = useSelector(
     ({ addPost }) => addPost.touchedFields
   );
+
   const [fileIsTouched, setFileAsTouched] = useState(false);
 
   return (
@@ -150,6 +153,7 @@ export default function AddPost({ action = `${server}/api/posts` }) {
             setError,
             clearErrors
           );
+
           validateFile(e, fileIsTouched, setError, getValues, clearErrors);
         }}
       >
@@ -174,7 +178,6 @@ export default function AddPost({ action = `${server}/api/posts` }) {
             <textarea
               placeholder="Your funny activiy..."
               className={`textarea ${errors.text && "error"}`}
-              // minLength="50"
               {...register("text", {
                 required: "Text is required ;-;",
               })}
@@ -220,17 +223,16 @@ export default function AddPost({ action = `${server}/api/posts` }) {
           <div className="category-group">
             <CategoryDropdown
               className={`${
-                errors.main_category && !categoryState && categoryState !== 0
+                errors.main_category && categoryState.length === 0
                   ? "dropdown-error"
                   : ""
               }`}
               {...register("main_category", {
                 value: setValue("main_category", categoryState),
               })}
-              dropdownInputRef={null}
             ></CategoryDropdown>
           </div>
-          {errors.main_category && !categoryState && categoryState !== 0 && (
+          {errors.main_category && categoryState.length === 0 && (
             <p className="error-message">{errors.main_category?.message}</p>
           )}
           <div className="file-group">

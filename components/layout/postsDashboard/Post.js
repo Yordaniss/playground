@@ -2,6 +2,7 @@ import Card from "../../UI/Card";
 import Link from "next/link";
 
 export default function Post(props) {
+  // console.log(props);
   return (
     <Card className="post">
       <div className="post__header">
@@ -14,6 +15,7 @@ export default function Post(props) {
           <Link href={`/${props.post.main_category}`} className="category">
             #{props.post.main_category}
           </Link>
+          <br />
           <Link href={`/${props.post.main_category}`} className="category">
             from {props.post.age_category} y.o.
           </Link>

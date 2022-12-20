@@ -1,5 +1,4 @@
 import Dropdown from "../../../UI/Dropdown";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addPostActions } from "../../../../store/index";
 import { main_categories } from "../../searchManagement/SearchConstants";
@@ -57,7 +56,6 @@ export default function CategoryDropdown(props) {
         }
       })
       .filter(Boolean);
-    console.log(categories);
     dispatch(addPostActions.setCategory(categories[0].filterBy.value));
   };
 
