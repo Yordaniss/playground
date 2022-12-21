@@ -24,6 +24,7 @@ export default function PostsDashboard() {
   useEffect(() => {
     const filterObj = searchConfig.filtration;
     const filtersJSON = JSON.stringify(filterObj);
+    console.log(filtersJSON);
 
     if (
       filterObj.title === "" &&
