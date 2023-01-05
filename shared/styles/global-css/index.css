@@ -175,6 +175,7 @@ table {
   align-items: center;
   width: 100vw;
   height: 100vh;
+  padding: 5% 0 0 0;
 }
 .page-404__heading {
   font-family: "Babycakes";
@@ -389,10 +390,11 @@ body {
 
 .post {
   display: flex;
+  position: relative;
   flex-direction: column;
   background-color: white;
   border-radius: 50px;
-  height: min-content;
+  height: 35rem;
   padding: 3rem;
 }
 .post__header {
@@ -436,17 +438,44 @@ body {
   justify-self: center;
   text-align: center;
 }
-.post__text {
+.post__text-container {
+  position: relative;
+  max-height: 5rem;
+  height: 5rem;
+  overflow: hidden;
+}
+.post__text-container .post__text {
   font-family: "Josefin Sans";
   font-size: clamp(1rem, 1.3vw, 1.2rem);
   font-weight: 300;
   padding: 1rem 0;
+  overflow: hidden;
+  height: 100%;
+}
+.post__text-container .post__text-blur {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, white 10%, transparent 100%);
 }
 .post__button {
   background-color: #f7cac9;
   color: #aa324a;
   margin-top: 2rem;
   align-self: center;
+}
+
+.post.whole-post-view {
+  height: min-content !important;
+}
+.post.whole-post-view .post__text-container {
+  overflow: visible;
+  height: min-content;
+  max-height: none;
+}
+.post.whole-post-view .post__text-container .post__text {
+  overflow: visible;
 }
 
 .postsDashboard {
@@ -524,12 +553,17 @@ body {
   padding: 0 0 0 1rem;
 }
 .ageInput-container .ageInput {
+  appearance: none;
   border: none;
   appearance: textfield;
   font-family: "Babycakes";
   font-size: clamp(1.4rem, 2vw, 1.6rem);
   color: #562a35;
   max-width: 3rem;
+}
+.ageInput-container .ageInput::-webkit-inner-spin-button, .ageInput-container .ageInput::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .ageInput-container .ageInput:focus {
   outline: none;
@@ -680,11 +714,13 @@ body {
 .post-container {
   background-color: #f7cac9;
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   align-content: center;
   width: 100vw;
-  height: 100vh;
+  height: min-content;
+  padding: 10% 0 5rem 0;
 }
 .post-container .card.post {
   width: 70%;
@@ -851,6 +887,7 @@ body {
   }
 }
 .footer {
+  position: relative;
   height: 10rem;
   width: 100vw;
   background-color: #c4787c;

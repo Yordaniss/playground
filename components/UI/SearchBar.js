@@ -6,6 +6,11 @@ export default function SearchBar(props) {
   const handleClick = () => {
     props.onSearch(searchBarRef.current.value.trim());
   };
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      props.onSearch(searchBarRef.current.value.trim());
+    }
+  };
 
   return (
     <div className="searchBar">
@@ -13,6 +18,7 @@ export default function SearchBar(props) {
         className="searchBar__searchInput"
         type="text"
         placeholder="Search..."
+        onKeyDown={handleKeyDown}
         ref={searchBarRef}
       />
       <button className="searchBar__searchButton" onClick={handleClick}>
