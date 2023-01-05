@@ -1,8 +1,12 @@
 import Card from "../../UI/Card";
 import Link from "next/link";
 import { main_categories } from "../searchManagement/SearchConstants";
+import { useDispatch, useSelector } from "react-redux";
+import { searchConfigActions } from "../../../store/index";
 
 export default function Post(props) {
+  const dispatch = useDispatch();
+  const searchConfig = useSelector(({ searchConfig }) => searchConfig);
   const getCategory = () => {
     const chosenCategoryIndex = props.post.main_category;
     let chosenCategory;
@@ -10,10 +14,20 @@ export default function Post(props) {
       main_categories
     )) {
       if (categoryObj.value === chosenCategoryIndex) {
-        chosenCategory = categoryObj.title;
+        chosenCategory = categoryObj;
       }
     }
     return chosenCategory;
+  };
+
+  const handleCategoryClick = (e) => {
+    e.preventDefault();
+    const category = getCategory().value;
+    const filters = {
+      ...searchConfig.filtration,
+      main_category: category,
+    };
+    dispatch(searchConfigActions.setFilters(filters));
   };
 
   return (
@@ -25,8 +39,8 @@ export default function Post(props) {
         </Link>
         <h1 className="title">{props.post.title}</h1>
         <p className="category-container">
-          <Link href={`/${props.post.main_category}`} className="category">
-            #{getCategory()}
+          <Link href={``} className="category" onClick={handleCategoryClick}>
+            #{getCategory().title}
           </Link>
           <br />
           <Link href={`/${props.post.age_category}`} className="category">
@@ -36,7 +50,6 @@ export default function Post(props) {
       </div>
 
       <p className="post__text">{props.post.text}</p>
-
       {props.viewModifier === "POST_CARD" && (
         <Link href={`/posts/${props.post._id}`} className="button post__button">
           View more

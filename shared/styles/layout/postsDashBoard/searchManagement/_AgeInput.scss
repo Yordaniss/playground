@@ -9,12 +9,19 @@
   padding: 0 0 0 1rem;
 
   .ageInput {
+    appearance: none;
     border: none;
     appearance: textfield;
     font-family: $ff-tiny-utilities;
     font-size: $fs-m;
     color: $clr-primary-dull-wine;
     max-width: 3rem;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
 
     &:focus {
       outline: none;
