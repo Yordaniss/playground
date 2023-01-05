@@ -7,10 +7,11 @@
   align-items: center;
   align-content: center;
   width: 100vw;
-  height: 100vh;
+  height: min-content;
+  min-height: 100vh;
+  padding: 15% 0 10% 0;
 
   & .card.post {
     width: 70%;
-    height: 80%;
   }
 }

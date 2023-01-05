@@ -114,7 +114,7 @@
 @media screen and (max-width: $bp-extra-big-screen) {
   .header {
     min-height: 100vh;
-    height: 100vh;
+    height: min-content;
     padding: 2.5rem;
 
     .inner-container {

@@ -175,6 +175,7 @@ table {
   align-items: center;
   width: 100vw;
   height: 100vh;
+  padding: 5% 0 0 0;
 }
 .page-404__heading {
   font-family: "Babycakes";
@@ -524,12 +525,17 @@ body {
   padding: 0 0 0 1rem;
 }
 .ageInput-container .ageInput {
+  appearance: none;
   border: none;
   appearance: textfield;
   font-family: "Babycakes";
   font-size: clamp(1.4rem, 2vw, 1.6rem);
   color: #562a35;
   max-width: 3rem;
+}
+.ageInput-container .ageInput::-webkit-inner-spin-button, .ageInput-container .ageInput::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .ageInput-container .ageInput:focus {
   outline: none;
@@ -684,11 +690,12 @@ body {
   align-items: center;
   align-content: center;
   width: 100vw;
-  height: 100vh;
+  height: min-content;
+  min-height: 100vh;
+  padding: 15% 0 10% 0;
 }
 .post-container .card.post {
   width: 70%;
-  height: 80%;
 }
 
 .header {
@@ -783,7 +790,7 @@ body {
 @media screen and (max-width: 1200px) {
   .header {
     min-height: 100vh;
-    height: 100vh;
+    height: min-content;
     padding: 2.5rem;
   }
   .header .inner-container {

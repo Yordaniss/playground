@@ -62,7 +62,7 @@ export default function FilterDropdown() {
     if (checkedItem[0].filterBy.property === "main_category") {
       filters = {
         ...searchConfig.filtration,
-        main_category: checkedItem[0].optionTitle,
+        main_category: checkedItem[0].filterBy.value,
       };
     }
 
