@@ -3,11 +3,13 @@
 .post-container {
   background-color: $bg-primary-light-pink;
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   align-content: center;
   width: 100vw;
-  height: 100vh;
+  height: min-content;
+  padding: 10% 0 5rem 0;
 
   & .card.post {
     width: 70%;

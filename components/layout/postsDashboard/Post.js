@@ -1,6 +1,8 @@
 import Card from "../../UI/Card";
 import Link from "next/link";
 import { main_categories } from "../searchManagement/SearchConstants";
+import { useEffect } from "react";
+import { setCookie } from "cookies-next";
 
 export default function Post(props) {
   const getCategory = () => {
@@ -17,7 +19,11 @@ export default function Post(props) {
   };
 
   return (
-    <Card className="post">
+    <Card
+      className={`post ${
+        props.viewModifier !== "POST_CARD" && "whole-post-view"
+      }`}
+    >
       <div className="post__header">
         <div className="authors-image" alt="author's photo"></div>
         <Link href="/" className="authors-username">
@@ -35,7 +41,12 @@ export default function Post(props) {
         </p>
       </div>
 
-      <p className="post__text">{props.post.text}</p>
+      <div className="post__text-container">
+        <p className="post__text">{props.post.text}</p>
+        {props.viewModifier === "POST_CARD" && (
+          <div className="post__text-blur"></div>
+        )}
+      </div>
 
       {props.viewModifier === "POST_CARD" && (
         <Link href={`/posts/${props.post._id}`} className="button post__button">
