@@ -467,18 +467,6 @@ body {
   align-self: center;
 }
 
-.post.whole-post-view {
-  height: min-content !important;
-}
-.post.whole-post-view .post__text-container {
-  overflow: visible;
-  height: min-content;
-  max-height: none;
-}
-.post.whole-post-view .post__text-container .post__text {
-  overflow: visible;
-}
-
 @media screen and (max-width: 890px) {
   .post {
     padding: 1.7rem;
@@ -532,6 +520,15 @@ body {
     margin-top: 2rem;
   }
 }
+.post.whole-post-view {
+  height: 100% !important;
+  max-height: none;
+}
+.post.whole-post-view .post__text-container {
+  height: 100%;
+  max-height: none;
+}
+
 .postsDashboard {
   display: flex;
   flex-direction: column;
@@ -782,7 +779,6 @@ body {
 }
 .post-container .card.post {
   width: 70%;
-  height: 80%;
 }
 
 .header {
