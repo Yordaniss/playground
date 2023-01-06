@@ -84,18 +84,6 @@
   }
 }
 
-.post.whole-post-view {
-  height: min-content !important;
-  .post__text-container {
-    overflow: visible;
-    height: min-content;
-    max-height: none;
-    .post__text {
-      overflow: visible;
-    }
-  }
-}
-
 @media screen and (max-width: $bp-medium-screen) {
   .post {
     padding: 1.7rem;
@@ -165,5 +153,14 @@
         margin-top: 2rem;
       }
     }
+  }
+}
+
+.post.whole-post-view {
+  height: 100% !important;
+  max-height: none;
+  .post__text-container {
+    height: 100%;
+    max-height: none;
   }
 }
