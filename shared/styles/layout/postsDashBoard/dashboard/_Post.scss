@@ -6,14 +6,17 @@
   flex-direction: column;
   background-color: $bg-primary-white;
   border-radius: 50px;
-  height: 35rem;
+  max-height: 35rem;
+  height: 100%;
   padding: 3rem;
 
   &__header {
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-template-rows: 2fr 1fr 1fr;
+    row-gap: 1rem;
     justify-content: center;
+    align-items: center;
     .authors-image {
       width: 5rem;
       height: 5rem;
@@ -26,10 +29,8 @@
       font-family: $ff-text;
       font-size: $fs-xs;
       color: $clr-primary-dull-rose;
-      padding: 1rem 0;
       grid-row: 2;
       grid-column: 1;
-      align-self: center;
     }
     .category-container {
       grid-row: 3;
@@ -43,7 +44,7 @@
     .title {
       font-family: $ff-headings;
       color: $clr-primary-dull-rose;
-      font-size: $fs-xl;
+      font-size: $fs-l;
       grid-row: 1;
       grid-column: 2;
       justify-self: center;
@@ -91,6 +92,78 @@
     max-height: none;
     .post__text {
       overflow: visible;
+    }
+  }
+}
+
+@media screen and (max-width: $bp-medium-screen) {
+  .post {
+    padding: 1.7rem;
+
+    &__header {
+      .authors-image {
+        width: 4rem;
+        height: 4rem;
+      }
+      .authors-username {
+        font-size: $fs-xs;
+      }
+      .category-container {
+        .category {
+          font-size: $fs-xs;
+        }
+      }
+      .title {
+        font-family: $ff-headings;
+        color: $clr-primary-dull-rose;
+        font-size: $fs-l;
+      }
+
+      &__text-container {
+        .post__text {
+          font-size: $fs-xs;
+        }
+      }
+
+      &__button {
+        margin-top: 2rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $bp-extra-small-screen) {
+  .post {
+    padding: 1.7rem;
+
+    &__header {
+      row-gap: 0.5rem;
+
+      .authors-image {
+        width: 3.5rem;
+        height: 3.5rem;
+      }
+      .authors-username {
+        font-size: $fs-xxs;
+      }
+      .category-container {
+        .category {
+          font-size: $fs-xxs;
+        }
+      }
+      .title {
+        font-size: $fs-s;
+      }
+
+      &__text-container {
+        .post__text {
+          font-size: $fs-xs;
+        }
+      }
+
+      &__button {
+        margin-top: 2rem;
+      }
     }
   }
 }

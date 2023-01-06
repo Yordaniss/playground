@@ -12,11 +12,25 @@
   height: min-content;
   width: min-content;
   white-space: nowrap;
-  padding: 30px;
+  padding: 1.5rem;
   user-select: none;
 
   &:hover {
     cursor: pointer;
     box-shadow: $box-sh-button;
+  }
+}
+
+@media screen and (max-width: $bp-big-screen) {
+  .button {
+    font-size: $fs-s;
+    padding: 1.5rem;
+  }
+}
+
+@media screen and (max-width: $bp-medium-screen) {
+  .button {
+    font-size: $fs-xs;
+    padding: 1rem;
   }
 }
