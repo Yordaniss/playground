@@ -3,7 +3,7 @@
 .nav {
   position: fixed;
   width: min-content;
-  z-index: 99;
+  z-index: 1030;
 
   &__list {
     display: flex;
@@ -98,7 +98,7 @@ label[for="menu-checkbox"] {
   right: 6%;
   box-shadow: $box-sh-button;
   border-radius: 50%;
-  z-index: 100;
+  z-index: 1060;
   backdrop-filter: blur(5px);
 
   & a {

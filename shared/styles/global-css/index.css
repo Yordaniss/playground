@@ -394,14 +394,17 @@ body {
   flex-direction: column;
   background-color: white;
   border-radius: 50px;
-  height: 35rem;
+  max-height: 35rem;
+  height: 100%;
   padding: 3rem;
 }
 .post__header {
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-template-rows: 2fr 1fr 1fr;
+  row-gap: 1rem;
   justify-content: center;
+  align-items: center;
 }
 .post__header .authors-image {
   width: 5rem;
@@ -415,10 +418,8 @@ body {
   font-family: "Josefin Sans";
   font-size: clamp(1rem, 1.3vw, 1.2rem);
   color: #aa324a;
-  padding: 1rem 0;
   grid-row: 2;
   grid-column: 1;
-  align-self: center;
 }
 .post__header .category-container {
   grid-row: 3;
@@ -432,7 +433,7 @@ body {
 .post__header .title {
   font-family: "Babycakes";
   color: #aa324a;
-  font-size: clamp(1.8rem, 5vw, 2.7rem);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
   grid-row: 1;
   grid-column: 2;
   justify-self: center;
@@ -478,6 +479,59 @@ body {
   overflow: visible;
 }
 
+@media screen and (max-width: 890px) {
+  .post {
+    padding: 1.7rem;
+  }
+  .post__header .authors-image {
+    width: 4rem;
+    height: 4rem;
+  }
+  .post__header .authors-username {
+    font-size: clamp(1rem, 1.3vw, 1.2rem);
+  }
+  .post__header .category-container .category {
+    font-size: clamp(1rem, 1.3vw, 1.2rem);
+  }
+  .post__header .title {
+    font-family: "Babycakes";
+    color: #aa324a;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+  }
+  .post__header__text-container .post__text {
+    font-size: clamp(1rem, 1.3vw, 1.2rem);
+  }
+  .post__header__button {
+    margin-top: 2rem;
+  }
+}
+@media screen and (max-width: 470px) {
+  .post {
+    padding: 1.7rem;
+  }
+  .post__header {
+    row-gap: 0.5rem;
+  }
+  .post__header .authors-image {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  .post__header .authors-username {
+    font-size: clamp(0.8rem, 1vw, 1rem);
+  }
+  .post__header .category-container .category {
+    font-size: clamp(0.8rem, 1vw, 1rem);
+  }
+  .post__header .title {
+    font-size: clamp(1.2rem, 1.2vw, 1.5rem);
+  }
+  .post__header__text-container .post__text {
+    font-size: clamp(1rem, 1.3vw, 1.2rem);
+  }
+  .post__header__button {
+    margin-top: 2rem;
+  }
+}
 .postsDashboard {
   display: flex;
   flex-direction: column;
@@ -641,15 +695,14 @@ body {
 
 @media screen and (max-width: 890px) {
   .searchManagement {
-    width: 80%;
+    width: 50%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    justify-content: space-evenly;
-    justify-items: center;
+    justify-content: space-between;
     row-gap: 1rem;
     column-gap: 5rem;
-    padding: 1.5rem;
+    padding: 2rem;
   }
   .searchManagement *:not(.ageInput__buttons > *, .itemLabel) {
     font-size: clamp(1rem, 1.3vw, 1.2rem) !important;
@@ -667,6 +720,7 @@ body {
   }
   .searchManagement .ageInput-container {
     width: 4.5rem;
+    justify-self: center;
   }
   .searchManagement .ageInput-container .ageInput {
     max-width: 1.5rem;
@@ -683,16 +737,17 @@ body {
     width: 97%;
     min-width: 0;
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    justify-content: center;
-    justify-items: center;
+    justify-content: space-between;
+    justify-items: left;
+    align-items: center;
     row-gap: 1rem;
-    column-gap: 7vw;
+    column-gap: 0.5rem;
     padding: 5vw;
   }
   .searchBar {
-    max-width: 11rem;
+    max-width: 12rem;
     padding: 0.5rem;
     grid-column: 1;
     grid-row: 1;
@@ -702,6 +757,7 @@ body {
   }
   .ageInput-container {
     width: 4.5rem;
+    justify-self: center;
   }
   .ageInput-container .ageInput {
     max-width: 1.5rem;
@@ -1217,7 +1273,7 @@ body {
   height: min-content;
   width: min-content;
   white-space: nowrap;
-  padding: 30px;
+  padding: 1.5rem;
   user-select: none;
 }
 .button:hover {
@@ -1225,6 +1281,18 @@ body {
   box-shadow: 0px 0px 5px rgb(255, 255, 255), 0px 0px 10px rgba(255, 196, 199, 0.7), 0px 0px 15px rgba(255, 196, 199, 0.7), 0px 0px 20px rgba(255, 196, 199, 0.7), 0px 0px 30px rgba(255, 196, 199, 0.7), 0px 0px 40px rgba(255, 196, 199, 0.7), 0px 0px 55px rgba(255, 196, 199, 0.7), 0px 0px 75px rgba(255, 196, 199, 0.7);
 }
 
+@media screen and (max-width: 1000px) {
+  .button {
+    font-size: clamp(1.2rem, 1.2vw, 1.5rem);
+    padding: 1.5rem;
+  }
+}
+@media screen and (max-width: 890px) {
+  .button {
+    font-size: clamp(1rem, 1.3vw, 1.2rem);
+    padding: 1rem;
+  }
+}
 .dropdown {
   display: flex;
   filter: url(#goo);
@@ -1553,7 +1621,7 @@ body {
 .nav {
   position: fixed;
   width: min-content;
-  z-index: 99;
+  z-index: 1030;
 }
 .nav__list {
   display: flex;
@@ -1630,7 +1698,7 @@ label[for=menu-checkbox] {
   right: 6%;
   box-shadow: 0px 0px 5px rgb(255, 255, 255), 0px 0px 10px rgba(255, 196, 199, 0.7), 0px 0px 15px rgba(255, 196, 199, 0.7), 0px 0px 20px rgba(255, 196, 199, 0.7), 0px 0px 30px rgba(255, 196, 199, 0.7), 0px 0px 40px rgba(255, 196, 199, 0.7), 0px 0px 55px rgba(255, 196, 199, 0.7), 0px 0px 75px rgba(255, 196, 199, 0.7);
   border-radius: 50%;
-  z-index: 100;
+  z-index: 1060;
   backdrop-filter: blur(5px);
 }
 label[for=menu-checkbox] a {

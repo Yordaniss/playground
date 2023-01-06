@@ -15,15 +15,14 @@
 
 @media screen and (max-width: $bp-medium-screen) {
   .searchManagement {
-    width: 80%;
+    width: 50%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    justify-content: space-evenly;
-    justify-items: center;
+    justify-content: space-between;
     row-gap: 1rem;
     column-gap: 5rem;
-    padding: 1.5rem;
+    padding: 2rem;
 
     & *:not(.ageInput__buttons > *, .itemLabel) {
       font-size: $fs-xs !important;
@@ -44,6 +43,7 @@
 
     .ageInput-container {
       width: 4.5rem;
+      justify-self: center;
       .ageInput {
         max-width: 1.5rem;
 
@@ -62,17 +62,18 @@
       width: 97%;
       min-width: 0;
       display: grid;
-      grid-template-columns: 60% 40%;
+      grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
-      justify-content: center;
-      justify-items: center;
+      justify-content: space-between;
+      justify-items: left;
+      align-items: center;
       row-gap: 1rem;
-      column-gap: 7vw;
+      column-gap: 0.5rem;
       padding: 5vw;
     }
 
     .searchBar {
-      max-width: 11rem;
+      max-width: 12rem;
       padding: 0.5rem;
       grid-column: 1;
       grid-row: 1;
@@ -83,6 +84,7 @@
 
     .ageInput-container {
       width: 4.5rem;
+      justify-self: center;
       .ageInput {
         max-width: 1.5rem;
 
